@@ -2292,3 +2292,12 @@ button,
 #banner .content {
   flex: 1;
 }
+#sidebar {
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+}
+
+#main {
+  margin-left: 260px; /* adjust depending on sidebar width */
+}

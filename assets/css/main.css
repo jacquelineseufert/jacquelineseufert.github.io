@@ -2301,3 +2301,20 @@ button,
 #main {
   margin-left: 260px; /* adjust depending on sidebar width */
 }
+
+.posts {
+  display: flex;
+  gap: 2rem; /* spacing between cards */
+}
+
+.posts article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.posts article .actions {
+  margin-top: auto; /* pushes button to bottom */
+}
+

@@ -2279,3 +2279,16 @@ button,
   object-fit: cover;  /* keeps image tidy */
 }
 
+/* Smaller profile picture and balanced hero layout */
+#banner .image.object {
+  width: 220px !important;
+  flex: 0 0 220px !important;
+}
+#banner .image.object img {
+  width: 220px !important;
+  height: auto;
+  border-radius: 6px;
+}
+#banner .content {
+  flex: 1;
+}

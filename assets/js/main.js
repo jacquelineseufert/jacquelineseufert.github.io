@@ -88,23 +88,7 @@
 				$('<style>#sidebar .inner::-webkit-scrollbar { display: none; }</style>')
 					.appendTo($head);
 
-		// Toggle.
-			// Toggle.
-// Toggle.
-$('<a href="#sidebar" class="toggle"><i class="fas fa-bars"></i></a>')
-
-  .appendTo($sidebar)
-  .on('click', function(event) {
-
-    // Prevent default.
-    event.preventDefault();
-    event.stopPropagation();
-
-    // Toggle.
-    $sidebar.toggleClass('inactive');
-
-  });
-
+		
 		// Events.
 
 			// Link clicks.

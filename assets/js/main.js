@@ -90,7 +90,9 @@
 
 		// Toggle.
 			// Toggle.
+// Toggle.
 $('<a href="#sidebar" class="toggle"><i class="fas fa-bars"></i></a>')
+
   .appendTo($sidebar)
   .on('click', function(event) {
 

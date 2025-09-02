@@ -1,16 +1,40 @@
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+/* === Sidebar Rescue Patch (forces sidebar visible) === */
+#wrapper {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 22rem; /* main | sidebar */
+  gap: 2rem;
+  align-items: start;
+}
 
-<!-- Sidebar fix: runs last -->
-<script>
-  (function () {
-    var s = document.getElementById('sidebar');
-    if (!s) return;
-    s.classList.remove('inactive'); // undo theme collapse
-    var t = s.querySelector('.toggle');
-    if (t) t.style.display = 'none'; // optional: hide burger
-  })();
-</script>
+#main { min-width: 0; }
+
+#sidebar {
+  display: block !important;
+  background: #f5f6f7;
+}
+
+/* Neutralize theme's "inactive" collapse */
+#sidebar.inactive {
+  margin-left: 0 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Editorial hides it on preload — undo that */
+body.is-preload #sidebar {
+  display: block !important;
+}
+
+#sidebar .inner {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  width: 100%;
+}
+
+/* Mobile: stack sidebar under main */
+@media (max-width: 980px) {
+  #wrapper { grid-template-columns: 1fr !important; }
+  #sidebar .inner { position: static; max-height: none; }
+}

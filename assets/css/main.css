@@ -2350,3 +2350,58 @@ button,
   .quick-links .posts { grid-template-columns: 1fr; }
 }
 
+<style>
+  /* General type tweaks */
+  @media (max-width: 480px) {
+    #banner header p { font-size: 1rem; line-height: 1.4; }
+    #banner p { font-size: 0.98rem; }
+  }
+
+  /* Hero (banner) */
+  #banner { display: flex; align-items: center; gap: 2rem; }
+  #banner .content { flex: 1 1 auto; }
+  #banner .image.object { flex: 0 0 auto; }
+
+  @media (max-width: 900px) {
+    #banner { gap: 1.25rem; }
+    #banner .image.object img { max-width: 200px; }
+  }
+
+  @media (max-width: 740px) {
+    #banner { flex-direction: column; align-items: flex-start; }
+    #banner .image.object { align-self: center; }
+    #banner .image.object img { max-width: 160px; height: auto; }
+    /* Buttons: full width on small screens */
+    #banner .actions .button.big { width: 100%; text-align: center; }
+    #banner .actions li { width: 100%; }
+    #banner .actions li + li { margin-top: 0.5rem; }
+  }
+
+  /* Expertise grid → single column on phones */
+  @media (max-width: 740px) {
+    .features { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .features article { margin: 0; }
+  }
+
+  /* Quick links grid (use .ql-flex on the container) */
+  .ql-flex {
+    display: flex; gap: 3rem; align-items: stretch; flex-wrap: wrap;
+  }
+  .ql-card {
+    flex: 1 1 320px; text-align: center; display: flex; flex-direction: column; align-items: center;
+  }
+  .ql-card .ql-imgbox {
+    width: 140px; height: 140px; margin: 0 auto 12px auto; display: block;
+  }
+  .ql-card .ql-imgbox img {
+    width: 100%; height: 100%; object-fit: contain; opacity: 0.92;
+  }
+  .ql-card h3 { margin: 8px 0 6px 0; }
+  .ql-card p { margin: 0 0 12px 0; }
+  .ql-card .actions { margin-top: auto; display: flex; justify-content: center; }
+
+  @media (max-width: 740px) {
+    .ql-flex { flex-direction: column; gap: 1.5rem; }
+    .ql-card .actions .button { width: 100%; }
+  }
+</style>

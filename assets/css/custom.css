@@ -14,17 +14,13 @@ ul.actions, ul.actions li {
   align-items: start;
 }
 
-#sidebar {
-  order: 1;                 /* force left */
-  grid-column: 1;
-  background: #f5f6f7;
-  display: block !important;
+#main {
+  min-width: 0;
 }
 
-#main {
-  order: 2;                 /* force right */
-  grid-column: 2;
-  min-width: 0;
+#sidebar {
+  background: #f5f6f7;
+  display: block !important;
 }
 
 #sidebar .inner {

@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-<link rel="stylesheet" href="assets/css/custom.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
   <link rel="icon" href="images/favicon.ico" />
 
   <!-- Tighter scale + mobile-friendly overrides -->
@@ -31,6 +31,10 @@
 
     /* Slimmer buttons */
     .button.big { font-size: .9rem; padding: .5rem .9rem; }
+
+    /* Remove bullet points in button lists */
+    ul.actions { list-style: none !important; margin: 0; padding: 0; display: flex; gap: 0.75rem; }
+    ul.actions li { list-style: none !important; margin: 0; padding: 0; }
 
     /* Section spacing trimmed */
     section { margin: 1.8rem 0; }
@@ -56,7 +60,7 @@
     .ql-card .actions { margin-top:auto; display:flex; justify-content:center; }
     .ql-card .actions .button { padding:.45rem .85rem; font-size:.9rem; }
 
-    /* Sidebar width (restore) */
+    /* Sidebar width */
     #sidebar .inner { width: 22rem; }
 
     /* Mobile */
@@ -64,6 +68,7 @@
       #banner { flex-direction:column; align-items:flex-start; }
       #banner .image.object { align-self:center; }
       #banner .image.object img { width:140px; }
+      #banner .actions { flex-direction: column; width: 100%; }
       #banner .actions .button.big { width:100%; text-align:center; }
       #banner .actions li { width:100%; }
       #banner .actions li + li { margin-top:.5rem; }
@@ -79,6 +84,47 @@
 
   <!-- Wrapper MUST wrap main + sidebar -->
   <div id="wrapper">
+
+    <!-- Sidebar (now on the left) -->
+    <div id="sidebar">
+      <div class="inner">
+
+        <!-- Menu -->
+        <nav id="menu">
+          <header class="major"><h2>Menu</h2></header>
+          <ul>
+            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="/cv.html"><i class="fas fa-file-alt"></i> CV / Experience</a></li>
+            <li><a href="/projects.html"><i class="fas fa-folder-open"></i> Projects</a></li>
+            <li><a href="mailto:jacqueline-seufert@web.de"><i class="fas fa-envelope"></i> Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contact -->
+        <section>
+          <header class="major"><h2>Get in touch</h2></header>
+          <ul class="contact">
+            <li class="icon solid fa-envelope">
+              <a href="mailto:jacqueline-seufert@web.de">jacqueline-seufert@web.de</a>
+            </li>
+            <li class="icon brands fa-github">
+              <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a>
+            </li>
+            <li class="icon brands fa-linkedin">
+              <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+          <p class="copyright">
+            © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
+          </p>
+        </footer>
+
+      </div>
+    </div>
 
     <!-- Main -->
     <div id="main">
@@ -100,11 +146,12 @@
               My projects range from housing markets and land valuation to environmental data analysis, always grounded in transparent, reproducible methods that support policy and practical decision-making.
             </p>
 
-      
-<ul class="actions">
-  <li><a href="/cv.html" class="button big primary"><i class="fas fa-file-alt"></i> View CV</a></li>
-  <li><a href="/projects.html" class="button big"><i class="fas fa-folder-open"></i> Projects</a></li>
-</ul>
+            <ul class="actions">
+              <li><a href="/cv.html" class="button big primary"><i class="fas fa-file-alt"></i> View CV</a></li>
+              <li><a href="/projects.html" class="button big"><i class="fas fa-folder-open"></i> Projects</a></li>
+            </ul>
+          </div>
+
           <span class="image object">
             <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" />
           </span>
@@ -172,55 +219,6 @@
             </article>
           </div>
         </section>
-
-      </div>
-    </div>
-
-    <!-- Sidebar -->
-    <div id="sidebar">
-      <div class="inner">
-
-        <!-- Menu -->
-<nav id="menu">
-  <header class="major"><h2>Menu</h2></header>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/cv.html">CV / Experience</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <!-- <li><a href="/publications.html">Publications</a></li> -->
-    <li>
-      <a href="mailto:&#106;&#97;&#99;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#45;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#64;&#119;&#101;&#98;&#46;&#100;&#101;">
-        Contact
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!-- Contact -->
-<section>
-  <header class="major"><h2>Get in touch</h2></header>
-  <ul class="contact">
-    <li class="icon solid fa-envelope">
-      <a href="mailto:&#106;&#97;&#99;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#45;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#64;&#119;&#101;&#98;&#46;&#100;&#101;">
-        &#106;&#97;&#99;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#45;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#64;&#119;&#101;&#98;&#46;&#100;&#101;
-      </a>
-    </li>
-    <li class="icon brands fa-github">
-      <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a>
-    </li>
-    <li class="icon brands fa-linkedin">
-      <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a>
-    </li>
-  </ul>
-</section>
-
-
-        <!-- Footer -->
-        <footer id="footer">
-          <p class="copyright">
-            © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
-          </p>
-        </footer>
 
       </div>
     </div>

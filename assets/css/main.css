@@ -2405,3 +2405,63 @@ button,
     .ql-card .actions .button { width: 100%; }
   }
 </style>
+<style>
+  /* Narrow the readable line length a bit */
+  #main .inner { max-width: 960px; }  /* default is ~1100+ in this theme */
+
+  /* Global text rhythm */
+  body { font-size: 16px; line-height: 1.55; }
+
+  /* Headings (smaller, fluid) */
+  h1 { font-size: clamp(2.0rem, 4.0vw, 2.75rem); margin-bottom: .35rem; }
+  h2 { font-size: clamp(1.25rem, 2.2vw, 1.6rem); }
+  h3 { font-size: 1.05rem; font-weight: 600; }
+
+  /* Banner spacing + tagline (turn off ALL CAPS & tight letter spacing) */
+  #banner { padding: 1.6rem 0 1.2rem; display:flex; gap:1.5rem; align-items:center; }
+  #banner header p { 
+    text-transform: none; 
+    letter-spacing: 0; 
+    font-size: 1.05rem; 
+    margin: .45rem 0 .75rem;
+  }
+  #banner > .content > p { font-size: 1rem; max-width: 68ch; }
+
+  /* Photo size a touch smaller on desktop */
+  #banner .image.object img { width: 180px; height:auto; border-radius:6px; }
+
+  /* Buttons a bit slimmer */
+  .button.big { font-size: .95rem; padding: .55rem 1rem; }
+
+  /* Section spacing trimmed */
+  section { margin: 2.2rem 0; }
+  header.major h2 { font-size: 1.35rem; margin-bottom: .4rem; }
+  header.major:after { height: 2px; }
+
+  /* Expertise grid: tighter gaps & text */
+  .features { gap: 1.1rem !important; }
+  .features .content p { font-size: .97rem; margin: .35rem 0 0; }
+  .features .icon { font-size: 1.2rem; }
+
+  /* Quick links cards (use your ql- classes if present) */
+  .ql-card h3 { font-size: 1rem; margin: 6px 0 4px; }
+  .ql-card p  { font-size: .95rem; }
+
+  /* EPSO badge (add class="badge" to the span if you can) */
+  .badge {
+    display:inline-block; padding:3px 8px; border:1px solid #ddd;
+    border-radius:999px; background:#fafafa; font-size:.8em; line-height:1;
+  }
+
+  /* Mobile: stack hero, full-width buttons, single-column sections */
+  @media (max-width: 740px) {
+    #banner { flex-direction: column; align-items: flex-start; }
+    #banner .image.object { align-self:center; }
+    #banner .image.object img { width: 150px; }
+    #banner .actions .button.big { width: 100%; text-align: center; }
+    #banner .actions li { width: 100%; }
+    #banner .actions li + li { margin-top: .5rem; }
+    .features { display:grid; grid-template-columns: 1fr; }
+  }
+</style>
+

@@ -1,28 +1,24 @@
-/* Remove bullets from action buttons */
-ul.actions, ul.actions li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-
-/* === Sidebar Left Layout === */
+/* === Sidebar Left Fix === */
 #wrapper {
   display: grid !important;
   grid-template-columns: 22rem minmax(0, 1fr); /* sidebar | main */
+  grid-template-areas: "sidebar main";
   gap: 2rem;
   align-items: start;
 }
 
-#main {
-  min-width: 0;
-}
-
 #sidebar {
+  grid-area: sidebar;
   background: #f5f6f7;
   display: block !important;
 }
 
+#main {
+  grid-area: main;
+  min-width: 0;
+}
+
+/* Keep sidebar sticky */
 #sidebar .inner {
   position: sticky;
   top: 1rem;
@@ -37,217 +33,6 @@ ul.actions, ul.actions li {
   transform: none !important;
   box-shadow: none !important;
 }
-
 body.is-preload #sidebar {
   display: block !important;
-}
-
-/* === Base typography tweaks === */
-body {
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-h1 {
-  font-size: clamp(1.65rem, 3vw, 2.1rem);
-  margin-bottom: 0.35rem;
-}
-
-h2 {
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
-}
-
-h3 {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-/* === Hero / Banner === */
-#banner {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 0 1rem;
-}
-
-#banner header p {
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 1rem;
-  margin: 0.4rem 0 0.6rem;
-}
-
-#banner > .content > p {
-  font-size: 0.98rem;
-  max-width: 68ch;
-  margin-bottom: 0.9rem;
-}
-
-#banner .image.object img {
-  width: 160px;
-  height: auto;
-  border-radius: 6px;
-}
-
-/* === Buttons === */
-.button.big {
-  font-size: 0.9rem;
-  padding: 0.5rem 0.9rem;
-}
-
-/* remove bullets + align */
-ul.actions {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 0.75rem;
-}
-
-ul.actions li {
-  margin: 0;
-  padding: 0;
-}
-
-/* Font Awesome icons inside buttons */
-ul.actions .button {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-ul.actions .button i {
-  margin-right: 0.4em;
-}
-
-/* === Sections & spacing === */
-section {
-  margin: 1.8rem 0;
-}
-
-header.major h2 {
-  font-size: 1.25rem;
-  margin-bottom: 0.35rem;
-}
-
-/* === Features Grid === */
-.features {
-  gap: 1rem !important;
-}
-
-.features .content p {
-  font-size: 0.95rem;
-  margin: 0.3rem 0 0;
-}
-
-/* === EPSO Badge === */
-.badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border: 1px solid #ddd;
-  border-radius: 999px;
-  background: #fafafa;
-  font-size: 0.8em;
-  line-height: 1;
-}
-
-/* === Quick Links Grid === */
-.ql-flex {
-  display: flex;
-  gap: 2rem;
-  align-items: stretch;
-  flex-wrap: wrap;
-}
-
-.ql-card {
-  flex: 1 1 320px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.ql-imgbox {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 10px auto;
-  display: block;
-}
-
-.ql-imgbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0.92;
-}
-
-.ql-card h3 {
-  margin: 6px 0 4px;
-  font-size: 1rem;
-}
-
-.ql-card p {
-  margin: 0 0 10px 0;
-  font-size: 0.95rem;
-}
-
-.ql-card .actions {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-}
-
-.ql-card .actions .button {
-  padding: 0.45rem 0.85rem;
-  font-size: 0.9rem;
-}
-
-/* === Mobile Responsive Fixes === */
-@media (max-width: 980px) {
-  #wrapper {
-    grid-template-columns: 1fr !important; /* stack */
-  }
-
-  #banner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #banner .image.object {
-    align-self: center;
-  }
-
-  #banner .image.object img {
-    width: 140px;
-  }
-
-  #banner .actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  #banner .actions .button.big {
-    width: 100%;
-    text-align: center;
-  }
-
-  .features {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .ql-flex {
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .ql-card .actions .button {
-    width: 100%;
-  }
-
-  #sidebar .inner {
-    position: static;
-    max-height: none;
-    width: 100%;
-  }
 }

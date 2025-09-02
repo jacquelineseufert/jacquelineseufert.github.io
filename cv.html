@@ -4,7 +4,11 @@
   <meta charset="utf-8" />
   <title>CV / Experience — Jacqueline Seufert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+
+  <link rel="icon" href="images/favicon.ico" />
 
   <style>
     /* Audience tabs + role visibility */
@@ -39,7 +43,7 @@
       border-radius:10px; 
       padding:1rem 1.25rem; 
       margin:0 0 1rem 0; 
-      background: var(--bg-alt, #fff); 
+      background:#fff; 
     }
     .exp-card h3 { margin:0 0 .25rem 0; }
     .meta { font-size:.95rem; opacity:.8; margin:.15rem 0 .75rem; }
@@ -56,34 +60,64 @@
     .tasks li { margin:.25rem 0; }
     .hidden-role { display:none !important; }
 
-    /* Fix spacing above Experience header */
-    #main.alt .spotlights header.major {
-      margin-bottom: 1rem;
+    /* Sidebar width */
+    #sidebar .inner { width: 22rem; }
+
+    @media (max-width: 740px) {
+      #sidebar .inner { width: 100%; }
     }
   </style>
 </head>
 <body class="is-preload">
 <div id="wrapper">
 
-  <!-- Header -->
-  <header id="header">
-    <a href="/" class="logo"><strong>Jacqueline Seufert</strong> <span>CV / Experience</span></a>
-    <nav><a href="#menu">Menu</a></nav>
-  </header>
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="inner">
 
-  <!-- Menu -->
-  <nav id="menu">
-    <ul class="links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/projects.html">Projects</a></li>
-      <li><a href="/cv.html">CV / Experience</a></li>
-      <li><a href="/#contact">Contact</a></li>
-    </ul>
-  </nav>
+      <!-- Menu -->
+      <nav id="menu">
+        <header class="major"><h2>Menu</h2></header>
+        <ul>
+          <li><a href="/" class="fas fa-home">Home</a></li>
+          <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
+          <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
+        </ul>
+      </nav>
+
+      <!-- Contact -->
+      <section>
+        <header class="major"><h2>Get in touch</h2></header>
+        <ul class="contact">
+          <li>
+            <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
+              <i class="fas fa-envelope"></i> Contact
+            </a>
+          </li>
+          <li>
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a>
+          </li>
+          <li>
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <p class="copyright">
+          © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
+        </p>
+      </footer>
+    </div>
+  </div>
 
   <!-- Main -->
   <div id="main" class="alt">
-    <section class="spotlights">
+    <div class="inner">
+
       <header class="major">
         <h1>Experience</h1>
         <p>Click a view to highlight the most relevant tasks for that audience.</p>
@@ -92,14 +126,13 @@
       <!-- Audience filter tabs -->
       <div class="legend">View CV as…</div>
       <div class="audience-tabs" role="tablist" aria-label="CV audience views">
-        <button class="aud-btn" role="tab" aria-selected="true" aria-pressed="true" data-audience="data">Data Scientist</button>
-        <button class="aud-btn" role="tab" aria-selected="false" aria-pressed="false" data-audience="stats">Statistician</button>
-        <button class="aud-btn" role="tab" aria-selected="false" aria-pressed="false" data-audience="econ">Economist / Policy</button>
-        <button class="aud-btn" role="tab" aria-selected="false" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
+        <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
+        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
+        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
+        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
       </div>
 
-      <!-- ===== ROLES ===== -->
-
+      <!-- === ROLES (your full list as you pasted) === -->
       <!-- KU Leuven -->
       <div class="exp-card">
         <h3>KU Leuven — PhD Researcher (Housing Economics)</h3>
@@ -215,7 +248,7 @@
         </ul>
       </div>
 
-      <!-- Hudson Institute -->
+      <!-- Hudson -->
       <div class="exp-card">
         <h3>Hudson Institute — Economic Research Intern</h3>
         <div class="meta">Sep 2015 – May 2016 · Washington, DC
@@ -241,15 +274,10 @@
         <li>Study Abroad — Toulouse School of Economics; American University</li>
       </ul>
 
-    </section>
+    </div>
   </div>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <p>&copy; 2025 Jacqueline Seufert. Built with HTML5 UP template and GitHub Pages.</p>
-  </footer>
-
-</div>
+</div><!-- /#wrapper -->
 
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
@@ -257,8 +285,9 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-
 <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
   // audience filter
   const buttons = document.querySelectorAll('.aud-btn');
   buttons.forEach(btn => {
@@ -270,12 +299,10 @@
   });
 
   function filterCV(tag) {
-    const allItems = document.querySelectorAll('#main li');
+    const allItems = document.querySelectorAll('#main li[data-tags]');
     allItems.forEach(item => {
-      const tags = item.getAttribute('data-tags');
-      if (!tags) return;
-      const tagList = tags.split(',');
-      if (tagList.includes(tag)) {
+      const tags = item.getAttribute('data-tags').split(',');
+      if (tags.includes(tag)) {
         item.classList.remove('hidden-role');
       } else {
         item.classList.add('hidden-role');
@@ -283,6 +310,5 @@
     });
   }
 </script>
-
 </body>
 </html>

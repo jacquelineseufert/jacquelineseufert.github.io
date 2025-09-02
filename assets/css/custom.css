@@ -1,0 +1,16 @@
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- Sidebar fix: runs last -->
+<script>
+  (function () {
+    var s = document.getElementById('sidebar');
+    if (!s) return;
+    s.classList.remove('inactive'); // undo theme collapse
+    var t = s.querySelector('.toggle');
+    if (t) t.style.display = 'none'; // optional: hide burger
+  })();
+</script>

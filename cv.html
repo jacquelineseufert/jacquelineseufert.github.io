@@ -349,6 +349,20 @@
       }
     });
   }
+
+  // collapsible sections
+  document.querySelectorAll('.collapsible-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const card = header.parentElement;
+      card.classList.toggle('open');
+      const content = header.nextElementSibling;
+      if (card.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
+    });
+  });
 </script>
 </body>
 </html>

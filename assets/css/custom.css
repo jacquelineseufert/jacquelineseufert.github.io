@@ -1,3 +1,11 @@
+/* Remove bullets from action buttons */
+ul.actions, ul.actions li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
 /* === Sidebar Left Layout === */
 #wrapper {
   display: grid !important;

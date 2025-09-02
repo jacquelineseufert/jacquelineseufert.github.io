@@ -36,6 +36,29 @@
       opacity:.8; 
       margin:0 0 .35rem 0; 
     }
+/* Collapsible sections */
+.collapsible-header {
+  cursor: pointer;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.collapsible-header::after {
+  content: "▸"; /* arrow symbol */
+  position: absolute;
+  right: 0;
+  transition: transform 0.2s ease;
+}
+
+.collapsible.open .collapsible-header::after {
+  transform: rotate(90deg); /* arrow rotates when open */
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
 
     /* Cards */
     .exp-card { 

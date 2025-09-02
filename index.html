@@ -5,84 +5,82 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<link rel="stylesheet" href="assets/css/main.css" />
-<link rel="stylesheet" href="assets/css/custom.css" />
-  <!-- Font Awesome MUST come last -->
-
-
+  <!-- Theme styles -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
   <link rel="icon" href="images/favicon.ico" />
 </head>
 
-  <!-- Tighter scale + mobile-friendly overrides -->
-  <style>
-    /* Contain main content a bit more */
-    #main .inner { max-width: 900px; }
+<!-- Tighter scale + mobile-friendly overrides -->
+<style>
+  /* Contain main content a bit more */
+  #main .inner { max-width: 900px; }
 
-    /* Base text smaller */
-    body { font-size: 15px; line-height: 1.55; }
+  /* Base text smaller */
+  body { font-size: 15px; line-height: 1.55; }
 
-    /* Headings smaller */
-    h1 { font-size: clamp(1.65rem, 3.0vw, 2.1rem); margin-bottom: .35rem; }
-    h2 { font-size: clamp(1.15rem, 2.0vw, 1.35rem); }
-    h3 { font-size: 1rem; font-weight: 600; }
+  /* Headings smaller */
+  h1 { font-size: clamp(1.65rem, 3.0vw, 2.1rem); margin-bottom: .35rem; }
+  h2 { font-size: clamp(1.15rem, 2.0vw, 1.35rem); }
+  h3 { font-size: 1rem; font-weight: 600; }
 
-    /* Banner layout + spacing */
-    #banner { display:flex; align-items:center; gap:1.25rem; padding: 1.25rem 0 1rem; }
-    #banner header p { text-transform:none; letter-spacing:0; font-size: 1rem; margin:.4rem 0 .6rem; }
-    #banner > .content > p { font-size: .98rem; max-width: 68ch; margin-bottom: .9rem; }
-    #banner .image.object img { width: 160px; height:auto; border-radius:6px; }
+  /* Banner layout + spacing */
+  #banner { display:flex; align-items:center; gap:1.25rem; padding: 1.25rem 0 1rem; }
+  #banner header p { text-transform:none; letter-spacing:0; font-size: 1rem; margin:.4rem 0 .6rem; }
+  #banner > .content > p { font-size: .98rem; max-width: 68ch; margin-bottom: .9rem; }
+  #banner .image.object img { width: 160px; height:auto; border-radius:6px; }
 
-    /* Slimmer buttons */
-    .button.big { font-size: .9rem; padding: .5rem .9rem; }
+  /* Slimmer buttons */
+  .button.big { font-size: .9rem; padding: .5rem .9rem; }
 
-    /* Remove bullet points in button lists */
-    ul.actions { list-style: none !important; margin: 0; padding: 0; display: flex; gap: 0.75rem; }
-    ul.actions li { list-style: none !important; margin: 0; padding: 0; }
+  /* Remove bullet points in button lists */
+  ul.actions { list-style: none !important; margin: 0; padding: 0; display: flex; gap: 0.75rem; }
+  ul.actions li { list-style: none !important; margin: 0; padding: 0; }
 
-    /* Section spacing trimmed */
-    section { margin: 1.8rem 0; }
-    header.major h2 { font-size: 1.25rem; margin-bottom: .35rem; }
+  /* Section spacing trimmed */
+  section { margin: 1.8rem 0; }
+  header.major h2 { font-size: 1.25rem; margin-bottom: .35rem; }
 
-    /* Expertise grid tighter */
-    .features { gap: 1rem !important; }
-    .features .content p { font-size: .95rem; margin: .3rem 0 0; }
+  /* Expertise grid tighter */
+  .features { gap: 1rem !important; }
+  .features .content p { font-size: .95rem; margin: .3rem 0 0; }
 
-    /* EPSO badge */
-    .badge {
-      display:inline-block; padding:3px 8px; border:1px solid #ddd; border-radius:999px;
-      background:#fafafa; font-size:.8em; line-height:1;
-    }
+  /* EPSO badge */
+  .badge {
+    display:inline-block; padding:3px 8px; border:1px solid #ddd; border-radius:999px;
+    background:#fafafa; font-size:.8em; line-height:1;
+  }
 
-    /* Quick links grid */
-    .ql-flex { display:flex; gap:2rem; align-items:stretch; flex-wrap:wrap; }
-    .ql-card { flex:1 1 320px; text-align:center; display:flex; flex-direction:column; align-items:center; }
-    .ql-imgbox { width: 120px; height:120px; margin:0 auto 10px auto; display:block; }
-    .ql-imgbox img { width:100%; height:100%; object-fit:contain; opacity:.92; }
-    .ql-card h3 { margin:6px 0 4px; font-size:1rem; }
-    .ql-card p { margin:0 0 10px 0; font-size:.95rem; }
-    .ql-card .actions { margin-top:auto; display:flex; justify-content:center; }
-    .ql-card .actions .button { padding:.45rem .85rem; font-size:.9rem; }
+  /* Quick links grid */
+  .ql-flex { display:flex; gap:2rem; align-items:stretch; flex-wrap:wrap; }
+  .ql-card { flex:1 1 320px; text-align:center; display:flex; flex-direction:column; align-items:center; }
+  .ql-imgbox { width: 120px; height:120px; margin:0 auto 10px auto; display:block; }
+  .ql-imgbox img { width:100%; height:100%; object-fit:contain; opacity:.92; }
+  .ql-card h3 { margin:6px 0 4px; font-size:1rem; }
+  .ql-card p { margin:0 0 10px 0; font-size:.95rem; }
+  .ql-card .actions { margin-top:auto; display:flex; justify-content:center; }
+  .ql-card .actions .button { padding:.45rem .85rem; font-size:.9rem; }
 
-    /* Sidebar width */
-    #sidebar .inner { width: 22rem; }
+  /* Sidebar width */
+  #sidebar .inner { width: 22rem; }
 
-    /* Mobile */
-    @media (max-width: 740px) {
-      #banner { flex-direction:column; align-items:flex-start; }
-      #banner .image.object { align-self:center; }
-      #banner .image.object img { width:140px; }
-      #banner .actions { flex-direction: column; width: 100%; }
-      #banner .actions .button.big { width:100%; text-align:center; }
-      #banner .actions li { width:100%; }
-      #banner .actions li + li { margin-top:.5rem; }
+  /* Mobile */
+  @media (max-width: 740px) {
+    #banner { flex-direction:column; align-items:flex-start; }
+    #banner .image.object { align-self:center; }
+    #banner .image.object img { width:140px; }
+    #banner .actions { flex-direction: column; width: 100%; }
+    #banner .actions .button.big { width:100%; text-align:center; }
+    #banner .actions li { width:100%; }
+    #banner .actions li + li { margin-top:.5rem; }
 
-      .features { display:grid; grid-template-columns:1fr; }
-      .ql-flex { flex-direction:column; gap:1.25rem; }
-      .ql-card .actions .button { width:100%; }
-      #sidebar .inner { width: 100%; }
-    }
-  </style>
-</head>
+    .features { display:grid; grid-template-columns:1fr; }
+    .ql-flex { flex-direction:column; gap:1.25rem; }
+    .ql-card .actions .button { width:100%; }
+    #sidebar .inner { width: 100%; }
+  }
+</style>
+
 <body class="is-preload">
 
   <!-- Wrapper MUST wrap main + sidebar -->
@@ -96,10 +94,10 @@
         <nav id="menu">
           <header class="major"><h2>Menu</h2></header>
           <ul>
-            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="/cv.html"><i class="fas fa-file-alt"></i> CV / Experience</a></li>
-            <li><a href="/projects.html"><i class="fas fa-folder-open"></i> Projects</a></li>
-            <li><a href="mailto:jacqueline-seufert@web.de"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="/" class="icon solid fa-home">Home</a></li>
+            <li><a href="/cv.html" class="icon solid fa-file-alt">CV / Experience</a></li>
+            <li><a href="/projects.html" class="icon solid fa-folder-open">Projects</a></li>
+            <li><a href="mailto:jacqueline-seufert@web.de" class="icon solid fa-envelope">Contact</a></li>
           </ul>
         </nav>
 
@@ -150,8 +148,8 @@
             </p>
 
             <ul class="actions">
-              <li><a href="/cv.html" class="button big primary"><i class="fas fa-file-alt"></i> View CV</a></li>
-              <li><a href="/projects.html" class="button big"><i class="fas fa-folder-open"></i> Projects</a></li>
+              <li><a href="/cv.html" class="button big primary icon solid fa-file-alt">View CV</a></li>
+              <li><a href="/projects.html" class="button big icon solid fa-folder-open">Projects</a></li>
             </ul>
           </div>
 

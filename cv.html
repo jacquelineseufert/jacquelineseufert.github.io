@@ -402,16 +402,29 @@
   });
 
   function filterCV(tag) {
-    const allItems = document.querySelectorAll('#main li[data-tags]');
-    allItems.forEach(item => {
-      const tags = item.getAttribute('data-tags').split(',');
-      if (tags.includes(tag)) {
-        item.classList.remove('hidden-role');
-      } else {
-        item.classList.add('hidden-role');
-      }
-    });
-  }
+  // tasks
+  const allItems = document.querySelectorAll('#main li[data-tags]');
+  allItems.forEach(item => {
+    const tags = item.getAttribute('data-tags').split(',');
+    if (tags.includes(tag)) {
+      item.classList.remove('hidden-role');
+    } else {
+      item.classList.add('hidden-role');
+    }
+  });
+
+  // pills
+  const allPills = document.querySelectorAll('.pill[data-tags]');
+  allPills.forEach(pill => {
+    const tags = pill.getAttribute('data-tags').split(',');
+    if (tags.includes(tag)) {
+      pill.classList.remove('hidden-role');
+    } else {
+      pill.classList.add('hidden-role');
+    }
+  });
+}
+
 
   // collapsible sections
   document.querySelectorAll('.collapsible-header').forEach(header => {

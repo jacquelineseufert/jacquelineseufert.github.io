@@ -394,12 +394,16 @@
   // audience filter
   const buttons = document.querySelectorAll('.aud-btn');
   buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-      btn.setAttribute('aria-pressed', 'true');
-      filterCV(btn.dataset.audience);
-    });
+  btn.addEventListener('click', () => {
+    if (btn.getAttribute("aria-pressed") === "true") {
+      return; // already active, do nothing
+    }
+    buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    filterCV(btn.dataset.audience);
   });
+});
+
 
   function filterCV(tag) {
   // tasks

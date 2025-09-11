@@ -10,7 +10,7 @@
   left: 0;
   bottom: 0;
   width: 22rem; /* adjust width as needed */
-  background: url("images/sidebar-bg.jpg") center center/cover no-repeat;
+  background: url("images/cv_picture.jpg") center center/cover no-repeat;
   color: #fff;
   overflow-y: auto;
   z-index: 1000;

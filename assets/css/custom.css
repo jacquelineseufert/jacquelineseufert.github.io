@@ -1,8 +1,9 @@
-
-
 /* === Layout Wrapper === */
 #wrapper {
-  display: block; /* sidebar is fixed, so main flows next to it */
+  display: block; /* sidebar fixed, main flows next to it */
+  min-height: 100vh;
+  background: #f9f9f9;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 /* === Sidebar (fixed, full height on desktop) === */
@@ -11,30 +12,32 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 20rem;               /* slightly narrower for elegance */
+  width: 19rem;              /* slimmer and balanced */
   background: #2c3e50;
   color: #fff;
   overflow-y: auto;
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-/* Optional overlay if using an image background */
+/* Overlay only if using an image background */
 #sidebar::before {
   content: "";
   position: absolute;
-  inset: 0; /* shorthand for top/left/right/bottom:0 */
+  inset: 0;
   background: rgba(0,0,0,0.55);
   z-index: -1;
 }
 
 #sidebar .inner {
   flex: 1;
-  padding: 2rem 1.5rem; /* slightly more breathing room */
+  padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* consistent spacing between sections */
+  gap: 2rem; /* clear, consistent spacing between blocks */
 }
 
 /* Sidebar text defaults */
@@ -49,7 +52,7 @@
   text-decoration: underline;
 }
 
-/* === Profile block inside sidebar === */
+/* === Profile block === */
 .profile {
   text-align: center;
 }
@@ -57,7 +60,7 @@
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.8rem;
   object-fit: cover;
   border: 3px solid #fff;
 }
@@ -76,22 +79,24 @@
 .profile::after {
   content: "";
   display: block;
-  width: 40%;
+  width: 50%;
   height: 1px;
   background: #444;
   margin: 1rem auto 0 auto;
 }
 
-/* === Sidebar navigation === */
-#menu {
-  width: 100%;
-}
-#menu header.major h2 {
+/* === Section headers (Menu, Contact) === */
+#sidebar h2 {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 0.5rem;
   color: #bbb;
+  margin-bottom: 0.5rem;
+}
+
+/* === Navigation menu === */
+#menu {
+  width: 100%;
 }
 #menu ul {
   list-style: none;
@@ -108,13 +113,13 @@
   font-size: 0.9rem;
   font-weight: 500;
   color: #fff;
-  padding: 0.3rem 0.4rem;
+  padding: 0.35rem 0.5rem;
   border-radius: 4px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 #menu ul li a:hover {
-  background: rgba(255,255,255,0.1);
-  color: #f39c12; /* subtle highlight */
+  background: rgba(255,255,255,0.08);
+  color: #f39c12;
 }
 
 /* === Contact section === */
@@ -131,39 +136,55 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
 }
 .contact a:hover {
   color: #fff;
 }
 
-/* === Footer (pushed to bottom) === */
+/* === Footer === */
 #footer {
   margin-top: auto;
   font-size: 0.75rem;
   color: #aaa;
   text-align: center;
   line-height: 1.4;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
 }
 
-/* === Main Content (shifted right of sidebar) === */
+/* === Main content (to the right of sidebar) === */
 #main {
-  margin-left: 20rem; /* match sidebar width */
+  margin-left: 19rem; /* match sidebar width */
   padding: 2rem;
 }
 #main .inner {
   max-width: 760px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-/* === Mobile (stacked layout) === */
+/* === Mobile layout === */
 @media (max-width: 768px) {
   #sidebar {
     position: relative;
     width: 100%;
     height: auto;
+    border-right: none;
   }
   #main {
     margin-left: 0;
+    padding: 1.5rem;
+  }
+  #sidebar .inner {
+    align-items: center;
+    text-align: center;
+  }
+  #menu ul li a {
+    justify-content: center;
+  }
+  .contact {
+    text-align: center;
   }
 }

@@ -176,34 +176,40 @@
 }
 
 /* === Mobile: Hydejack-style drawer === */
+
 @media (max-width: 768px) {
   #main { margin-left: 0; }
 
   #sidebar {
-    transform: translate3d(-100%,0,0);
+    transform: translate3d(0,0,0); /* visible by default */
     transition: transform .25s ease;
-    box-shadow: none;
-  }
-  .drawer-open #sidebar {
-    transform: translate3d(0,0,0);
     box-shadow: 0 10px 30px rgba(0,0,0,.35);
   }
 
-  .drawer-open #backdrop {
+  /* Hide only when closed */
+  .drawer-closed #sidebar {
+    transform: translate3d(-100%,0,0);
+    box-shadow: none;
+  }
+
+  .drawer-closed #backdrop {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #backdrop {
     opacity: 1;
     pointer-events: auto;
   }
 
   #edge-swipe-zone { pointer-events: auto; }
 
-  .drawer-open,
-  .drawer-open body {
+  .drawer-closed,
+  .drawer-closed body {
     overflow: hidden;
     overscroll-behavior: contain;
   }
 }
-
-
 
 
 /* Accessibility: reduced motion */

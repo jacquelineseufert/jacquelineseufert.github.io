@@ -82,6 +82,57 @@
     .ql-card .actions .button { width:100%; }
     #sidebar .inner { width: 100%; }
   }
+  /* Body text scales on devices */
+body {
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.6;
+}
+
+/* Ensure images never overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Buttons & links: larger touch targets */
+.button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sidebar: collapse for mobile */
+@media (max-width: 1024px) {
+  #sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0; bottom: 0;
+    background: #fff;
+    transition: left 0.3s ease;
+    z-index: 999;
+    width: 80%;
+    max-width: 320px;
+  }
+  #sidebar.open { left: 0; }
+}
+
+/* Add a hamburger button */
+#menu-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  background: #fff;
+  border: none;
+  z-index: 1000;
+}
+@media (max-width: 1024px) {
+  #menu-toggle { display: block; }
+}
+
+
 </style>
 
 <body class="is-preload">

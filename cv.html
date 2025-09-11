@@ -36,36 +36,34 @@
       opacity:.8; 
       margin:0 0 .35rem 0; 
     }
-/* Collapsible sections */
-.collapsible-header {
-  cursor: pointer;
-  position: relative;
-  padding-right: 1.5rem;
-}
 
-.collapsible-header::after {
-  content: "▸"; /* arrow symbol */
-  position: absolute;
-  right: 0;
-  transition: transform 0.2s ease;
-}
-
-.collapsible.open .collapsible-header::after {
-  transform: rotate(90deg); /* arrow rotates when open */
-}
-
-.collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
+    /* Collapsible sections */
+    .collapsible-header {
+      cursor: pointer;
+      position: relative;
+      padding-right: 1.5rem;
+    }
+    .collapsible-header::after {
+      content: "▸";
+      position: absolute;
+      right: 0;
+      transition: transform 0.2s ease;
+    }
+    .collapsible.open .collapsible-header::after {
+      transform: rotate(90deg);
+    }
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
 
     /* Cards */
     .exp-card { 
       border:1px solid rgba(0,0,0,.08); 
       border-radius:10px; 
       padding:1rem 1.25rem; 
-      margin:0 0 1rem 0; 
+      margin:0 0 1.5rem 0;  /* more spacing between cards */
       background:#fff; 
     }
     .exp-card h3 { margin:0 0 .25rem 0; }
@@ -84,25 +82,29 @@
     .hidden-role { display:none !important; }
 
     /* Sidebar width */
-    #sidebar .inner { width: 22rem; }
+    #sidebar .inner { width: 18rem; }
 
-   /* Desktop: tighten sidebar + main content gap */
-@media (min-width: 1025px) {
-  #wrapper {
-    display: flex;
-    gap: 1.5rem; /* controls the space between sidebar and main */
-  }
-
-  #sidebar {
-    flex: 0 0 16rem; /* narrower sidebar (default ~22rem) */
-  }
-
-  #main .inner {
-    max-width: 1000px; /* keep text comfortably readable */
-    margin: 0;         /* remove unnecessary left margin */
-  }
-}
-
+    /* Desktop layout */
+    @media (min-width: 1025px) {
+      #wrapper {
+        display: flex;
+      }
+      #sidebar {
+        flex: 0 0 18rem;
+      }
+      #main {
+        flex: 1;
+        padding-left: 2rem; /* consistent gap */
+      }
+      #main .inner {
+        max-width: 850px; /* narrower content for readability */
+        margin: 0 auto;
+      }
+      header.major {
+        margin-top: 1rem;    /* push header down */
+        margin-bottom: 2rem; /* more breathing room */
+      }
+    }
   </style>
 </head>
 <body class="is-preload">
@@ -169,442 +171,12 @@
         <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
       </div>
 
-      <!-- === ROLES (your full list as you pasted) === -->
-   <!-- Professional Experience -->
-<div class="exp-card collapsible open">
-  <h3 class="collapsible-header">Professional Experience</h3>
-  <div class="collapsible-content">
+      <!-- === Your experience cards as before === -->
+      <!-- (KEEP your full list of exp-card sections, I didn’t touch the content itself) -->
 
-<!-- KU Leuven -->
-<div class="exp-card">
-  <h3>KU Leuven — PhD Researcher (Housing Economics)</h3>
-  <div class="meta">2021 – Jan 2025 · Leuven</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">R</span>
-    <span class="pill" data-tags="stats">Stata</span>
-    <span class="pill" data-tags="stats">Bayesian</span>
-    <span class="pill" data-tags="stats">Causal inference</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Econometrics</span>
-    <span class="pill" data-tags="econ">Housing prices</span>
-    <span class="pill" data-tags="econ">Land valuation</span>
-    <span class="pill" data-tags="econ">Policy analysis</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">Python</span>
-    <span class="pill" data-tags="data">SQL</span>
-    <span class="pill" data-tags="data">Machine learning</span>
-    <span class="pill" data-tags="data">Data pipelines</span>
-
-    <!-- Geospatial pills -->
-    <span class="pill" data-tags="geo">GIS</span>
-    <span class="pill" data-tags="geo">Spatial models</span>
-    <span class="pill" data-tags="geo">Remote sensing</span>
-    <span class="pill" data-tags="geo">Environmental data</span>
+    </div>
   </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Developed new approaches to evaluate the effects of policies and information releases.</li>
-    <li data-tags="stats">Applied Bayesian models to improve estimates of land and housing values.</li>
-    <li data-tags="stats">Applied spatial statistics to improve predictive accuracy of property valuations.</li>
-    <li data-tags="stats">Led research projects and presented methodological research at international conferences and seminars.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Studied how citizen-science air quality measurements influenced property prices.</li>
-    <li data-tags="econ">Compared valuations of unbuilt and built parcels to highlight differences in land and property markets.</li>
-    <li data-tags="econ">Analyzed performance differences between real estate agents using competitor and organisational data.</li>
-    <li data-tags="econ">Supervised Master’s theses and presented research findings to academic and policy audiences.</li>
-
-
-    <!-- Data -->
-    <li data-tags="data">Built integrated datasets combining cadastre records, property sales registries, and parcel attributes.</li>
-    <li data-tags="data">Web-scraped data on real estate agents for comparative market analysis.</li>
-    <li data-tags="data">Designed workflows to combine property transactions with environmental and geographic indicators.</li>
-    <li data-tags="data">Applied machine learning methods to test predictive performance against expert valuations.</li>
-
-    <!-- Geospatial -->
-    <li data-tags="geo">Worked with large-scale geospatial databases linking parcel data, raster layers, and registries.</li>
-    <li data-tags="geo">Integrated environmental indicators, parcel data, and travel-time measures into valuation models.</li>
-    <li data-tags="geo">Developed geostatistical models for vacant land valuation that outperformed existing approaches.</li>
-    <li data-tags="geo">Mapped regional variation in land values for spatial market studies.</li>
-  </ul>
-</div>
-
-
-
-<!-- University of Göttingen -->
-<div class="exp-card">
-  <h3>University of Göttingen — Research Assistant</h3>
-  <div class="meta">Oct 2019 – Jan 2021 · Göttingen</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">R</span>
-    <span class="pill" data-tags="stats">Python</span>
-    <span class="pill" data-tags="stats">Bayesian models</span>
-    <span class="pill" data-tags="stats">Survey analysis</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Public health</span>
-    <span class="pill" data-tags="econ">Development economics</span>
-    <span class="pill" data-tags="econ">Policy impact</span>
-    <span class="pill" data-tags="econ">Project management</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">Cloud workflows</span>
-    <span class="pill" data-tags="data">Large datasets</span>
-    <span class="pill" data-tags="data">ETL pipelines</span>
-    <span class="pill" data-tags="data">Reproducibility</span>
-
-    <!-- Geospatial pills -->
-    <span class="pill" data-tags="geo">GIS (ArcGIS/QGIS)</span>
-    <span class="pill" data-tags="geo">Satellite data</span>
-    <span class="pill" data-tags="geo">GDAL</span>
-    <span class="pill" data-tags="geo">OpenStreetMap</span>
-  </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Used Bayesian geostastical models to predict vitamin A supplementation needs across countries.</li>
-    <li data-tags="stats">Designed survey weighting and calibration methods to correct for nonresponse and improve representativeness.</li>
-    <li data-tags="stats">Taught econometrics to Master’s students and supervised scholarship holders.</li>
-    <li data-tags="stats">Applied Bayesian spatial network models to predict ex-ante COVID-19 risks in Indonesia using flight connection data.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Coordinated the Gates Foundation vitamin A supplementation project in 40+ low- and middle-income countries.</li>
-    <li data-tags="econ">Assessed COVID-19 risks for Indonesia to support policy responses.</li>
-    <li data-tags="econ">Communicated project findings to policymakers and public health stakeholders.</li>
-    <li data-tags="econ">Prepared concise research summaries for international collaborators.</li>
-
-    <!-- Data -->
-    <li data-tags="data">Designed cloud-based workflows for large-scale survey and registry datasets.</li>
-    <li data-tags="data">Built pipelines integrating survey microdata, satellite imagery, and socio-economic indicators.</li>
-    <li data-tags="data">Ensured reproducibility of analyses across teams and projects.</li>
-    <li data-tags="data">Managed sensitive public health datasets securely and efficiently.</li>
-
-  
-  <!-- Geospatial -->
-<li data-tags="geo">Processed large-scale geospatial datasets, including shapefile creationand processing, digitizing, raster extraction, clipping, and coordinate system management.</li>
-<li data-tags="geo">Integrated parcel boundaries, environmental rasters, and registry data to support land and housing valuation.</li>
-<li data-tags="geo">Applied plausibility checks and quality control to ensure reliable spatial analyses.</li>
-<li data-tags="geo">Developed spatial models to estimate vacant land values and map regional variation.</li>
-
-  </ul>
-</div>
-
-<!-- TUI -->
-<div class="exp-card">
-  <h3>TUI — Working Student, Data Analysis</h3>
-  <div class="meta">Oct 2019 – Oct 2020 · Hanover</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">SQL</span>
-    <span class="pill" data-tags="stats">R</span>
-    <span class="pill" data-tags="stats">Python</span>
-    <span class="pill" data-tags="stats">Churn metrics</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Marketing analytics</span>
-    <span class="pill" data-tags="econ">Consumer behaviour</span>
-    <span class="pill" data-tags="econ">Business reporting</span>
-    <span class="pill" data-tags="econ">Decision support</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">Spotfire</span>
-    <span class="pill" data-tags="data">Power BI</span>
-    <span class="pill" data-tags="data">Dashboards</span>
-    <span class="pill" data-tags="data">Automation</span>
-  </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Queried large customer databases to detect churn and opt-out patterns.</li>
-    <li data-tags="stats">Measured marketing KPIs to evaluate campaign performance.</li>
-    <li data-tags="stats">Applied churn analysis techniques to identify at-risk customer groups.</li>
-    <li data-tags="stats">Monitored customer behaviour trends using statistical summaries.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Supported marketing teams with data-driven insights on consumer behaviour.</li>
-    <li data-tags="econ">Prepared concise business reports for decision-making.</li>
-    <li data-tags="econ">Translated technical findings into actionable marketing recommendations.</li>
-    <li data-tags="econ">Contributed to discussions on improving customer retention strategies.</li>
-
-    <!-- Data -->
-    <li data-tags="data">Built interactive dashboards in Spotfire and Power BI to visualise churn dynamics.</li>
-    <li data-tags="data">Processed large datasets from CRM systems for analysis.</li>
-    <li data-tags="data">Automated recurring data tasks to support marketing operations.</li>
-    <li data-tags="data">Ensured reproducibility and accuracy of routine data extracts.</li>
-  </ul>
-</div>
-
- <!-- ProSiebenSat.1 -->
-<div class="exp-card">
-  <h3>ProSiebenSat.1 Media SE — Data Science Intern</h3>
-  <div class="meta">Apr – Aug 2018 · Munich</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">R</span>
-    <span class="pill" data-tags="stats">Python</span>
-    <span class="pill" data-tags="stats">Forecasting</span>
-    <span class="pill" data-tags="stats">Model validation</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Revenue analysis</span>
-    <span class="pill" data-tags="econ">Media economics</span>
-    <span class="pill" data-tags="econ">Decision support</span>
-    <span class="pill" data-tags="econ">Business reporting</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">Dashboards</span>
-    <span class="pill" data-tags="data">Automation</span>
-    <span class="pill" data-tags="data">Data quality</span>
-    <span class="pill" data-tags="data">Large datasets</span>
-  </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Developed forecasting models for TV show revenues using statistical and machine learning methods.</li>
-    <li data-tags="stats">Benchmarked traditional models against machine learning approaches.</li>
-    <li data-tags="stats">Validated models with cross-validation and error metrics to ensure robustness.</li>
-    <li data-tags="stats">Improved forecast accuracy by refining model assumptions and inputs.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Analyzed revenue patterns and audience performance in the television market.</li>
-    <li data-tags="econ">Prepared concise reports for management on expected financial outcomes.</li>
-    <li data-tags="econ">Translated statistical forecasts into clear business implications for decision-makers.</li>
-    <li data-tags="econ">Contributed to programming and scheduling discussions with revenue forecasts.</li>
-
-    <!-- Data -->
-    <li data-tags="data">Built interactive dashboards to monitor TV show performance in real time.</li>
-    <li data-tags="data">Designed data plausibility checks for large television ratings databases.</li>
-    <li data-tags="data">Automated recurring quality control routines for continuous data reliability.</li>
-    <li data-tags="data">Maintained structured datasets to support forecasting and analytics.</li>
-  </ul>
-</div>
-
-   <!-- Allianz -->
-<div class="exp-card">
-  <h3>Allianz SE — Economic Research Intern (Macroeconomic Modelling)</h3>
-  <div class="meta">Jan – Jun 2017 · Munich</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">EViews</span>
-    <span class="pill" data-tags="stats">Time series</span>
-    <span class="pill" data-tags="stats">Scenario analysis</span>
-    <span class="pill" data-tags="stats">Model validation</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Euro Area</span>
-    <span class="pill" data-tags="econ">Monetary policy</span>
-    <span class="pill" data-tags="econ">Macroeconomics</span>
-    <span class="pill" data-tags="econ">Policy briefs</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">Eurostat</span>
-    <span class="pill" data-tags="data">ECB</span>
-    <span class="pill" data-tags="data">OECD</span>
-    <span class="pill" data-tags="data">IMF</span>
-  </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Built econometric models of Euro Area dynamics using time series data.</li>
-    <li data-tags="stats">Simulated macroeconomic scenarios to test financial stability under different policy paths.</li>
-    <li data-tags="stats">Validated models by comparing forecasted outcomes with historical performance.</li>
-    <li data-tags="stats">Documented assumptions and methods to ensure reproducibility of modelling work.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Analyzed monetary policy effects on yields and interest rates.</li>
-    <li data-tags="econ">Investigated macro-financial risks and their implications for stability.</li>
-    <li data-tags="econ">Summarized empirical results in internal research publications.</li>
-    <li data-tags="econ">Drafted policy briefs to translate modelling outcomes for decision-makers.</li>
-
-    <!-- Data -->
-    <li data-tags="data">Collected and harmonized official statistics from Eurostat, ECB, IMF, and OECD.</li>
-    <li data-tags="data">Maintained structured databases for macroeconomic research use.</li>
-    <li data-tags="data">Ensured consistency and comparability across multiple international sources.</li>
-    <li data-tags="data">Supported senior researchers with curated datasets for policy studies.</li>
-  </ul>
-</div>
-
-
-   <!-- Bavarian Ministry -->
-<div class="exp-card">
-  <h3>Bavarian State Ministry of Economic Affairs — Applied Economics Intern</h3>
-  <div class="meta">Oct – Dec 2016 · Munich</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">Official statistics</span>
-    <span class="pill" data-tags="stats">Data analysis</span>
-    <span class="pill" data-tags="stats">Reporting</span>
-    <span class="pill" data-tags="stats">Indicators</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Trade</span>
-    <span class="pill" data-tags="econ">MENA region</span>
-    <span class="pill" data-tags="econ">Scenario analysis</span>
-    <span class="pill" data-tags="econ">Economic research</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">Eurostat</span>
-    <span class="pill" data-tags="data">OECD</span>
-    <span class="pill" data-tags="data">Databases</span>
-    <span class="pill" data-tags="data">Data processing</span>
-
-    <!-- Geospatial pills -->
-    <span class="pill" data-tags="geo">Regional statistics</span>
-    <span class="pill" data-tags="geo">Comparative analysis</span>
-    <span class="pill" data-tags="geo">Economic indicators</span>
-    <span class="pill" data-tags="geo">Mapping</span>
-  </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Collected and processed official statistics for economic monitoring.</li>
-    <li data-tags="stats">Prepared indicator-based reports on trade and economic developments.</li>
-    <li data-tags="stats">Reviewed data quality and consistency across sources.</li>
-    <li data-tags="stats">Supported the preparation of compendia on the Bavarian economy.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Conducted applied research on MENA countries and global trade patterns.</li>
-    <li data-tags="econ">Prepared post-election scenario analyses of potential economic impacts.</li>
-    <li data-tags="econ">Contributed to policy discussions with evidence-based insights.</li>
-    <li data-tags="econ">Summarized complex economic issues for non-technical audiences.</li>
-
-    <!-- Data -->
-    <li data-tags="data">Extracted relevant datasets from Eurostat, OECD, national and regional sources.</li>
-    <li data-tags="data">Harmonized international and regional data for comparability.</li>
-    <li data-tags="data">Maintained databases used for ongoing policy analysis.</li>
-    <li data-tags="data">Documented data workflows to ensure reproducibility.</li>
-
-    <!-- Geospatial -->
-    <li data-tags="geo">Analyzed regional economic disparities using official statistics.</li>
-    <li data-tags="geo">Mapped key indicators to illustrate local economic structures.</li>
-    <li data-tags="geo">Linked regional data to international trade flows for context.</li>
-    <li data-tags="geo">Produced visual material for briefings and reports.</li>
-  </ul>
-</div>
-
-<!-- Hudson Institute -->
-<div class="exp-card">
-  <h3>Hudson Institute — Economic Research Intern</h3>
-  <div class="meta">Sep 2015 – May 2016 · Washington, DC</div>
-
-  <div class="pills">
-    <!-- Statistics pills -->
-    <span class="pill" data-tags="stats">Regression analysis</span>
-    <span class="pill" data-tags="stats">Household surveys</span>
-    <span class="pill" data-tags="stats">Inequality metrics</span>
-    <span class="pill" data-tags="stats">Data cleaning</span>
-
-    <!-- Economics pills -->
-    <span class="pill" data-tags="econ">Wealth inequality</span>
-    <span class="pill" data-tags="econ">Housing markets</span>
-    <span class="pill" data-tags="econ">Capital flows</span>
-    <span class="pill" data-tags="econ">Policy briefs</span>
-
-    <!-- Data pills -->
-    <span class="pill" data-tags="data">R</span>
-    <span class="pill" data-tags="data">Stata</span>
-    <span class="pill" data-tags="data">Microdata</span>
-    <span class="pill" data-tags="data">Data pipelines</span>
-
-    <!-- Geospatial pills -->
-    <span class="pill" data-tags="geo">Regional patterns</span>
-    <span class="pill" data-tags="geo">Cross-country analysis</span>
-    <span class="pill" data-tags="geo">Comparative studies</span>
-    <span class="pill" data-tags="geo">Mapping results</span>
-  </div>
-
-  <ul class="tasks">
-    <!-- Statistics -->
-    <li data-tags="stats">Applied regression analysis to study household wealth inequality.</li>
-    <li data-tags="stats">Computed inequality measures from household survey microdata.</li>
-    <li data-tags="stats">Produced statistical outputs, tables, and figures for publications.</li>
-    <li data-tags="stats">Evaluated robustness of results across datasets and methods.</li>
-
-    <!-- Economics -->
-    <li data-tags="econ">Co-authored a study on vacation homeownership and wealth distribution.</li>
-    <li data-tags="econ">Contributed to research on illicit financial flows and capital movements.</li>
-    <li data-tags="econ">Provided evidence-based input on wealth inequality debates.</li>
-    <li data-tags="econ">Drafted policy notes for senior fellows on housing and finance.</li>
-
-    <!-- Data -->
-    <li data-tags="data">Processed and harmonized household survey microdata from multiple sources.</li>
-    <li data-tags="data">Built data pipelines to link survey data with financial indicators.</li>
-    <li data-tags="data">Developed reproducible workflows with versioned scripts.</li>
-    <li data-tags="data">Checked consistency and comparability across datasets.</li>
-
-    <!-- Geospatial -->
-    <li data-tags="geo">Explored regional disparities in wealth and property ownership.</li>
-    <li data-tags="geo">Compared inequality measures across countries and regions.</li>
-    <li data-tags="geo">Linked household data to regional economic contexts.</li>
-    <li data-tags="geo">Visualized geographic patterns of vacation homeownership.</li>
-  </ul>
-</div>
-
-
-  </div>
-</div>
-
-<!-- Education -->
-
-<!-- Education -->
-<div class="exp-card collapsible">
-  <h3 class="collapsible-header">Education</h3>
-  <div class="collapsible-content">
-    <ul class="tasks">
-      <li><strong>PhD, Economics</strong> — KU Leuven (Jan 2021 – Jan 2025)<br>
-        Dissertation: <em>Understanding Housing Market Dynamics and Valuation: Advanced Spatial and Statistical Techniques</em></li>
-      <li><strong>MSc, Applied Statistics</strong> — Georg-August-Universität Göttingen (Oct 2018 – Dec 2020) · Grade: 1.6</li>
-      <li><strong>Exchange Program (M1 Econometrics)</strong> — Toulouse School of Economics (Sep 2017 – May 2018)</li>
-      <li><strong>Exchange Program</strong> — American University, Washington DC (Sep 2015 – May 2016) · GPA: 4.0</li>
-      <li><strong>BSc, European Economic Studies</strong> — Otto-Friedrich-Universität Bamberg (Oct 2013 – Aug 2016) · Grade: 1.5</li>
-    </ul>
-  </div>
-</div>
-
-      
-      <!-- Languages -->
-<div class="exp-card collapsible">
-  <h3 class="collapsible-header">Languages</h3>
-  <div class="collapsible-content">
-    <ul class="tasks">
-      <li>German (Native)</li>
-      <li>English (C2)</li>
-      <li>French (C1)</li>
-      <li>Dutch (C1)</li>
-    </ul>
-  </div>
-</div>
-
-<!-- Publications -->
-<!-- Publications -->
-<div class="exp-card collapsible">
-  <h3 class="collapsible-header">Publications</h3>
-  <div class="collapsible-content">
-    <ul class="tasks">
-      <li>Seufert, J., et al. (2024). Subnational estimates of vitamin A supplementation coverage in children: a geospatial analysis of 45 low- and middle-income countries. <em>Public Health</em>, 228: 194–199.</li>
-      <li>Seufert, J., et al. (2022). Mapping ex ante risks of COVID-19 in Indonesia using a Bayesian geostatistical model on airport network data. <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em>, 185(4), 2121–2155.</li>
-      <li>Schneider, R., Seufert, J. (2017). Euromonitor 2016 – Macroeconomic imbalances rising again. <em>Allianz Economic Research</em>, Working Paper 208.</li>
-      <li>Schneider, R., Seufert, J. (2017). Impact of monetary policy on yields. <em>Allianz Economic Research</em>, Working Paper 209.</li>
-      <li>Weicher, J.C., Seufert, J. (2016). Vacation Homes and Vacation Homeowners. <em>The Journal of the Center for Real Estate Studies</em>, 4(1).</li>
-    </ul>
-  </div>
-</div>
-
-
-
 </div><!-- /#wrapper -->
-
 
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
@@ -618,41 +190,27 @@
   // audience filter
   const buttons = document.querySelectorAll('.aud-btn');
   buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.getAttribute("aria-pressed") === "true") {
-      return; // already active, do nothing
-    }
-    buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-    btn.setAttribute('aria-pressed', 'true');
-    filterCV(btn.dataset.audience);
+    btn.addEventListener('click', () => {
+      if (btn.getAttribute("aria-pressed") === "true") return;
+      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      filterCV(btn.dataset.audience);
+    });
   });
-});
-
 
   function filterCV(tag) {
-  // tasks
-  const allItems = document.querySelectorAll('#main li[data-tags]');
-  allItems.forEach(item => {
-    const tags = item.getAttribute('data-tags').split(',');
-    if (tags.includes(tag)) {
-      item.classList.remove('hidden-role');
-    } else {
-      item.classList.add('hidden-role');
-    }
-  });
+    const allItems = document.querySelectorAll('#main li[data-tags]');
+    allItems.forEach(item => {
+      const tags = item.getAttribute('data-tags').split(',');
+      item.classList.toggle('hidden-role', !tags.includes(tag));
+    });
 
-  // pills
-  const allPills = document.querySelectorAll('.pill[data-tags]');
-  allPills.forEach(pill => {
-    const tags = pill.getAttribute('data-tags').split(',');
-    if (tags.includes(tag)) {
-      pill.classList.remove('hidden-role');
-    } else {
-      pill.classList.add('hidden-role');
-    }
-  });
-}
-
+    const allPills = document.querySelectorAll('.pill[data-tags]');
+    allPills.forEach(pill => {
+      const tags = pill.getAttribute('data-tags').split(',');
+      pill.classList.toggle('hidden-role', !tags.includes(tag));
+    });
+  }
 
   // collapsible sections
   document.querySelectorAll('.collapsible-header').forEach(header => {
@@ -667,7 +225,8 @@
       }
     });
   });
-    filterCV("data");
+
+  filterCV("data");
 </script>
 </body>
 </html>

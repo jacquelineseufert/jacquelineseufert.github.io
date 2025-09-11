@@ -177,3 +177,33 @@
     justify-content: center;
   }
 }
+
+/* --- Fix profile picture centering --- */
+.profile-pic {
+  display: block;
+  margin: 0 auto 0.8rem auto; /* forces centering */
+}
+
+/* --- Make all sidebar section titles consistent --- */
+#sidebar h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #bbb;
+  margin: 1rem 0 0.5rem;
+  text-align: center; /* consistent alignment */
+}
+
+/* --- Align menu items and contact items the same way --- */
+#menu ul li a,
+.contact a {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* same centering */
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #fff;
+  text-decoration: none;
+}
+

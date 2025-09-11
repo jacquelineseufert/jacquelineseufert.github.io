@@ -71,22 +71,24 @@
         </footer>
 
       </div>
-    </div>
+    </div><!-- /#sidebar -->
+
+    <!-- Added for swipeable drawer -->
+    <div id="backdrop" hidden></div>
+    <div id="edge-swipe-zone" aria-hidden="true"></div>
 
     <!-- Main -->
     <div id="main">
       <div class="inner">
 
         <!-- Cover / Title -->
-   <!-- Cover / Title -->
-<section id="cover" style="text-align:center; padding:3rem 1rem;">
-  <h1>Jacqueline Seufert</h1>
-  <p class="subtitle">
-    Economist &amp; Data Scientist — connecting statistics, econometrics, 
-    and data science to real-world policy and practice.
-  </p>
-</section>
-
+        <section id="cover" style="text-align:center; padding:3rem 1rem;">
+          <h1>Jacqueline Seufert</h1>
+          <p class="subtitle">
+            Economist &amp; Data Scientist — connecting statistics, econometrics, 
+            and data science to real-world policy and practice.
+          </p>
+        </section>
 
         <!-- Intro -->
         <section id="intro">
@@ -159,7 +161,7 @@
         </section>
 
       </div>
-    </div>
+    </div><!-- /#main -->
 
   </div><!-- /#wrapper -->
 
@@ -169,6 +171,7 @@
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/sidebar.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

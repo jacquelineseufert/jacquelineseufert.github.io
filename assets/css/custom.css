@@ -37,19 +37,17 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  align-items: center;  /* makes all child blocks centered */
+  /* no align-items:center here, prevents drifting */
 }
 
-/* === Profile block (perfect centering) === */
+/* === Profile block (fixed center, no drifting) === */
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* horizontal centering */
   text-align: center;
+  margin-bottom: 2rem;
 }
 .profile-pic {
   display: block;
-  margin: 0 auto 0.8rem auto;
+  margin: 0 auto 0.8rem auto; /* horizontally centered */
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -85,7 +83,7 @@
   letter-spacing: 1px;
   color: #bbb;
   margin: 1rem 0 0.5rem;
-  text-align: center; /* consistent style */
+  text-align: left; /* cleaner alignment */
 }
 
 /* === Menu & Contact shared styles === */
@@ -105,7 +103,6 @@
 .contact a {
   display: flex;
   align-items: center;
-  justify-content: center;  /* same centering for both */
   gap: 0.5rem;
   font-size: 0.9rem;
   font-weight: 500;
@@ -156,7 +153,6 @@
     padding: 1.5rem;
   }
   #sidebar .inner {
-    align-items: center;
     text-align: center;
   }
   #menu ul li a,

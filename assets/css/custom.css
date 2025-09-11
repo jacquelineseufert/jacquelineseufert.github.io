@@ -33,11 +33,10 @@
 
 #sidebar .inner {
   flex: 1;
-  padding: 2rem 1.25rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  align-items: stretch; /* ensures consistency */
 }
 
 /* === Profile block === */
@@ -48,13 +47,13 @@
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  margin: 0 auto 0.8rem auto; /* force centering */
+  margin: 0 auto 0.8rem auto; /* force horizontal centering */
   object-fit: cover;
   border: 3px solid #fff;
   display: block;
 }
 .profile h1 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   margin: 0.3rem 0;
   font-weight: 700;
 }
@@ -76,12 +75,13 @@
 
 /* === Section headers (Menu, Contact) === */
 #sidebar h2 {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #bbb;
   margin-bottom: 0.5rem;
-  text-align: left;
+  text-align: center; /* unified style */
 }
 
 /* === Navigation menu === */
@@ -91,18 +91,20 @@
   margin: 0;
 }
 #menu ul li {
-  margin: 0.35rem 0;
+  margin: 0.4rem 0;
 }
 #menu ul li a {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center; /* icons + text perfectly centered */
+  gap: 0.5rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: #fff;
-  padding: 0.35rem 0; /* match contact links */
+  padding: 0.35rem 0;
   border-radius: 4px;
   transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
 }
 #menu ul li a:hover {
   background: rgba(255,255,255,0.08);
@@ -119,13 +121,14 @@
   margin: 0.4rem 0;
 }
 .contact a {
-  font-size: 0.9rem; /* match menu font size */
+  font-size: 0.9rem; /* exact same as menu */
   color: #bbb;
   display: flex;
   align-items: center;
-  gap: 0.6rem; /* match menu gap */
+  justify-content: center; /* align with menu */
+  gap: 0.5rem;
   text-decoration: none;
-  padding: 0.35rem 0; /* match menu padding */
+  padding: 0.35rem 0;
   transition: color 0.2s ease;
 }
 .contact a:hover {
@@ -160,7 +163,6 @@
     position: relative;
     width: 100%;
     height: auto;
-    border-right: none;
   }
   #main {
     margin-left: 0;

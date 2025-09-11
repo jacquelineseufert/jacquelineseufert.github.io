@@ -15,11 +15,8 @@
 </head>
 
 <body class="is-preload">
-<button id="menu-toggle" aria-label="Toggle menu">
-  <i class="fas fa-bars"></i>
-</button>
 
-  <!-- Wrapper MUST wrap main + sidebar -->
+  <!-- Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -33,11 +30,7 @@
           <div style="margin:.4rem 0 1rem;">
             <span class="badge">EPSO/AD/412/24 laureate — Data &amp; Statistics (AD6)</span>
           </div>
-          <p style="font-size:.9rem;">Economist &amp; Data Scientist — connecting statistics, econometrics, and data science to real-world policy and practice.</p>
-          <ul class="actions" style="justify-content:center; margin-top:1rem;">
-            <li><a href="/cv.html" class="button small primary">View CV</a></li>
-            <li><a href="/projects.html" class="button small">Projects</a></li>
-          </ul>
+          <p style="font-size:.9rem;">Economist &amp; Data Scientist</p>
         </section>
 
         <!-- Menu -->
@@ -84,20 +77,20 @@
     <div id="main">
       <div class="inner">
 
+        <!-- Cover / Title -->
+        <section id="cover" style="text-align:center; padding:3rem 1rem;">
+          <h1>Jacqueline Seufert</h1>
+          <p class="subtitle">Economist &amp; Data Scientist — connecting statistics, econometrics, and data science to real-world policy and practice.</p>
+        </section>
+
         <!-- Intro -->
-        <section id="banner">
-          <div class="content">
-            <p>
-              I work at the crossroads of economics, statistics, and data science, combining econometric modeling,
-              survey methods, and machine learning with data engineering skills. My projects range from housing markets
-              and land valuation to environmental data analysis, always grounded in transparent, reproducible methods
-              that support policy and practical decision-making.
-            </p>
-            <ul class="actions">
-              <li><a href="/cv.html" class="button big primary"><i class="fas fa-file-alt"></i> View CV</a></li>
-              <li><a href="/projects.html" class="button big"><i class="fas fa-folder-open"></i> Projects</a></li>
-            </ul>
-          </div>
+        <section id="intro">
+          <p>
+            I work at the crossroads of economics, statistics, and data science, combining econometric modeling,
+            survey methods, and machine learning with data engineering skills. My projects range from housing markets
+            and land valuation to environmental data analysis, always grounded in transparent, reproducible methods
+            that support policy and practical decision-making.
+          </p>
         </section>
 
         <!-- Expertise -->
@@ -141,22 +134,20 @@
           <div class="ql-flex">
             <article class="ql-card">
               <a href="/cv.html" class="ql-imgbox">
-                <img src="images/cv.png" alt="CV / Experience" />
+                <img src="images/cv.png" alt="CV / Experience" style="width:80px;"/>
               </a>
               <h3>CV / Experience</h3>
-              <p>Interactive CV with audience filters (Data · Stats · Econ · Geo).</p>
-              <ul class="actions">
-                <li><a href="/cv.html" class="button">Open</a></li>
+              <ul class="actions" style="list-style:none; padding:0; margin:0;">
+                <li><a href="/cv.html" class="button small">Open</a></li>
               </ul>
             </article>
             <article class="ql-card">
               <a href="/projects.html" class="ql-imgbox">
-                <img src="images/eurostat.png" alt="Eurostat Projects" />
+                <img src="images/eurostat.png" alt="Eurostat Projects" style="width:80px;"/>
               </a>
               <h3>Eurostat Projects</h3>
-              <p>10 practical repos: reproducibility receipts, LOD tooling, OJA dedupe, Parquet pipelines, more.</p>
-              <ul class="actions">
-                <li><a href="/projects.html" class="button">Explore</a></li>
+              <ul class="actions" style="list-style:none; padding:0; margin:0;">
+                <li><a href="/projects.html" class="button small">Explore</a></li>
               </ul>
             </article>
           </div>
@@ -174,12 +165,5 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-  </script>
 </body>
 </html>

@@ -177,9 +177,13 @@
 
 /* === Mobile: Hydejack-style drawer === */
 @media (max-width: 768px) {
-  #main {
-    margin-left: 0;
+  #sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
   }
+}
+
 
   #sidebar {
     transform: translate3d(-100%,0,0);

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta name="google-site-verification" content="6Od3L0Fl4Nnm8XPSVcdUIF7m-nCVmb6B98hv-bDSK6w" />
+  <meta name="google-site-verification" content="6Od3L0Fl4Nnm8XPSVcdUIF7m-nCVmb6B98hv-bDSK6w" />
   <title>Jacqueline Seufert — Economist & Data Scientist</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -14,216 +14,31 @@
   <link rel="icon" href="images/favicon.ico" />
 </head>
 
-<!-- Tighter scale + mobile-friendly overrides -->
-<style>
-  /* Contain main content a bit more */
-  #main .inner { max-width: 900px; }
-
-  /* Base text smaller */
-  body { font-size: 15px; line-height: 1.55; }
-
-  /* Headings smaller */
-  h1 { font-size: clamp(1.65rem, 3.0vw, 2.1rem); margin-bottom: .35rem; }
-  h2 { font-size: clamp(1.15rem, 2.0vw, 1.35rem); }
-  h3 { font-size: 1rem; font-weight: 600; }
-
-  /* Banner layout + spacing */
-  #banner { display:flex; align-items:center; gap:1.25rem; padding: 1.25rem 0 1rem; }
-  #banner header p { text-transform:none; letter-spacing:0; font-size: 1rem; margin:.4rem 0 .6rem; }
-  #banner > .content > p { font-size: .98rem; max-width: 68ch; margin-bottom: .9rem; }
-  #banner .image.object img { width: 160px; height:auto; border-radius:6px; }
-
-  /* Slimmer buttons */
-  .button.big { font-size: .9rem; padding: .5rem .9rem; }
-
-  /* Remove bullet points in button lists */
-  ul.actions { list-style: none !important; margin: 0; padding: 0; display: flex; gap: 0.75rem; }
-  ul.actions li { list-style: none !important; margin: 0; padding: 0; }
-
-  /* Section spacing trimmed */
-  section { margin: 1.8rem 0; }
-  header.major h2 { font-size: 1.25rem; margin-bottom: .35rem; }
-
-  /* Expertise grid tighter */
-  .features { gap: 1rem !important; }
-  .features .content p { font-size: .95rem; margin: .3rem 0 0; }
-
-  /* EPSO badge */
-  .badge {
-    display:inline-block; padding:3px 8px; border:1px solid #ddd; border-radius:999px;
-    background:#fafafa; font-size:.8em; line-height:1;
-  }
-
-  /* Quick links grid */
-  .ql-flex { display:flex; gap:2rem; align-items:stretch; flex-wrap:wrap; }
-  .ql-card { flex:1 1 320px; text-align:center; display:flex; flex-direction:column; align-items:center; }
-  .ql-imgbox { width: 120px; height:120px; margin:0 auto 10px auto; display:block; }
-  .ql-imgbox img { width:100%; height:100%; object-fit:contain; opacity:.92; }
-  .ql-card h3 { margin:6px 0 4px; font-size:1rem; }
-  .ql-card p { margin:0 0 10px 0; font-size:.95rem; }
-  .ql-card .actions { margin-top:auto; display:flex; justify-content:center; }
-  .ql-card .actions .button { padding:.45rem .85rem; font-size:.9rem; }
-
-  /* Sidebar width */
-  #sidebar .inner { width: 22rem; }
-
-<div id="sidebar">
-  <div class="inner">
-
-    <!-- Profile block -->
-    <section class="profile">
-      <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" class="profile-pic"/>
-      <h1>Jacqueline Seufert</h1>
-      <p class="tagline">Economist &amp; Data Scientist</p>
-      <div><span class="badge">EPSO/AD/412/24 laureate — Data &amp; Statistics (AD6)</span></div>
-      <p>Connecting statistics, econometrics, and data science to real-world policy and practice.</p>
-      <ul class="actions">
-        <li><a href="/cv.html" class="button small primary">View CV</a></li>
-        <li><a href="/projects.html" class="button small">Projects</a></li>
-      </ul>
-    </section>
-
-    <!-- Menu -->
-    <nav id="menu">…</nav>
-
- /* Mobile-first cleanup */
-@media (max-width: 768px) {
-  /* Sidebar becomes off-canvas */
-  #sidebar {
-    position: fixed;
-    top: 0; left: -100%;
-    height: 100%;
-    width: 80%;
-    max-width: 300px;
-    background: #fff;
-    z-index: 1000;
-    overflow-y: auto;
-    transition: left 0.3s ease;
-  }
-  #sidebar.open { left: 0; }
-
-  /* Hamburger visible */
-  #menu-toggle {
-    display: block;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1100;
-    background: #fff;
-    border: none;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.1);
-  }
-
-  /* Banner stacks cleanly */
-  #banner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-top: 3rem; /* to clear hamburger */
-  }
-  #banner .image.object img { width: 120px; margin-top: 1rem; }
-  #banner .actions { flex-direction: column; width: 100%; }
-  #banner .actions .button { width: 100%; }
-
-  /* Features stack */
-  .features {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  /* Quick links stack */
-  .ql-flex {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .ql-card .actions .button { width: 100%; }
-}
-
-  /* Body text scales on devices */
-body {
-  font-size: clamp(14px, 1.8vw, 16px);
-  line-height: 1.6;
-}
-
-/* Ensure images never overflow */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Buttons & links: larger touch targets */
-.button {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Desktop: tighten sidebar + main content gap */
-@media (min-width: 1025px) {
-  #wrapper {
-    display: flex;
-    gap: 1.5rem; /* controls the space between sidebar and main */
-  }
-
-  #sidebar {
-    flex: 0 0 16rem; /* narrower sidebar (default ~22rem) */
-  }
-
-  #main .inner {
-    max-width: 1000px; /* keep text comfortably readable */
-    margin: 0;         /* remove unnecessary left margin */
-  }
-}
-
-/* Sidebar: collapse for mobile */
-
-  
-@media (max-width: 1024px) {
-  #sidebar {
-    position: fixed;
-    left: -100%;
-    top: 0; bottom: 0;
-    background: #fff;
-    transition: left 0.3s ease;
-    z-index: 999;
-    width: 80%;
-    max-width: 320px;
-  }
-  #sidebar.open { left: 0; }
-}
-
-/* Add a hamburger button */
-#menu-toggle {
-  display: none;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  font-size: 1.5rem;
-  background: #fff;
-  border: none;
-  z-index: 1000;
-}
-@media (max-width: 1024px) {
-  #menu-toggle { display: block; }
-}
-
-
-</style>
-
 <body class="is-preload">
 <button id="menu-toggle" aria-label="Toggle menu">
   <i class="fas fa-bars"></i>
 </button>
+
   <!-- Wrapper MUST wrap main + sidebar -->
   <div id="wrapper">
 
-    <!-- Sidebar (now on the left) -->
+    <!-- Sidebar -->
     <div id="sidebar">
       <div class="inner">
+
+        <!-- Profile -->
+        <section class="profile" style="text-align:center; margin-bottom:2rem;">
+          <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" style="width:140px; border-radius:50%; margin-bottom:1rem;">
+          <h1 style="margin:0;">Jacqueline Seufert</h1>
+          <div style="margin:.4rem 0 1rem;">
+            <span class="badge">EPSO/AD/412/24 laureate — Data &amp; Statistics (AD6)</span>
+          </div>
+          <p style="font-size:.9rem;">Economist &amp; Data Scientist — connecting statistics, econometrics, and data science to real-world policy and practice.</p>
+          <ul class="actions" style="justify-content:center; margin-top:1rem;">
+            <li><a href="/cv.html" class="button small primary">View CV</a></li>
+            <li><a href="/projects.html" class="button small">Projects</a></li>
+          </ul>
+        </section>
 
         <!-- Menu -->
         <nav id="menu">
@@ -232,7 +47,6 @@ img {
             <li><a href="/" class="fas fa-home">Home</a></li>
             <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
             <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
-           
           </ul>
         </nav>
 
@@ -240,12 +54,11 @@ img {
         <section>
           <header class="major"><h2>Get in touch</h2></header>
           <ul class="contact">
-          <li>
-  <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
-    <i class="fas fa-envelope"></i> Contact
-  </a>
-</li>
-
+            <li>
+              <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+            </li>
             <li>
               <i class="fab fa-github"></i>
               <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a>
@@ -271,23 +84,20 @@ img {
     <div id="main">
       <div class="inner">
 
-        <!-- Hero -->
-       
-
+        <!-- Intro -->
+        <section id="banner">
+          <div class="content">
             <p>
-              I work at the crossroads of economics, statistics, and data science, combining econometric modeling, survey methods, and machine learning with data engineering skills.
-              My projects range from housing markets and land valuation to environmental data analysis, always grounded in transparent, reproducible methods that support policy and practical decision-making.
+              I work at the crossroads of economics, statistics, and data science, combining econometric modeling,
+              survey methods, and machine learning with data engineering skills. My projects range from housing markets
+              and land valuation to environmental data analysis, always grounded in transparent, reproducible methods
+              that support policy and practical decision-making.
             </p>
-
             <ul class="actions">
               <li><a href="/cv.html" class="button big primary"><i class="fas fa-file-alt"></i> View CV</a></li>
               <li><a href="/projects.html" class="button big"><i class="fas fa-folder-open"></i> Projects</a></li>
             </ul>
           </div>
-
-          <span class="image object">
-            <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" />
-          </span>
         </section>
 
         <!-- Expertise -->
@@ -339,7 +149,6 @@ img {
                 <li><a href="/cv.html" class="button">Open</a></li>
               </ul>
             </article>
-
             <article class="ql-card">
               <a href="/projects.html" class="ql-imgbox">
                 <img src="images/eurostat.png" alt="Eurostat Projects" />
@@ -366,11 +175,11 @@ img {
   <script src="assets/js/main.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script>
-  const toggle = document.getElementById('menu-toggle');
-  const sidebar = document.getElementById('sidebar');
-  toggle.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-  });
-</script>
+    const toggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

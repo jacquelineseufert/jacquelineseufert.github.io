@@ -86,9 +86,23 @@
     /* Sidebar width */
     #sidebar .inner { width: 22rem; }
 
-    @media (max-width: 740px) {
-      #sidebar .inner { width: 100%; }
-    }
+   /* Desktop: tighten sidebar + main content gap */
+@media (min-width: 1025px) {
+  #wrapper {
+    display: flex;
+    gap: 1.5rem; /* controls the space between sidebar and main */
+  }
+
+  #sidebar {
+    flex: 0 0 16rem; /* narrower sidebar (default ~22rem) */
+  }
+
+  #main .inner {
+    max-width: 1000px; /* keep text comfortably readable */
+    margin: 0;         /* remove unnecessary left margin */
+  }
+}
+
   </style>
 </head>
 <body class="is-preload">

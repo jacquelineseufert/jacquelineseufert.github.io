@@ -3,49 +3,52 @@
   display: block; /* sidebar is fixed, so main just flows next to it */
 }
 
+/* Sidebar on the left */
 #sidebar {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 22rem; /* adjust width */
+  width: 22rem; /* adjust width as needed */
   background: url("images/sidebar-bg.jpg") center center/cover no-repeat;
   color: #fff;
   overflow-y: auto;
   z-index: 1000;
 }
 
-/* Overlay for readability */
+/* Dark overlay for text readability */
 #sidebar::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.55); /* dark tint */
+  background: rgba(0,0,0,0.55); /* semi-transparent black tint */
   z-index: -1;
 }
 
 #sidebar .inner {
   padding: 2rem;
-  position: relative;
-  z-index: 1; /* make sure text is above overlay */
+  position: relative; /* ensures content sits above overlay */
+  z-index: 1;
 }
 
-/* Sidebar text */
+/* Sidebar text styles */
 #sidebar h1, 
 #sidebar h2, 
 #sidebar p, 
 #sidebar a {
   color: #fff !important;
 }
+
 #sidebar a:hover {
   text-decoration: underline;
 }
 
 /* === Main content shifted right === */
 #main {
-  margin-left: 22rem; /* same as sidebar width */
+  margin-left: 22rem; /* must match sidebar width */
   padding: 2rem;
 }
+
 #main .inner {
   max-width: 740px; 
   margin: 0 auto;
@@ -164,8 +167,8 @@ h1, h2, h3 {
 /* ====== Mobile ====== */
 @media (max-width: 768px) {
   #sidebar {
-    width: 100%;   /* sidebar takes full width on small screens */
-    position: relative;
+    position: relative; /* no fixed sidebar on small screens */
+    width: 100%;
     height: auto;
   }
   #main {

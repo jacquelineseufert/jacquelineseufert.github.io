@@ -1,66 +1,55 @@
-/* === Sidebar Left Fix === */
+/* === Sidebar Fixed Full-Height === */
 #wrapper {
-  display: grid !important;
-  grid-template-columns: 22rem minmax(0, 1fr); /* sidebar | main */
-  grid-template-areas: "sidebar main";
-  gap: 2rem;
-  align-items: start;
+  display: block; /* sidebar is fixed, so main just flows next to it */
 }
 
 #sidebar {
-  grid-area: sidebar;
-  background: #f5f6f7;
-  display: block !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 22rem; /* adjust width */
+  background: url("images/sidebar-bg.jpg") center center/cover no-repeat;
+  color: #fff;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
+/* Overlay for readability */
+#sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55); /* dark tint */
+  z-index: -1;
+}
+
+#sidebar .inner {
+  padding: 2rem;
+  position: relative;
+  z-index: 1; /* make sure text is above overlay */
+}
+
+/* Sidebar text */
+#sidebar h1, 
+#sidebar h2, 
+#sidebar p, 
+#sidebar a {
+  color: #fff !important;
+}
+#sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* === Main content shifted right === */
 #main {
-  grid-area: main;
-  min-width: 0;
+  margin-left: 22rem; /* same as sidebar width */
+  padding: 2rem;
 }
-
-/* Keep sidebar sticky */
-#sidebar .inner {
-  position: sticky;
-  top: 1rem;
-  max-height: calc(100vh - 2rem);
-  overflow: auto;
-  width: 100%;
-}
-
-/* Prevent collapse */
-#sidebar.inactive {
-  margin-left: 0 !important;
-  transform: none !important;
-  box-shadow: none !important;
-}
-body.is-preload #sidebar {
-  display: block !important;
-}
-
-/* ====== General Layout ====== */
-
-/* Limit content width like Hydejack */
 #main .inner {
-  max-width: 740px;     /* narrower column for readability */
-  margin: 0 auto;       /* center align */
-  padding: 1rem;
+  max-width: 740px; 
+  margin: 0 auto;
   line-height: 1.6;
-}
-
-/* Sidebar slimmer on desktop */
-#sidebar {
-  flex: 0 0 15rem;
-}
-#sidebar .inner {
-  width: 100%;
-}
-
-/* Better spacing between sidebar and main */
-@media (min-width: 1025px) {
-  #wrapper {
-    display: flex;
-    gap: 2rem;
-  }
 }
 
 /* ====== Headings ====== */
@@ -174,16 +163,12 @@ h1, h2, h3 {
 
 /* ====== Mobile ====== */
 @media (max-width: 768px) {
-  #wrapper {
-    flex-direction: column;
-    gap: 1rem;
-  }
   #sidebar {
-    flex: none;
+    width: 100%;   /* sidebar takes full width on small screens */
+    position: relative;
+    height: auto;
   }
-  #main .inner {
-    max-width: 100%;
-    padding: 1rem;
+  #main {
+    margin-left: 0;
   }
 }
-

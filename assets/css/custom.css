@@ -3,20 +3,21 @@
   display: block; /* sidebar is fixed, so main flows next to it */
 }
 
+/* Sidebar */
 #sidebar {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   bottom: 0 !important;
-  width: 22rem !important;
-  background: #2c3e50 !important; /* solid color background */
+  width: 22rem !important;            /* fixed width */
+  background: #2c3e50 !important;     /* solid color, can swap for image */
   color: #fff !important;
   overflow-y: auto !important;
   z-index: 1000 !important;
 }
 
-/* Dark overlay for readability if you use an image background */
 #sidebar::before {
+  /* only needed if you want a dark overlay on an image background */
   content: "" !important;
   position: absolute !important;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -30,7 +31,7 @@
   z-index: 1 !important;
 }
 
-/* Sidebar text styles */
+/* Sidebar text */
 #sidebar h1, 
 #sidebar h2, 
 #sidebar p, 
@@ -42,46 +43,7 @@
   text-decoration: underline !important;
 }
 
-/* === Main content shifted right === */
-#main {
-  margin-left: 22rem !important; /* same as sidebar width */
-  padding: 2rem !important;
-}
-
-#main .inner {
-  max-width: 740px !important;
-  margin: 0 auto !important;
-  line-height: 1.6 !important;
-}
-
-/* ====== Mobile ====== */
-@media (max-width: 768px) {
-  #sidebar {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-  #main {
-    margin-left: 0 !important;
-  }
-}
-/* === Force Sidebar Full-Height Fixed === */
-#sidebar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  bottom: 0 !important;
-  width: 22rem !important;
-  background: #2c3e50 !important; /* test with solid color first */
-  color: #fff !important;
-  overflow-y: auto !important;
-  z-index: 1000 !important;
-}
-
-#main {
-  margin-left: 22rem !important; /* same as sidebar width */
-  padding: 2rem !important;
-}
+/* Profile block inside sidebar */
 .profile {
   text-align: center;
   margin-bottom: 2rem;
@@ -91,6 +53,7 @@
   height: 120px;
   border-radius: 50%;
   margin-bottom: 1rem;
+  object-fit: cover;
 }
 .profile h1 {
   font-size: 1.4rem;
@@ -100,4 +63,27 @@
   font-size: 0.95rem;
   font-style: italic;
   margin-bottom: 0.5rem;
+}
+
+/* === Main content shifted right === */
+#main {
+  margin-left: 22rem !important; /* must equal sidebar width */
+  padding: 2rem !important;
+}
+#main .inner {
+  max-width: 740px !important;
+  margin: 0 auto !important;
+  line-height: 1.6 !important;
+}
+
+/* === Mobile: stack sidebar above === */
+@media (max-width: 768px) {
+  #sidebar {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  #main {
+    margin-left: 0 !important;
+  }
 }

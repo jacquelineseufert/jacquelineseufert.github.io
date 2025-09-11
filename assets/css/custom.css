@@ -178,11 +178,22 @@
   }
 }
 
-/* --- Fix profile picture centering --- */
-.profile-pic {
-  display: block;
-  margin: 0 auto 0.8rem auto; /* forces centering */
+
+/* Force profile picture centering */
+.profile {
+  text-align: center; /* ensures all children inside are centered */
 }
+
+.profile-pic {
+  display: inline-block;   /* instead of block */
+  margin: 0 auto 0.8rem auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+
 
 /* --- Make all sidebar section titles consistent --- */
 #sidebar h2 {

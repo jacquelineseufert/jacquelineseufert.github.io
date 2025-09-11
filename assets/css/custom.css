@@ -1,6 +1,6 @@
 /* === Layout Wrapper === */
 #wrapper {
-  display: block;
+  display: block; /* sidebar fixed, main flows next to it */
   min-height: 100vh;
   background: #f9f9f9;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -12,11 +12,10 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 19rem;
+  width: 19rem;              /* slimmer and balanced */
   background: #2c3e50;
   color: #fff;
   overflow-y: auto;
-  overflow-x: hidden;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -24,45 +23,54 @@
   line-height: 1.5;
 }
 
+/* Overlay only if using an image background */
 #sidebar::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.55);
   z-index: -1;
-  width: 100%;
-  height: 100%;
 }
 
 #sidebar .inner {
-  flex: 0 0 auto;  /* prevent flex “wandering” */
-  padding: 2rem 1.5rem;
+  flex: 1;
+  padding: 2rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2rem; /* clear, consistent spacing between blocks */
 }
 
-/* === Profile block (anchored at top, centered horizontally) === */
+/* Sidebar text defaults */
+#sidebar h1, 
+#sidebar h2, 
+#sidebar p, 
+#sidebar a {
+  color: #fff;
+  margin: 0;
+}
+#sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* === Profile block === */
 .profile {
   text-align: center;
-  margin-bottom: 2rem;
 }
 .profile-pic {
-  display: block;
-  margin: 0 auto 0.8rem auto;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
+  margin-bottom: 0.8rem;
   object-fit: cover;
   border: 3px solid #fff;
 }
 .profile h1 {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   margin: 0.3rem 0;
   font-weight: 700;
 }
 .profile .tagline {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-style: italic;
   color: #ccc;
   margin-top: 0.2rem;
@@ -80,45 +88,59 @@
 /* === Section headers (Menu, Contact) === */
 #sidebar h2 {
   font-size: 0.85rem;
-  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #bbb;
-  margin: 1rem 0 0.5rem;
-  text-align: left;
+  margin-bottom: 0.5rem;
 }
 
-/* === Menu & Contact === */
-#menu ul,
-.contact {
+/* === Navigation menu === */
+#menu {
+  width: 100%;
+}
+#menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
-#menu ul li,
-.contact li {
-  margin: 0.4rem 0;
+#menu ul li {
+  margin: 0.35rem 0;
 }
-
-#menu ul li a,
-.contact a {
+#menu ul li a {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: #fff;
-  padding: 0.35rem 0;
+  padding: 0.35rem 0.5rem;
   border-radius: 4px;
   transition: background 0.2s ease, color 0.2s ease;
-  text-decoration: none;
 }
-
-#menu ul li a:hover,
-.contact a:hover {
+#menu ul li a:hover {
   background: rgba(255,255,255,0.08);
   color: #f39c12;
+}
+
+/* === Contact section === */
+.contact {
+  width: 100%;
+}
+.contact li {
+  margin: 0.4rem 0;
+}
+.contact a {
+  color: #bbb;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
+}
+.contact a:hover {
+  color: #fff;
 }
 
 /* === Footer === */
@@ -134,10 +156,8 @@
 
 /* === Main content (to the right of sidebar) === */
 #main {
-  margin-left: 19rem;
+  margin-left: 19rem; /* match sidebar width */
   padding: 2rem;
-  max-width: calc(100% - 19rem);
-  box-sizing: border-box;
 }
 #main .inner {
   max-width: 760px;
@@ -148,30 +168,23 @@
 /* === Mobile layout === */
 @media (max-width: 768px) {
   #sidebar {
+    position: relative;
     width: 100%;
     height: auto;
+    border-right: none;
   }
   #main {
     margin-left: 0;
     padding: 1.5rem;
-    max-width: 100%;
   }
   #sidebar .inner {
-    text-align: center;
     align-items: center;
-  }
-  #sidebar h2 {
     text-align: center;
   }
-  #menu ul li a,
-  .contact a {
+  #menu ul li a {
     justify-content: center;
   }
-}
-
-/* === Body reset for stability === */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* prevent sidebar shift */
+  .contact {
+    text-align: center;
+  }
 }

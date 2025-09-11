@@ -144,8 +144,26 @@ img {
   align-items: center;
   justify-content: center;
 }
+/* Desktop: tighten sidebar + main content gap */
+@media (min-width: 1025px) {
+  #wrapper {
+    display: flex;
+    gap: 1.5rem; /* controls the space between sidebar and main */
+  }
+
+  #sidebar {
+    flex: 0 0 16rem; /* narrower sidebar (default ~22rem) */
+  }
+
+  #main .inner {
+    max-width: 1000px; /* keep text comfortably readable */
+    margin: 0;         /* remove unnecessary left margin */
+  }
+}
 
 /* Sidebar: collapse for mobile */
+
+  
 @media (max-width: 1024px) {
   #sidebar {
     position: fixed;

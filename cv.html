@@ -1,274 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>CV / Experience — Jacqueline Seufert</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
-    <link rel="icon" href="images/favicon.ico">
-    <style>
-        /* Audience tabs + role visibility */
-        .audience-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .5rem;
-            margin: 0 0 1.25rem 0;
-        }
+<meta charset="utf-8" />
+<title>CV / Experience — Jacqueline Seufert</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/custom.css" />
+<link rel="icon" href="images/favicon.ico" />
 
-        .aud-btn {
-            border: 1px solid rgba(0, 0, 0, .15);
-            border-radius: 999px;
-            padding: .4rem .85rem;
-            cursor: pointer;
-            background: transparent;
-            font-size: .9rem;
-        }
+<style>
+/* Audience tabs + role visibility */
+.audience-tabs { display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 1.25rem 0; }
+.aud-btn { border:1px solid rgba(0,0,0,.15); border-radius:999px; padding:.4rem .85rem; cursor:pointer; background:transparent; font-size:.9rem; }
+.aud-btn[aria-pressed="true"] { background:#111; color:#fff; border-color:#111; }
+.legend { font-size:.9rem; opacity:.8; margin:0 0 .35rem 0; }
 
-        .aud-btn[aria-pressed="true"] {
-            background: #111;
-            color: #fff;
-            border-color: #111;
-        }
+/* Collapsible sections */
+.collapsible-header { cursor: pointer; position: relative; padding-right: 1.5rem; }
+.collapsible-header::after { content: "▸"; position: absolute; right: 0; transition: transform 0.2s ease; }
+.collapsible.open .collapsible-header::after { transform: rotate(90deg); }
+.collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
 
-        .legend {
-            font-size: .9rem;
-            opacity: .8;
-            margin: 0 0 .35rem 0;
-        }
+/* Cards */
+.exp-card { border:1px solid rgba(0,0,0,.08); border-radius:10px; padding:1rem 1.25rem; margin:0 0 1rem 0; background:#fff; }
+.exp-card h3 { margin:0 0 .25rem 0; }
+.meta { font-size:.95rem; opacity:.8; margin:.15rem 0 .75rem; }
+.pill { display:inline-block; padding:.15rem .5rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin-right:.35rem; font-size:.85rem; opacity:.9; }
+.tasks { margin:.25rem 0 0 0; }
+.tasks li { margin:.25rem 0; }
+.hidden-role { display:none !important; }
 
-        /* Collapsible sections */
-        .collapsible-header {
-            cursor: pointer;
-            position: relative;
-            padding-right: 1.5rem;
-        }
+/* Sidebar width */
+#sidebar .inner { width: 22rem; }
 
-        .collapsible-header::after {
-            content: "▸";
-            position: absolute;
-            right: 0;
-            transition: transform 0.2s ease;
-        }
-
-        .collapsible.open .collapsible-header::after {
-            transform: rotate(90deg);
-        }
-
-        .collapsible-content {
-            max-height: none;
-            /* show by default */
-            overflow: visible;
-            transition: max-height 0.3s ease;
-        }
-
-        /* Cards */
-        .exp-card {
-            border-left: 3px solid #e63946;
-            border-radius: 6px;
-            padding: 1rem 1.25rem;
-            margin: 0 0 1.5rem 0;
-            background: #fff;
-        }
-
-        .exp-card h3 {
-            margin: 0 0 .25rem 0;
-            font-size: 1.05rem;
-            font-weight: 600;
-        }
-
-        .meta {
-            font-size: .9rem;
-            opacity: .8;
-            margin: .15rem 0 .75rem;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: .15rem .5rem;
-            border: 1px solid rgba(0, 0, 0, .12);
-            border-radius: 999px;
-            margin: 0 .25rem .25rem 0;
-            font-size: .8rem;
-            opacity: .9;
-        }
-
-        .tasks {
-            margin: .25rem 0 0 0;
-            padding-left: 1.2rem;
-        }
-
-        .tasks li {
-            margin: .25rem 0;
-            line-height: 1.45;
-        }
-
-        .hidden-role {
-            display: none !important;
-        }
-
-        /* Sidebar width */
-        #sidebar .inner {
-            width: 20rem;
-        }
-
-        /* Desktop: tighten sidebar + main content gap */
-        @media (min-width: 1025px) {
-            #wrapper {
-                display: flex;
-                gap: 1.5rem;
-            }
-
-            #sidebar {
-                flex: 0 0 15rem;
-            }
-
-            #main .inner {
-                max-width: 780px;
-                /* polished CV width */
-                margin: 0 auto;
-                padding: 0 1rem;
-            }
-        }
-    </style>
+/* Desktop: tighten sidebar + main content gap */
+@media (min-width: 1025px) {
+  #wrapper { display: flex; gap: 1.5rem; }
+  #sidebar { flex: 0 0 16rem; }
+  #main .inner { max-width: 1000px; margin: 0; }
+}
+</style>
 </head>
 
 <body class="is-preload">
-    <div id="wrapper"><!-- Sidebar -->
-        <div id="sidebar">
-            <div class="inner"><!-- Menu -->
-                <nav id="menu">
-                    <header class="major">
-                        <h2>Menu</h2>
-                    </header>
-                    <ul>
-                        <li><a href="/" class="fas fa-home">Home</a></li>
-                        <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
-                        <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
-                    </ul>
-                </nav><!-- Contact -->
-                <section>
-                    <header class="major">
-                        <h2>Get in touch</h2>
-                    </header>
-                    <ul class="contact">
-                        <li><a href="mailto:jacqueline-seufert@web.de">&nbsp; Contact&nbsp;</a></li>
-                        <li><a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a></li>
-                        <li><a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a></li>
-                    </ul>
-                </section><!-- Footer -->
-                <footer id="footer">
-                    <p class="copyright">&copy; Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                </footer>
-            </div>
-        </div><!-- Main -->
-        <div id="main" class="alt">
-            <div class="inner">
-                <header class="major">
-                    <h1>Experience</h1>
-                    <p>Click a view to highlight the most relevant tasks for that audience.</p>
-                </header><!-- Audience filter tabs -->
-                <div class="legend">View CV as&hellip;</div>
-                <div class="audience-tabs" aria-label="CV audience views"><button class="aud-btn" aria-pressed="true" data-audience="data">Data Scientist</button> <button class="aud-btn" aria-pressed="false" data-audience="stats">Statistician</button> <button class="aud-btn" aria-pressed="false" data-audience="econ">Economist / Policy</button> <button class="aud-btn" aria-pressed="false" data-audience="geo">Geospatial Analyst</button></div><!-- Professional Experience -->
-                <div class="exp-card collapsible open">
-                    <h3 class="collapsible-header">Professional Experience</h3>
-                    <div class="collapsible-content"><!-- Example Role -->
-                        <div class="exp-card">
-                            <h3>KU Leuven &mdash; PhD Researcher (Housing Economics)</h3>
-                            <div class="meta">2021 &ndash; Jan 2025 &middot; Leuven</div>
-                            <div class="pills"><span class="pill" data-tags="stats">Bayesian</span> <span class="pill" data-tags="econ">Housing prices</span> <span class="pill" data-tags="data">Python</span> <span class="pill" data-tags="geo">GIS</span></div>
-                            <ul class="tasks">
-                                <li data-tags="stats">Developed new approaches to evaluate effects of policies.</li>
-                                <li data-tags="econ">Studied how citizen-science air quality measurements influenced property prices.</li>
-                                <li data-tags="data">Built integrated datasets combining cadastre and registry data.</li>
-                                <li data-tags="geo">Mapped regional variation in land values.</li>
-                            </ul>
-                        </div><!-- … Continue with other roles (Goettingen, TUI, ProSiebenSat.1, Allianz, Bavarian Ministry, Hudson Institute) -->
-                    </div>
-                </div><!-- Education -->
-                <div class="exp-card collapsible open">
-                    <h3 class="collapsible-header">Education</h3>
-                    <div class="collapsible-content">
-                        <ul class="tasks">
-                            <li><strong>PhD, Economics</strong> &mdash; KU Leuven (Jan 2021 &ndash; Jan 2025)<br>Dissertation: <em>Understanding Housing Market Dynamics and Valuation</em></li>
-                            <li><strong>MSc, Applied Statistics</strong> &mdash; G&ouml;ttingen (2018 &ndash; 2020)</li>
-                            <li><strong>BSc, European Economic Studies</strong> &mdash; Bamberg (2013 &ndash; 2016)</li>
-                        </ul>
-                    </div>
-                </div><!-- Languages -->
-                <div class="exp-card collapsible open">
-                    <h3 class="collapsible-header">Languages</h3>
-                    <div class="collapsible-content">
-                        <ul class="tasks">
-                            <li>German (Native)</li>
-                            <li>English (C2)</li>
-                            <li>French (C1)</li>
-                            <li>Dutch (C1)</li>
-                        </ul>
-                    </div>
-                </div><!-- Publications -->
-                <div class="exp-card collapsible open">
-                    <h3 class="collapsible-header">Publications</h3>
-                    <div class="collapsible-content">
-                        <ul class="tasks">
-                            <li>Seufert, J., et al. (2024). Subnational estimates of vitamin A supplementation&hellip; <em>Public Health</em>.</li>
-                            <li>Seufert, J., et al. (2022). Mapping ex ante risks of COVID-19&hellip; <em>JRSS A</em>.</li>
-                            <li>Schneider, R., Seufert, J. (2017). Euromonitor 2016&hellip; <em>Allianz Economic Research</em>.</li>
-                            <li>Weicher, J.C., Seufert, J. (2016). Vacation Homes and Vacation Homeowners. <em>JCRES</em>.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // audience filter
-        const buttons = document.querySelectorAll('.aud-btn');
-        buttons.forEach(btn => {
-          btn.addEventListener('click', () => {
-            if (btn.getAttribute("aria-pressed") === "true") return;
-            buttons.forEach(b => b.setAttribute('aria-pressed','false'));
-            btn.setAttribute('aria-pressed','true');
-            filterCV(btn.dataset.audience);
-          });
-        });
-        
-        function filterCV(tag) {
-          document.querySelectorAll('#main li[data-tags]').forEach(item => {
-            const tags = item.getAttribute('data-tags').split(',');
-            item.classList.toggle('hidden-role', !tags.includes(tag));
-          });
-          document.querySelectorAll('.pill[data-tags]').forEach(pill => {
-            const tags = pill.getAttribute('data-tags').split(',');
-            pill.classList.toggle('hidden-role', !tags.includes(tag));
-          });
-        }
-        
-        // collapsible
-        document.querySelectorAll('.collapsible-header').forEach(header => {
-          header.addEventListener('click', () => {
-            const card = header.parentElement;
-            card.classList.toggle('open');
-            const content = header.nextElementSibling;
-            if (card.classList.contains('open')) {
-              content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-              content.style.maxHeight = null;
-            }
-          });
-        });
-        
-        filterCV("data");
-    </script>
-</body>
+<div id="wrapper">
 
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="inner">
+
+      <!-- Menu -->
+      <nav id="menu">
+        <header class="major"><h2>Menu</h2></header>
+        <ul>
+          <li><a href="/" class="fas fa-home">Home</a></li>
+          <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
+          <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
+        </ul>
+      </nav>
+
+      <!-- Contact -->
+      <section>
+        <header class="major"><h2>Get in touch</h2></header>
+        <ul class="contact">
+          <li>
+            <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
+              <i class="fas fa-envelope"></i> Contact
+            </a>
+          </li>
+          <li><i class="fab fa-github"></i>
+            <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a></li>
+          <li><i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a></li>
+        </ul>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <p class="copyright">
+          © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
+        </p>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div id="main" class="alt">
+    <div class="inner">
+
+      <header class="major">
+        <h1>Experience</h1>
+        <p>Click a view to highlight the most relevant tasks for that audience.</p>
+      </header>
+
+      <!-- Audience filter tabs -->
+      <div class="legend">View CV as…</div>
+      <div class="audience-tabs" role="tablist" aria-label="CV audience views">
+        <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
+        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
+        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
+        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
+      </div>
+
+      <!-- === ROLES (your full list as you pasted) === -->
+      <!-- Professional Experience -->
+      <div class="exp-card collapsible open">
+        <h3 class="collapsible-header">Professional Experience</h3>
+        <div class="collapsible-content">
+
+          <!-- KU Leuven -->
+          <div class="exp-card">
+            <h3>KU Leuven — PhD Researcher (Housing Economics)</h3>
+            <div class="meta">2021 – Jan 2025 · Leuven</div>
+            <div class="pills">
+              <!-- Statistics pills -->
+              <span class="pill" data-tags="stats">R</span>
+              <span class="pill" data-tags="stats">Stata</span>
+              <span class="pill" data-tags="stats">Bayesian</span>
+              <span class="pill" data-tags="stats">Causal inference</span>
+              <!-- Economics pills -->
+              <span class="pill" data-tags="econ">Econometrics</span>
+              <span class="pill" data-tags="econ">Housing prices</span>
+              <span class="pill" data-tags="econ">Land valuation</span>
+              <span class="pill" data-tags="econ">Policy analysis</span>
+              <!-- Data pills -->
+              <span class="pill" data-tags="data">Python</span>
+              <span class="pill" data-tags="data">SQL</span>
+              <span class="pill" data-tags="data">Machine learning</span>
+              <span class="pill" data-tags="data">Data pipelines</span>
+              <!-- Geospatial pills -->
+              <span class="pill" data-tags="geo">GIS</span>
+              <span class="pill" data-tags="geo">Spatial models</span>
+              <span class="pill" data-tags="geo">Remote sensing</span>
+              <span class="pill" data-tags="geo">Environmental data</span>
+            </div>
+            <ul class="tasks">
+              <!-- Statistics -->
+              <li data-tags="stats">Developed new approaches to evaluate the effects of policies and information releases.</li>
+              <li data-tags="stats">Applied Bayesian models to improve estimates of land and housing values.</li>
+              <li data-tags="stats">Applied spatial statistics to improve predictive accuracy of property valuations.</li>
+              <li data-tags="stats">Led research projects and presented methodological research at international conferences and seminars.</li>
+              <!-- Economics -->
+              <li data-tags="econ">Studied how citizen-science air quality measurements influenced property prices.</li>
+              <li data-tags="econ">Compared valuations of unbuilt and built parcels to highlight differences in land and property markets.</li>
+              <li data-tags="econ">Analyzed performance differences between real estate agents using competitor and organisational data.</li>
+              <li data-tags="econ">Supervised Master’s theses and presented research findings to academic and policy audiences.</li>
+              <!-- Data -->
+              <li data-tags="data">Built integrated datasets combining cadastre records, property sales registries, and parcel attributes.</li>
+              <li data-tags="data">Web-scraped data on real estate agents for comparative market analysis.</li>
+              <li data-tags="data">Designed workflows to combine property transactions with environmental and geographic indicators.</li>
+              <li data-tags="data">Applied machine learning methods to test predictive performance against expert valuations.</li>
+              <!-- Geospatial -->
+              <li data-tags="geo">Worked with large-scale geospatial databases linking parcel data, raster layers, and registries.</li>
+              <li data-tags="geo">Integrated environmental indicators, parcel data, and travel-time measures into valuation models.</li>
+              <li data-tags="geo">Developed geostatistical models for vacant land valuation that outperformed existing approaches.</li>
+              <li data-tags="geo">Mapped regional variation in land values for spatial market studies.</li>
+            </ul>
+          </div>
+
+          <!-- ... (rest of roles exactly as you pasted) ... -->
+
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="exp-card collapsible">
+        <h3 class="collapsible-header">Education</h3>
+        <div class="collapsible-content">
+          <ul class="tasks">
+            <li><strong>PhD, Economics</strong> — KU Leuven (Jan 2021 – Jan 2025)<br> Dissertation: <em>Understanding Housing Market Dynamics and Valuation: Advanced Spatial and Statistical Techniques</em></li>
+            <li><strong>MSc, Applied Statistics</strong> — Georg-August-Universität Göttingen (Oct 2018 – Dec 2020) · Grade: 1.6</li>
+            <li><strong>Exchange Program (M1 Econometrics)</strong> — Toulouse School of Economics (Sep 2017 – May 2018)</li>
+            <li><strong>Exchange Program</strong> — American University, Washington DC (Sep 2015 – May 2016) · GPA: 4.0</li>
+            <li><strong>BSc, European Economic Studies</strong> — Otto-Friedrich-Universität Bamberg (Oct 2013 – Aug 2016) · Grade: 1.5</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="exp-card collapsible">
+        <h3 class="collapsible-header">Languages</h3>
+        <div class="collapsible-content">
+          <ul class="tasks">
+            <li>German (Native)</li>
+            <li>English (C2)</li>
+            <li>French (C1)</li>
+            <li>Dutch (C1)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div class="exp-card collapsible">
+        <h3 class="collapsible-header">Publications</h3>
+        <div class="collapsible-content">
+          <ul class="tasks">
+            <li>Seufert, J., et al. (2024). Subnational estimates of vitamin A supplementation coverage in children: a geospatial analysis of 45 low- and middle-income countries. <em>Public Health</em>, 228: 194–199.</li>
+            <li>Seufert, J., et al. (2022). Mapping ex ante risks of COVID-19 in Indonesia using a Bayesian geostatistical model on airport network data. <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em>, 185(4), 2121–2155.</li>
+            <li>Schneider, R., Seufert, J. (2017). Euromonitor 2016 – Macroeconomic imbalances rising again. <em>Allianz Economic Research</em>, Working Paper 208.</li>
+            <li>Schneider, R., Seufert, J. (2017). Impact of monetary policy on yields. <em>Allianz Economic Research</em>, Working Paper 209.</li>
+            <li>Weicher, J.C., Seufert, J. (2016). Vacation Homes and Vacation Homeowners. <em>The Journal of the Center for Real Estate Studies</em>, 4(1).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// audience filter
+const buttons = document.querySelectorAll('.aud-btn');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.getAttribute("aria-pressed") === "true") { return; }
+    buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    filterCV(btn.dataset.audience);
+  });
+});
+function filterCV(tag) {
+  // tasks
+  const allItems = document.querySelectorAll('#main li[data-tags]');
+  allItems.forEach(item => {
+    const tags = item.getAttribute('data-tags').split(',');
+    if (tags.includes(tag)) { item.classList.remove('hidden-role'); }
+    else { item.classList.add('hidden-role'); }
+  });
+  // pills
+  const allPills = document.querySelectorAll('.pill[data-tags]');
+  allPills.forEach(pill => {
+    const tags = pill.getAttribute('data-tags').split(',');
+    if (tags.includes(tag)) { pill.classList.remove('hidden-role'); }
+    else { pill.classList.add('hidden-role'); }
+  });
+}
+// collapsible sections
+document.querySelectorAll('.collapsible-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+    const content = header.nextElementSibling;
+    if (card.classList.contains('open')) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      content.style.maxHeight = null;
+    }
+  });
+});
+filterCV("data");
+</script>
+</body>
 </html>

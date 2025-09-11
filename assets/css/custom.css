@@ -179,23 +179,24 @@
 }
 
 
-/* === Profile block fixed centering === */
+/* === Profile block (hard center fix) === */
 .profile {
-  text-align: center;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;   /* horizontal centering */
-  justify-content: center; /* vertical balance */
+  align-items: center;      /* forces true horizontal centering */
+  justify-content: center;
+  text-align: center;
 }
 
 .profile-pic {
+  display: block;           /* kill inline spacing issues */
+  margin: 0 auto;           /* auto margin centers inside parent */
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 0.8rem;
   border: 3px solid #fff;
-  display: block;       /* ensures no inline offset */
 }
 
 

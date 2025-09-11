@@ -7,226 +7,212 @@
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
-
   <link rel="icon" href="images/favicon.ico" />
 
   <style>
-    /* Audience tabs + role visibility */
-    .audience-tabs { 
-      display:flex; 
-      flex-wrap:wrap; 
-      gap:.5rem; 
-      margin:0 0 1.25rem 0; 
-    }
-    .aud-btn { 
-      border:1px solid rgba(0,0,0,.15); 
-      border-radius:999px; 
-      padding:.4rem .85rem; 
-      cursor:pointer; 
-      background:transparent; 
-      font-size:.9rem;
-    }
-    .aud-btn[aria-pressed="true"] { 
-      background:#111; 
-      color:#fff; 
-      border-color:#111; 
-    }
-    .legend { 
-      font-size:.9rem; 
-      opacity:.8; 
-      margin:0 0 .35rem 0; 
-    }
+  /* =====================
+     CV Page Layout Fixes
+     ===================== */
 
-    /* Collapsible sections */
-    .collapsible-header {
-      cursor: pointer;
-      position: relative;
-      padding-right: 1.5rem;
-    }
-    .collapsible-header::after {
-      content: "▸";
-      position: absolute;
-      right: 0;
-      transition: transform 0.2s ease;
-    }
-    .collapsible.open .collapsible-header::after {
-      transform: rotate(90deg);
-    }
-    .collapsible-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    /* Cards */
-    .exp-card { 
-      border:1px solid rgba(0,0,0,.08); 
-      border-radius:10px; 
-      padding:1rem 1.25rem; 
-      margin:0 0 1.5rem 0;  /* more spacing between cards */
-      background:#fff; 
-    }
-    .exp-card h3 { margin:0 0 .25rem 0; }
-    .meta { font-size:.95rem; opacity:.8; margin:.15rem 0 .75rem; }
-    .pill { 
-      display:inline-block; 
-      padding:.15rem .5rem; 
-      border:1px solid rgba(0,0,0,.12); 
-      border-radius:999px; 
-      margin-right:.35rem; 
-      font-size:.85rem; 
-      opacity:.9;
-    }
-    .tasks { margin:.25rem 0 0 0; }
-    .tasks li { margin:.25rem 0; }
-    .hidden-role { display:none !important; }
-
-    /* Sidebar width */
-    #sidebar .inner { width: 18rem; }
-
-    /* Desktop layout */
-    @media (min-width: 1025px) {
-      #wrapper {
-        display: flex;
-      }
-      #sidebar {
-        flex: 0 0 18rem;
-      }
-      #main {
-        flex: 1;
-        padding-left: 2rem; /* consistent gap */
-      }
-      #main .inner {
-        max-width: 850px; /* narrower content for readability */
-        margin: 0 auto;
-      }
-      header.major {
-        margin-top: 1rem;    /* push header down */
-        margin-bottom: 2rem; /* more breathing room */
-      }
-    }
-  </style>
-</head>
-<body class="is-preload">
-<div id="wrapper">
-
-  <!-- Sidebar -->
-  <div id="sidebar">
-    <div class="inner">
-
-      <!-- Menu -->
-      <nav id="menu">
-        <header class="major"><h2>Menu</h2></header>
-        <ul>
-          <li><a href="/" class="fas fa-home">Home</a></li>
-          <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
-          <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
-        </ul>
-      </nav>
-
-      <!-- Contact -->
-      <section>
-        <header class="major"><h2>Get in touch</h2></header>
-        <ul class="contact">
-          <li>
-            <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
-              <i class="fas fa-envelope"></i> Contact
-            </a>
-          </li>
-          <li>
-            <i class="fab fa-github"></i>
-            <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a>
-          </li>
-          <li>
-            <i class="fab fa-linkedin"></i>
-            <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <p class="copyright">
-          © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
-        </p>
-      </footer>
-    </div>
-  </div>
-
-  <!-- Main -->
-  <div id="main" class="alt">
-    <div class="inner">
-
-      <header class="major">
-        <h1>Experience</h1>
-        <p>Click a view to highlight the most relevant tasks for that audience.</p>
-      </header>
-
-      <!-- Audience filter tabs -->
-      <div class="legend">View CV as…</div>
-      <div class="audience-tabs" role="tablist" aria-label="CV audience views">
-        <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
-        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
-        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
-        <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
-      </div>
-
-      <!-- === Your experience cards as before === -->
-      <!-- (KEEP your full list of exp-card sections, I didn’t touch the content itself) -->
-
-    </div>
-  </div>
-</div><!-- /#wrapper -->
-
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // audience filter
-  const buttons = document.querySelectorAll('.aud-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.getAttribute("aria-pressed") === "true") return;
-      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-      btn.setAttribute('aria-pressed', 'true');
-      filterCV(btn.dataset.audience);
-    });
-  });
-
-  function filterCV(tag) {
-    const allItems = document.querySelectorAll('#main li[data-tags]');
-    allItems.forEach(item => {
-      const tags = item.getAttribute('data-tags').split(',');
-      item.classList.toggle('hidden-role', !tags.includes(tag));
-    });
-
-    const allPills = document.querySelectorAll('.pill[data-tags]');
-    allPills.forEach(pill => {
-      const tags = pill.getAttribute('data-tags').split(',');
-      pill.classList.toggle('hidden-role', !tags.includes(tag));
-    });
+  /* Narrower content column for readability */
+  #main.alt .inner {
+    max-width: 850px;   /* not too wide */
+    margin: 0 auto;     /* center it nicely */
+    padding: 0 1rem;    /* breathing room on sides */
   }
 
-  // collapsible sections
-  document.querySelectorAll('.collapsible-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const card = header.parentElement;
-      card.classList.toggle('open');
-      const content = header.nextElementSibling;
-      if (card.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = null;
-      }
-    });
-  });
+  /* Add space below header */
+  #main.alt header.major {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
 
-  filterCV("data");
-</script>
+  /* Audience tabs spacing */
+  .audience-tabs {
+    margin-bottom: 2rem;
+  }
+
+  /* Collapsible section spacing */
+  #main.alt .exp-card.collapsible {
+    margin-bottom: 1.75rem;
+  }
+
+  /* Ensure collapsible contents expand nicely */
+  .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .collapsible.open .collapsible-content {
+    max-height: 2500px; /* large enough to fit any section */
+  }
+
+  /* Task list readability */
+  #main.alt .tasks li {
+    margin: 0.4rem 0;
+    line-height: 1.5;
+  }
+
+  /* Pills styling */
+  .pill {
+    display:inline-block;
+    padding:.15rem .5rem;
+    border:1px solid rgba(0,0,0,.12);
+    border-radius:999px;
+    margin-right:.35rem;
+    font-size:.85rem;
+    opacity:.9;
+  }
+  .hidden-role { display:none !important; }
+
+  /* Audience buttons */
+  .aud-btn {
+    border:1px solid rgba(0,0,0,.15);
+    border-radius:999px;
+    padding:.4rem .85rem;
+    cursor:pointer;
+    background:transparent;
+    font-size:.9rem;
+  }
+  .aud-btn[aria-pressed="true"] {
+    background:#111;
+    color:#fff;
+    border-color:#111;
+  }
+  </style>
+</head>
+
+<body class="is-preload">
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="inner">
+
+        <!-- Menu -->
+        <nav id="menu">
+          <header class="major"><h2>Menu</h2></header>
+          <ul>
+            <li><a href="/" class="fas fa-home">Home</a></li>
+            <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
+            <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contact -->
+        <section>
+          <header class="major"><h2>Get in touch</h2></header>
+          <ul class="contact">
+            <li>
+              <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+            </li>
+            <li><i class="fab fa-github"></i>
+              <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a></li>
+            <li><i class="fab fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a></li>
+          </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+          <p class="copyright">
+            © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
+          </p>
+        </footer>
+
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div id="main" class="alt">
+      <div class="inner">
+
+        <header class="major">
+          <h1>Experience</h1>
+          <p>Click a view to highlight the most relevant tasks for that audience.</p>
+        </header>
+
+        <!-- Audience filter tabs -->
+        <div class="legend">View CV as…</div>
+        <div class="audience-tabs" role="tablist" aria-label="CV audience views">
+          <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
+          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
+          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
+          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
+        </div>
+
+        <!-- ========== COLLAPSIBLE SECTIONS ========== -->
+        <!-- (your Professional Experience, Education, Languages, Publications go here exactly as you had them) -->
+        <!-- I did not rewrite the content; you paste the same exp-card blocks inside here -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // audience filter
+    const buttons = document.querySelectorAll('.aud-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.getAttribute("aria-pressed") === "true") return;
+        buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        filterCV(btn.dataset.audience);
+      });
+    });
+
+    function filterCV(tag) {
+      // tasks
+      document.querySelectorAll('#main li[data-tags]').forEach(item => {
+        const tags = item.getAttribute('data-tags').split(',');
+        if (tags.includes(tag)) {
+          item.classList.remove('hidden-role');
+        } else {
+          item.classList.add('hidden-role');
+        }
+      });
+      // pills
+      document.querySelectorAll('.pill[data-tags]').forEach(pill => {
+        const tags = pill.getAttribute('data-tags').split(',');
+        if (tags.includes(tag)) {
+          pill.classList.remove('hidden-role');
+        } else {
+          pill.classList.add('hidden-role');
+        }
+      });
+    }
+
+    // collapsible sections
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const card = header.parentElement;
+        card.classList.toggle('open');
+        const content = header.nextElementSibling;
+        if (card.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    });
+
+    // expand any "open" sections on load
+    document.querySelectorAll('.collapsible.open .collapsible-content').forEach(content => {
+      content.style.maxHeight = content.scrollHeight + "px";
+    });
+
+    // default view
+    filterCV("data");
+  </script>
 </body>
 </html>

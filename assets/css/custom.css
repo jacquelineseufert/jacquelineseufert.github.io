@@ -39,11 +39,14 @@
 #sidebar .inner {
   flex: 1;
   padding: 1.5rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;   /* <--- centers vertically */
   gap: 1.2rem;
 }
+
 
 /* Sidebar text */
 #sidebar h1,

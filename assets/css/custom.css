@@ -284,11 +284,11 @@
     overflow-y: auto;
   }
 
-  /* Skills & Quick Links become swipeable carousels */
+  /* FORCE swipeable layout */
   .expertise-grid,
   .ql-flex {
-    display: flex;
-    flex-wrap: nowrap;         /* make sure it flows in one row */
+    display: flex !important;    /* override grid */
+    flex-wrap: nowrap;
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -298,8 +298,8 @@
 
   .expertise-item,
   .ql-card {
-    flex: 0 0 80%;             /* force item width ~80% of screen */
-    min-width: 240px;          /* so it’s larger than screen fraction */
+    flex: 0 0 80%;               /* each card takes ~80% of screen */
+    min-width: 240px;            /* wide enough to require swiping */
     scroll-snap-align: start;
     background: #f9f9f9;
     border-radius: 8px;

@@ -132,14 +132,19 @@
     <div id="sidebar">
       <div class="inner">
 
-         <header class="major">
-            <h1>Experience</h1>
-            <p>Click a view to highlight the most relevant tasks for that audience.</p>
-         </header>
-         <!-- Audience filter tabs --> 
-         <div class="legend">View CV as…</div>
-         <div class="audience-tabs" role="tablist" aria-label="CV audience views"> <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button> <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button> <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button> <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button> </div>
-         <!-- === ROLES (your full list as you pasted) === -->
+        <header class="major">
+          <h1>Experience</h1>
+          <p>Click a view to highlight the most relevant tasks for that audience.</p>
+        </header>
+
+        <!-- Audience filter tabs -->
+        <div class="legend">View CV as…</div>
+        <div class="audience-tabs" role="tablist" aria-label="CV audience views">
+          <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
+          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
+          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
+          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
+        </div>
          <!-- Professional Experience --> 
         <div class="exp-card collapsible">
   <h3 class="collapsible-header">Professional Experience</h3>
@@ -380,71 +385,91 @@
             </div>
          </div>
       </div>
-      <!-- /#wrapper --> 
-         <!-- Scripts -->
-         <script src="assets/js/jquery.min.js">
-            
-         </script> 
-         <script src="assets/js/browser.min.js"></script>
-         <script src="assets/js/breakpoints.min.js"></script>
-         <script src="assets/js/util.js"></script>
-         <script src="assets/js/main.js"></script>
-      <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+      <!-- Footer -->
+        <footer id="footer">
+          <p class="copyright">
+            © <span id="year"></span> Jacqueline Seufert. Design:
+            <a href="https://html5up.net">HTML5 UP</a>.
+          </p>
+        </footer>
 
-document.addEventListener("DOMContentLoaded", () => {
-  const cvPage = document.querySelector("#main.alt"); 
-  if (!cvPage) return; // do nothing if not on CV page
+      </div>
+    </div><!-- /#sidebar -->
 
-  // === Audience filter ===
-  const buttons = cvPage.querySelectorAll('.aud-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.getAttribute("aria-pressed") === "true") return; // already active
-      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-      btn.setAttribute('aria-pressed', 'true');
-      filterCV(btn.dataset.audience);
-    });
-  });
+    <!-- Needed for sidebar.js -->
+    <div id="backdrop" hidden></div>
+    <div id="edge-swipe-zone" aria-hidden="true"></div>
 
-  function filterCV(tag) {
-    // tasks
-    const allItems = cvPage.querySelectorAll('li[data-tags]');
-    allItems.forEach(item => {
-      const attr = item.getAttribute('data-tags');
-      if (!attr) return;
-      const tags = attr.split(',');
-      item.classList.toggle('hidden-role', !tags.includes(tag));
-    });
+    <!-- Main -->
+    <div id="main" class="alt">
+      <div class="inner">
+        <!-- Page body content goes here -->
+      </div>
+    </div>
 
-    // pills
-    const allPills = cvPage.querySelectorAll('.pill[data-tags]');
-    allPills.forEach(pill => {
-      const tags = pill.getAttribute('data-tags').split(',');
-      pill.classList.toggle('hidden-role', !tags.includes(tag));
-    });
-  }
+  </div><!-- /#wrapper -->
 
-  // === Collapsible sections ===
-  cvPage.querySelectorAll('.collapsible-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const card = header.parentElement;
-      card.classList.toggle('open');
-      const content = header.nextElementSibling;
-      if (card.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = null;
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // only update year if span exists
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const cvPage = document.querySelector("#main.alt"); 
+      if (!cvPage) return;
+
+      // === Audience filter ===
+      const buttons = cvPage.querySelectorAll('.aud-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.getAttribute("aria-pressed") === "true") return;
+          buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+          btn.setAttribute('aria-pressed', 'true');
+          filterCV(btn.dataset.audience);
+        });
+      });
+
+      function filterCV(tag) {
+        const allItems = cvPage.querySelectorAll('li[data-tags]');
+        allItems.forEach(item => {
+          const tags = (item.getAttribute('data-tags') || "").split(',');
+          item.classList.toggle('hidden-role', !tags.includes(tag));
+        });
+
+        const allPills = cvPage.querySelectorAll('.pill[data-tags]');
+        allPills.forEach(pill => {
+          const tags = (pill.getAttribute('data-tags') || "").split(',');
+          pill.classList.toggle('hidden-role', !tags.includes(tag));
+        });
       }
+
+      // === Collapsible sections ===
+      cvPage.querySelectorAll('.collapsible-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const card = header.parentElement;
+          card.classList.toggle('open');
+          const content = header.nextElementSibling;
+          if (card.classList.contains('open')) {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = null;
+          }
+        });
+      });
+
+      // Initialize defaults
+      filterCV("data");
     });
-  });
+  </script>
 
-  // === Initialize defaults ===
-  filterCV("data"); // default audience
-
-});
-</script>
-
-         <script src="assets/js/sidebar.js"></script>
-   </body>
+  <script src="assets/js/sidebar.js"></script>
+</body>
 </html>
+

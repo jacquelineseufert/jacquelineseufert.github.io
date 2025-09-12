@@ -509,11 +509,11 @@
   background: #fff;
   color: #000;
 
-  font-size: 0.8rem;           /* same as OPEN/EXPLORE */
-  font-weight: bold;           /* exact match (not 600) */
-  text-transform: uppercase;   /* OPEN/EXPLORE style */
-  letter-spacing: normal;      /* remove extra spacing */
-  font-family: inherit;        /* inherits site font */
+  font-size: 0.8rem;           
+  font-weight: bold;           
+  text-transform: uppercase;   
+  letter-spacing: normal;      
+  font-family: "Source Sans Pro", Helvetica, sans-serif;  /* 👈 FORCE match */
 
   transition: background .2s, color .2s, border-color .2s;
 }

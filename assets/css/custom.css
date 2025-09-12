@@ -158,7 +158,7 @@
 /* === Expertise (always 2x2 grid) === */
 .expertise-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* always 2 columns */
+  grid-template-columns: repeat(2, minmax(140px, 1fr)); /* always 2 columns */
   gap: 2rem 3rem; /* row gap, col gap */
   margin-top: 1.5rem;
 }
@@ -177,7 +177,7 @@
 /* === Quick Links (always 2 side by side) === */
 .ql-flex {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns always */
+  grid-template-columns: repeat(2, minmax(140px, 1fr)); /* always 2 columns */
   gap: 3rem;
   justify-content: center;
   margin-top: 1.5rem;
@@ -289,6 +289,12 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  /* keep grids 2-column on mobile */
+  .expertise-grid,
+  .ql-flex {
+    grid-template-columns: repeat(2, minmax(140px, 1fr)) !important;
   }
 }
 

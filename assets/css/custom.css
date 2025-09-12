@@ -488,30 +488,53 @@
 #sidebar ul.contact li a:hover {
 	color: #f39c12;
 }
-/* Audience filter buttons */
-.aud-btn {
-  border: 1px solid #000 !important;
-  border-radius: 6px;     /* not pill, matches OPEN/EXPLORE */
-  padding: 0.4rem 1rem;
+/* Audience tabs container (keep one definition) */
+.audience-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Audience filter buttons – match OPEN/EXPLORE */
+.audience-tabs button.aud-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  all: unset;                    /* wipe theme button defaults */
+  box-sizing: border-box;
+
+  display: inline-block;
+  cursor: pointer;
+
+  padding: 0.4rem 1rem !important;
+  border: 2px solid #000 !important;
+  border-radius: 6px !important;          /* rounded-rect, not pill */
   background: #fff !important;
   color: #000 !important;
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  box-shadow: none !important;            /* kill red outer ring */
+  text-shadow: none !important;
+
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  font-family: inherit !important;
+
+  transition: background .2s, color .2s, border-color .2s !important;
 }
 
-/* Hover state */
-.aud-btn:hover {
+/* Hover + active */
+.audience-tabs button.aud-btn:hover,
+.audience-tabs button.aud-btn[aria-pressed="true"] {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
+  box-shadow: none !important;
 }
 
-/* Active (selected) state */
-.aud-btn[aria-pressed="true"] {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
+/* Accessible focus */
+.audience-tabs button.aud-btn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
 }

@@ -469,8 +469,9 @@
   margin: 0 0 1.25rem 0;
 }
 
-/* === Audience filter buttons – now match OPEN/EXPLORE === */
+/* === Audience filter buttons – EXACT match with OPEN/EXPLORE === */
 .audience-tabs .aud-btn {
+  margin-top: auto;
   background: #fff !important;
   color: #000 !important;
   border: 2px solid #000 !important;
@@ -487,15 +488,10 @@
   transition: background .2s, color .2s, border-color .2s;
 }
 
+/* Hover and active (pressed) states */
 .audience-tabs .aud-btn:hover,
 .audience-tabs .aud-btn[aria-pressed="true"] {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
-}
-
-/* Accessible focus */
-.audience-tabs .aud-btn:focus-visible {
-  outline: 2px solid #000;
-  outline-offset: 2px;
 }

@@ -496,18 +496,10 @@
 	text-align: center;
 	flex-shrink: 0;
 
-/* Audience tabs (single definition, cleaned up) */
-.audience-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem 0;
-}
-
-/* Audience filter buttons — same style as OPEN/EXPLORE */
+/* Audience filter buttons styled like OPEN / EXPLORE */
 button.aud-btn {
   border: 2px solid #000 !important;
-  border-radius: 6px !important; /* match OPEN/EXPLORE */
+  border-radius: 6px !important;   /* same as OPEN/EXPLORE */
   padding: 0.4rem 1rem !important;
   cursor: pointer;
   background: #fff !important;
@@ -515,23 +507,19 @@ button.aud-btn {
   font-size: 0.85rem !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.03em !important;
   font-family: inherit !important;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
 }
 
-/* Hover state */
+/* Hover matches OPEN/EXPLORE */
 button.aud-btn:hover {
   background: #000 !important;
   color: #fff !important;
 }
 
-/* Active/pressed state */
+/* Active (aria-pressed true) */
 button.aud-btn[aria-pressed="true"] {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
 }
-
-	
-	

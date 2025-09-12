@@ -54,6 +54,7 @@ const onStart = (e) => {
   }
 };
 
+
   const onMove = (e) => {
     if (!dragging) return;
     currentX = e.touches[0].clientX;

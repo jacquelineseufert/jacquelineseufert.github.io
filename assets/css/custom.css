@@ -252,69 +252,92 @@
   pointer-events: none;
 }
 
-/* === Mobile: Sidebar drawer + swipeable Expertise, fixed-grid Quick Links === */
+/* === MOBILE FIX (authoritative overrides) === */
 @media (max-width: 768px) {
-  #main {
-    margin-left: 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #sidebar {
-    transform: translate3d(0,0,0);
-    transition: transform .25s ease;
-    box-shadow: var(--drawer-shadow);
-  }
-  .drawer-closed #sidebar {
-    transform: translate3d(-100%,0,0);
-    box-shadow: none;
-  }
-  #backdrop {
-    opacity: .35;
-    pointer-events: none;
-  }
-  .drawer-closed #backdrop {
-    opacity: 0;
-  }
+  /* Base mobile shell (unchanged) */
+  #main { margin-left: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  #sidebar { transform: translate3d(0,0,0); transition: transform .25s ease; box-shadow: var(--drawer-shadow); }
+  .drawer-closed #sidebar { transform: translate3d(-100%,0,0); box-shadow: none; }
+  #backdrop { opacity: .35; pointer-events: none; }
+  .drawer-closed #backdrop { opacity: 0; }
   #edge-swipe-zone { pointer-events: auto; }
+  html, body { height: 100%; overflow-x: hidden; overflow-y: auto; }
 
-  html, body {
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  /* === EXPERTISE: swipeable carousel on mobile === */
+  /* ----------------------------- */
+  /* EXPERTISE: MAKE SWIPEABLE     */
+  /* ----------------------------- */
+  /* Force container to be a horizontal scroller */
+  #main .inner .expertise-grid,
+  #main .expertise-grid,
   .expertise-grid {
-    display: flex !important;          /* override desktop grid */
+    display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: 1rem !important;
+
     overflow-x: auto !important;
+    overflow-y: hidden !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 0.5rem !important;
+
+    /* remove any grid remnants */
+    grid-template-columns: none !important;
+    grid-auto-flow: unset !important;
   }
-  .expertise-item {
-    flex: 0 0 80% !important;          /* wide enough to require swipe */
-    min-width: 240px !important;
+
+  /* Each expertise card becomes a slide */
+  #main .inner .expertise-grid .expertise-item,
+  #main .expertise-grid .expertise-item,
+  .expertise-grid .expertise-item {
+    /* kill inherited widths */
+    width: auto !important;
+    max-width: none !important;
+
+    /* make it wider than the viewport fraction so swipe is required */
+    flex: 0 0 80vw !important;     /* visible width per slide */
+    min-width: 80vw !important;    /* guarantees horizontal overflow */
+
     scroll-snap-align: start !important;
     background: #f9f9f9;
     border-radius: 8px;
     padding: 1rem;
   }
-  /* hide scrollbar only for expertise */
-  .expertise-grid::-webkit-scrollbar { display: none; }
-  .expertise-grid { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* === QUICK LINKS: KEEP 2-COLUMN GRID (NOT swipeable) === */
+  /* Hide scrollbar just for expertise */
+  .expertise-grid::-webkit-scrollbar { display: none !important; }
+  .expertise-grid { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+
+  /* --------------------------------------- */
+  /* QUICK LINKS: LOCK TO 2-COLUMN, NO SWIPE */
+  /* --------------------------------------- */
+  #main .inner .ql-flex,
+  #main .ql-flex,
   .ql-flex {
+    /* hard reset to grid */
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(140px, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 2rem !important;
     justify-content: center !important;
-    overflow-x: visible !important;
+
+    /* kill any leftover scrolling */
+    overflow: visible !important;
+    overflow-x: clip !important;   /* prevents accidental horizontal scroll */
     scroll-snap-type: none !important;
     -webkit-overflow-scrolling: auto !important;
+
+    /* remove any flex leftovers */
+    flex-direction: initial !important;
+    flex-wrap: initial !important;
+  }
+
+  /* ensure quick-link cards DON'T force horizontal overflow */
+  #main .inner .ql-flex .ql-card,
+  #main .ql-flex .ql-card,
+  .ql-flex .ql-card {
+    width: auto !important;
+    min-width: 0 !important;       /* critical: remove old min-widths */
+    max-width: 100% !important;
+    flex: none !important;         /* neutralize any flex sizing */
   }
 }

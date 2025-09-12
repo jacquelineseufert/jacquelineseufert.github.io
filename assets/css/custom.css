@@ -155,11 +155,11 @@
   line-height: 1.6;
 }
 
-/* === Expertise (desktop: 2x2 grid) === */
+/* === Expertise (always 2x2 grid) === */
 .expertise-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
-  gap: 2rem 3rem;
+  grid-template-columns: repeat(2, 1fr); /* always 2 columns */
+  gap: 2rem 3rem; /* row gap, col gap */
   margin-top: 1.5rem;
 }
 .expertise-item {
@@ -174,14 +174,15 @@
   font-weight: 700;
 }
 
-/* === Quick Links (desktop: 2 side by side) === */
+/* === Quick Links (always 2 side by side) === */
 .ql-flex {
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2 columns always */
   gap: 3rem;
   justify-content: center;
   margin-top: 1.5rem;
 }
+
 .ql-card {
   display: flex;
   flex-direction: column;
@@ -189,6 +190,7 @@
   text-align: center;
   min-height: 230px;
 }
+
 .ql-imgbox {
   height: 100px;
   display: flex;
@@ -200,6 +202,7 @@
   max-height: 80px;
   max-width: 100px;
 }
+
 .ql-card h3 {
   font-size: 1rem;
   font-weight: 600;
@@ -224,6 +227,7 @@
   display: inline-block;
   box-shadow: none !important;
 }
+
 .button:hover,
 .ql-card .button:hover {
   background: #000 !important;
@@ -252,31 +256,43 @@
   pointer-events: none;
 }
 
-/* === Mobile: make Expertise swipeable only === */
+/* === Mobile: Sidebar drawer === */
 @media (max-width: 768px) {
-  .expertise-grid {
-    display: flex !important;        /* override grid */
-    flex-wrap: nowrap !important;
-    gap: 1rem !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    scroll-snap-type: x mandatory !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 0.5rem !important;
-
-    /* kill leftover grid props */
-    grid-template-columns: none !important;
-    grid-auto-flow: unset !important;
+  #main {
+    margin-left: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .expertise-item {
-    flex: 0 0 80% !important;        /* each card takes ~80% of viewport */
-    min-width: 240px !important;     /* wide enough to force scrolling */
-    scroll-snap-align: start !important;
+  #sidebar {
+    transform: translate3d(0,0,0);
+    transition: transform .25s ease;
+    box-shadow: var(--drawer-shadow);
   }
 
-  /* hide scrollbars just for expertise */
-  .expertise-grid::-webkit-scrollbar { display: none; }
-  .expertise-grid { -ms-overflow-style: none; scrollbar-width: none; }
+  .drawer-closed #sidebar {
+    transform: translate3d(-100%,0,0);
+    box-shadow: none;
+  }
+
+  #backdrop {
+    opacity: .35;
+    pointer-events: none;
+  }
+  .drawer-closed #backdrop {
+    opacity: 0;
+  }
+
+  #edge-swipe-zone { pointer-events: auto; }
+
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+/* === Accessibility === */
+@media (prefers-reduced-motion: reduce) {
+  #sidebar, #backdrop { transition: none !important; }
 }

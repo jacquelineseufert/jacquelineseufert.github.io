@@ -32,26 +32,27 @@
     sidebar.style.transform = `translate3d(${x}px,0,0)`;
   };
 
-  const onStart = (e) => {
-    if (!MOBILE.matches) return;
-    startX = e.touches[0].clientX;
-    currentX = startX;
+const onStart = (e) => {
+  if (!MOBILE.matches) return;
+  startX = e.touches[0].clientX;
+  currentX = startX;
 
-    const rect = sidebar.getBoundingClientRect();
-    const inSidebar = startX >= rect.left && startX <= rect.right;
-    const inEdge = startX < 64; // wider thumb-friendly grab zone
+  const rect = sidebar.getBoundingClientRect();
+  const inSidebar = startX >= rect.left && startX <= rect.right;
 
-    if (!html.classList.contains(CLOSED_CLASS) && inSidebar) {
-      // swipe inside sidebar to close
-      closing = true; 
-      dragging = true;
-    } else if (html.classList.contains(CLOSED_CLASS) && inEdge) {
-      // swipe from edge to open
-      closing = false; 
-      dragging = true;
-      backdrop.hidden = false;
-    }
-  };
+  // Allow up to 40% of screen width as swipe-in zone
+  const screenW = window.innerWidth;
+  const inEdge = startX < screenW * 0.4;
+
+  if (!html.classList.contains(CLOSED_CLASS) && inSidebar) {
+    closing = true; 
+    dragging = true;
+  } else if (html.classList.contains(CLOSED_CLASS) && inEdge) {
+    closing = false; 
+    dragging = true;
+    backdrop.hidden = false;
+  }
+};
 
   const onMove = (e) => {
     if (!dragging) return;

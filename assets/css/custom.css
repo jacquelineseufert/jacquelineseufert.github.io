@@ -251,11 +251,14 @@
 
 #edge-swipe-zone {
   position: fixed;
-  top: 0; left: 0; bottom: 0;
-  width: 24px;
+  top: 0; 
+  left: 0; 
+  bottom: 0;
+  width: 128px;   /* match JS threshold */
   z-index: 950;
   pointer-events: none;
 }
+
 
 /* === Mobile: Sidebar drawer === */
 @media (max-width: 768px) {

@@ -1,6 +1,6 @@
 /* === Layout Wrapper === */
 #wrapper {
-  display: block; /* sidebar is fixed, so main flows next to it */
+  display: block;
 }
 
 :root {
@@ -155,50 +155,30 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (side by side) === */
+/* === Quick Links (side by side, clean style) === */
 .ql-flex {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap; /* force them side by side */
   justify-content: center;
-  align-items: stretch;
-  gap: 1.5rem;
+  gap: 2rem;
+  flex-wrap: nowrap; /* always side by side */
   margin-top: 1rem;
 }
 
 .ql-card {
-  flex: 0 0 200px;
   text-align: center;
-  background: #2c3e50;
-  color: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  transition: transform .2s ease;
-}
-.ql-card:hover {
-  transform: translateY(-4px);
-}
-
-.ql-card h3 {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: #fff;
-}
-
-.ql-card a {
-  color: #f39c12;
-  text-decoration: none;
-  font-weight: bold;
-}
-.ql-card a:hover {
-  text-decoration: underline;
+  flex: 0 0 auto;
 }
 
 .ql-imgbox img {
   display: block;
   margin: 0 auto 0.75rem;
   max-width: 60px;
+}
+
+.ql-card h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: inherit; /* normal text color */
 }
 
 /* === Buttons (black instead of red) === */
@@ -221,8 +201,9 @@ input[type="button"] {
 }
 .button:hover,
 .actions .button:hover {
-  background: #444;
-  border-color: #444;
+  background: #fff;
+  color: var(--accent) !important;
+  border-color: var(--accent);
 }
 
 /* === Backdrop & Edge swipe zone === */
@@ -245,7 +226,7 @@ input[type="button"] {
   pointer-events: none;
 }
 
-/* === Mobile: Sidebar drawer (open by default) === */
+/* === Mobile: Sidebar drawer === */
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
@@ -254,12 +235,11 @@ input[type="button"] {
   }
 
   #sidebar {
-    transform: translate3d(0,0,0); /* visible by default */
+    transform: translate3d(0,0,0);
     transition: transform .25s ease;
     box-shadow: var(--drawer-shadow);
   }
 
-  /* Hide when closed */
   .drawer-closed #sidebar {
     transform: translate3d(-100%,0,0);
     box-shadow: none;
@@ -267,7 +247,7 @@ input[type="button"] {
 
   #backdrop {
     opacity: .35;
-    pointer-events: none; /* let page scroll */
+    pointer-events: none;
   }
   .drawer-closed #backdrop {
     opacity: 0;

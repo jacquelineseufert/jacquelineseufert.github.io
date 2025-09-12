@@ -359,7 +359,7 @@
   padding-top: 0.75rem;
 }
 
-/* Align contact icons with MENU items */
+/* === Contact section aligned with MENU === */
 #sidebar ul.contact {
   list-style: none;
   padding: 0;
@@ -373,21 +373,8 @@
 #sidebar ul.contact li a {
   display: flex;
   align-items: center;
-  gap: 0.5rem;                     /* same spacing as menu icons */
-  font-size: 0.9rem;               /* same size as menu links */
-  color: #fff;
-  text-decoration: none;
-}
-
-#sidebar ul.contact li a:hover {
-  color: #f39c12;
-}
-/* Make contact links match menu links */
-#sidebar ul.contact li a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem; /* same size as menu */
+  gap: 0.5rem;              /* same spacing as menu icons */
+  font-size: 0.9rem;        /* same size as menu links */
   color: #fff;
   text-decoration: none;
 }
@@ -396,9 +383,9 @@
   color: #f39c12;
 }
 
-/* Normalize icon widths for alignment */
+/* Ensure icons align with MENU icons */
 #sidebar ul.contact li a i {
-  width: 16px;
-  text-align: center;
+  width: 1.25rem;           /* match menu icon width */
+  text-align: center;       /* keep icons aligned */
+  flex-shrink: 0;
 }
-

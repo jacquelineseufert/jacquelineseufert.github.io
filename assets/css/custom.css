@@ -155,14 +155,17 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (aligned row, better spacing) === */
+/* === Quick Links (aligned row, responsive) === */
 .ql-flex {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  gap: 2rem;          /* reduced spacing */
+  gap: 2rem;
   margin-top: 1rem;
-  flex-wrap: wrap;    /* allows wrapping on smaller screens */
+  flex-wrap: nowrap;        /* stay in one row */
+  overflow-x: auto;         /* scrollable on small screens */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;   /* prevent scrollbar overlap */
 }
 
 .ql-card {
@@ -170,22 +173,23 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 160px;       /* slightly smaller width */
-  min-height: 220px;
+  width: 180px;
+  min-height: 230px;
+  flex: 0 0 auto;  /* don’t shrink */
   box-sizing: border-box;
 }
 
-/* Logo/image area */
+/* Logo/image */
 .ql-imgbox {
-  height: 80px;   /* taller container */
+  height: 100px;  /* taller container */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 .ql-imgbox img {
-  max-height: 60px;  /* bigger logo */
-  max-width: 80px;
+  max-height: 80px;   /* bigger logos */
+  max-width: 100px;
 }
 
 /* Title */
@@ -219,8 +223,8 @@
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
+  box-shadow: none !important;
 }
-
 
 /* === Backdrop & Edge swipe zone === */
 #backdrop {

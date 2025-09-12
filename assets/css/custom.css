@@ -488,7 +488,7 @@
 #sidebar ul.contact li a:hover {
 	color: #f39c12;
 }
-/* Audience tabs container (single definition) */
+/* Audience tabs container */
 .audience-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -496,38 +496,34 @@
   margin: 0 0 1.25rem 0;
 }
 
-/* Audience filter buttons – same style as OPEN/EXPLORE */
+/* Audience filter buttons – match OPEN/EXPLORE exactly */
 .audience-tabs .aud-btn {
-  all: unset;                     /* reset theme defaults */
+  all: unset;                  /* reset everything */
   box-sizing: border-box;
   display: inline-block;
   cursor: pointer;
 
-  padding: 0.4rem 1rem !important;
-  border: 2px solid #000 !important;
-  border-radius: 6px !important;  /* rounded-rect like OPEN/EXPLORE */
-  background: #fff !important;
-  color: #000 !important;
+  padding: 0.25rem 0.75rem;    /* same as OPEN/EXPLORE */
+  border: 1px solid #000;      /* thin black border */
+  border-radius: 6px;          /* subtle rounding */
+  background: #fff;            /* white background */
+  color: #000;                 /* black text */
 
-  box-shadow: none !important;
-  text-shadow: none !important;
+  font-size: 0.8rem;           /* slightly small, matches theme */
+  font-weight: 600;            /* semi-bold, not heavy */
+  text-transform: uppercase;   /* OPEN/EXPLORE style */
+  letter-spacing: 0.02em;      /* subtle spacing */
+  font-family: inherit;
 
-  font-size: 0.85rem !important;
-  font-weight: 600 !important;    /* medium bold (not blocky 700) */
-  text-transform: none !important;/* keep normal case */
-  letter-spacing: normal !important;
-  font-family: inherit !important;
-
-  transition: background .2s, color .2s, border-color .2s !important;
+  transition: background .2s, color .2s, border-color .2s;
 }
 
 /* Hover + active */
 .audience-tabs .aud-btn:hover,
 .audience-tabs .aud-btn[aria-pressed="true"] {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
-  box-shadow: none !important;
+  background: #000;
+  color: #fff;
+  border-color: #000;
 }
 
 /* Accessible focus */

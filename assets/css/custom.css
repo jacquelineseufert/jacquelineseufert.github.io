@@ -484,8 +484,10 @@
   text-decoration: none;
   display: inline-block;
   box-shadow: none !important;
-  font-family: "Source Sans Pro", Helvetica, sans-serif;
   transition: background .2s, color .2s, border-color .2s;
+  /* 🔑 removed font-family so it inherits the same as .button */
+  line-height: 1.2; /* keep consistent vertical rhythm */
+  letter-spacing: normal; /* ensure same spacing */
 }
 
 /* Hover and active (pressed) states */

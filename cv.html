@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="assets/css/custom.css" />
       <link rel="icon" href="images/favicon.ico" />
       
-      <style>
+<style>
 /* Audience tabs + role visibility */
 .audience-tabs {
   display: flex;
@@ -46,13 +46,13 @@
   padding-right: 1.5rem;
 }
 .collapsible-header::after {
-  content: "▸"; /* arrow symbol */
+  content: "▸";
   position: absolute;
   right: 0;
   transition: transform 0.2s ease;
 }
 .collapsible.open .collapsible-header::after {
-  transform: rotate(90deg); /* arrow rotates when open */
+  transform: rotate(90deg);
 }
 .collapsible-content {
   max-height: 0;
@@ -100,17 +100,15 @@
   width: 22rem;
 }
 
-/* Desktop: tighten sidebar + main content gap
-   (fixed so sidebar can still slide fully left) */
+/* Desktop: adjust layout without breaking sliding */
 @media (min-width: 1025px) {
   #wrapper {
     display: flex;
-    gap: 1.5rem; /* controls the space between sidebar and main */
+    gap: 1.5rem;
   }
-  /* Removed the fixed flex width on #sidebar */
   #main .inner {
-    max-width: 1000px; /* keep text comfortably readable */
-    margin: 0; /* remove unnecessary left margin */
+    max-width: 1000px;
+    margin: 0;
   }
 }
 </style>

@@ -488,22 +488,13 @@
 #sidebar ul.contact li a:hover {
 	color: #f39c12;
 }
-
-/* Audience tabs container */
-.audience-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem 0;
-}
-
 /* Audience filter buttons */
 .aud-btn {
-  border: 1px solid #000;
+  border: 1px solid #000 !important;
   border-radius: 6px;     /* not pill, matches OPEN/EXPLORE */
   padding: 0.4rem 1rem;
-  background: #fff;
-  color: #000;
+  background: #fff !important;
+  color: #000 !important;
   font-size: 0.85rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -513,13 +504,14 @@
 
 /* Hover state */
 .aud-btn:hover {
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
 }
 
 /* Active (selected) state */
 .aud-btn[aria-pressed="true"] {
-  background: #000;
-  color: #fff;
-  border-color: #000;
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
 }

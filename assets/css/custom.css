@@ -489,39 +489,56 @@
 	color: #f39c12;
 }
 
-/* normalize icon box so text starts at the same X as MENU items */
-#sidebar ul.contact li a i {
-	width: 1.25rem;
-	min-width: 1.25rem;
-	text-align: center;
-	flex-shrink: 0;
-
-/* FORCE override for audience buttons */
-.aud-btn {
-  all: unset !important; /* wipe everything */
-  display: inline-block !important;
-  border: 2px solid #000 !important;
-  border-radius: 6px !important;
-  padding: 0.4rem 1rem !important;
-  cursor: pointer !important;
-  background: #fff !important;
-  color: #000 !important;
-  font-size: 0.85rem !important;
-  font-weight: bold !important;
-  text-transform: uppercase !important;
-  font-family: inherit !important;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
+/* === CV audience buttons: force black/white and ignore theme === */
+/* one clean tabs rule (remove any duplicate .audience-tabs blocks) */
+.audience-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem 0;
 }
 
-/* Hover */
-.aud-btn:hover {
-  background: #000 !important;
-  color: #fff !important;
+/* neutralize theme button/link styles & restyle */
+.audience-tabs button.aud-btn,
+.audience-tabs a.aud-btn {
+  all: unset;                    /* wipe theme rules */
+  box-sizing: border-box;
+  display: inline-block;
+  cursor: pointer;
+
+  /* desired look */
+  padding: 0.4rem 1rem;
+  border: 2px solid #000;
+  border-radius: 999px;          /* pill; use 6px if you want rounded-rect */
+  background: #fff;
+  color: #000;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-family: inherit;
+
+  transition: background .2s, color .2s, border-color .2s;
 }
 
-/* Active */
-.aud-btn[aria-pressed="true"] {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
+/* hover (optional) */
+.audience-tabs button.aud-btn:hover,
+.audience-tabs a.aud-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* active tab */
+.audience-tabs button.aud-btn[aria-pressed="true"],
+.audience-tabs a.aud-btn[aria-pressed="true"] {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* accessibility focus */
+.audience-tabs .aud-btn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
 }

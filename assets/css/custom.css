@@ -195,7 +195,7 @@
   color: inherit;
 }
 
-/* Button: aligned at bottom */
+/* Button: aligned at bottoms */
 .button,
 .ql-card .button {
   margin-top: auto; /* pushes button to bottom */

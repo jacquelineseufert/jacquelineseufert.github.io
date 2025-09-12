@@ -488,7 +488,7 @@
 #sidebar ul.contact li a:hover {
 	color: #f39c12;
 }
-/* Audience tabs container (keep one definition) */
+/* Audience tabs container (single definition) */
 .audience-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -496,37 +496,34 @@
   margin: 0 0 1.25rem 0;
 }
 
-/* Audience filter buttons – match OPEN/EXPLORE */
-.audience-tabs button.aud-btn {
-  appearance: none;
-  -webkit-appearance: none;
-  all: unset;                    /* wipe theme button defaults */
+/* Audience filter buttons – same style as OPEN/EXPLORE */
+.audience-tabs .aud-btn {
+  all: unset;                     /* reset theme defaults */
   box-sizing: border-box;
-
   display: inline-block;
   cursor: pointer;
 
   padding: 0.4rem 1rem !important;
   border: 2px solid #000 !important;
-  border-radius: 6px !important;          /* rounded-rect, not pill */
+  border-radius: 6px !important;  /* rounded-rect like OPEN/EXPLORE */
   background: #fff !important;
   color: #000 !important;
 
-  box-shadow: none !important;            /* kill red outer ring */
+  box-shadow: none !important;
   text-shadow: none !important;
 
   font-size: 0.85rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.03em !important;
+  font-weight: 600 !important;    /* medium bold (not blocky 700) */
+  text-transform: none !important;/* keep normal case */
+  letter-spacing: normal !important;
   font-family: inherit !important;
 
   transition: background .2s, color .2s, border-color .2s !important;
 }
 
 /* Hover + active */
-.audience-tabs button.aud-btn:hover,
-.audience-tabs button.aud-btn[aria-pressed="true"] {
+.audience-tabs .aud-btn:hover,
+.audience-tabs .aud-btn[aria-pressed="true"] {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
@@ -534,7 +531,7 @@
 }
 
 /* Accessible focus */
-.audience-tabs button.aud-btn:focus-visible {
+.audience-tabs .aud-btn:focus-visible {
   outline: 2px solid #000;
   outline-offset: 2px;
 }

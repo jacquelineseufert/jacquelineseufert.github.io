@@ -276,33 +276,39 @@
   section .features::-webkit-scrollbar { display: none; }
   section .features { -ms-overflow-style: none; scrollbar-width: none; }
 }
-/* === Mobile: Expertise as swipeable carousel === */
+/* === MOBILE PATCH: Expertise carousel + restore sidebar swipe === */
 @media (max-width: 768px) {
-  /* Turn the Expertise container into a horizontal scroller */
-  .features {
+  /* 1) Expertise -> horizontal carousel (targets your <div class="features">) */
+  section .features {
     display: flex !important;
+    flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: 1rem !important;
 
     overflow-x: auto !important;
     overflow-y: hidden !important;
-
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
+
     padding-bottom: 0.5rem !important;
   }
-
-  /* Style each card */
-  .features article {
-    flex: 0 0 80% !important;   /* takes 80% of viewport width */
+  section .features article {
+    flex: 0 0 80% !important;   /* ~80% viewport, next card peeks */
     min-width: 240px !important;
     scroll-snap-align: start !important;
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 1rem;
   }
+  section .features::-webkit-scrollbar { display: none; }
+  section .features { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Hide scrollbars */
-  .features::-webkit-scrollbar { display: none; }
-  .features { -ms-overflow-style: none; scrollbar-width: none; }
+  /* 2) Sidebar swipe still works */
+  /* Allow horizontal gestures on the open drawer */
+  #sidebar { touch-action: auto !important; }
+
+  /* Make the left-edge swipe zone win hit-testing over everything */
+  #edge-swipe-zone {
+    pointer-events: auto !important;
+    z-index: 2147483647 !important; /* max out to sit above any content */
+    /* Optional: make it a tad wider if thumbs miss it */
+    /* width: 36px !important; */
+  }
 }

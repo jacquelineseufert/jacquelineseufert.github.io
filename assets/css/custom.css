@@ -424,20 +424,27 @@
   text-align: center;
   flex-shrink: 0;
 }
-/* Audience filter button reset + custom style */
+/* Audience tabs */
+.audience-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Audience filter buttons */
 .aud-btn {
-  all: unset; /* reset any theme inheritance */
-  display: inline-block;
-  border: 1px solid #aaa;  /* neutral gray border */
+  border: 1px solid rgba(0,0,0,.25);
   border-radius: 999px;
-  padding: 0.4rem 0.85rem;
+  padding: .4rem 1rem;
   cursor: pointer;
   background: transparent;
-  font-size: 0.9rem;
-  line-height: 1;
-  font-family: inherit;
-  text-transform: none; /* remove forced uppercase */
-  color: #111;
+  font-size: 0.85rem;
+  font-weight: 600; /* bold like OPEN/EXPLORE */
+  letter-spacing: 0.05em; /* slight spacing */
+  text-transform: uppercase; /* matches theme buttons */
+  font-family: inherit; /* inherits the same as OPEN/EXPLORE */
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .aud-btn[aria-pressed="true"] {

@@ -256,7 +256,7 @@
   pointer-events: none;
 }
 
-/* === Mobile: Expertise carousel === */
+/* === Mobile: turn Expertise into swipeable carousel === */
 @media (max-width: 768px) {
   .features {
     display: flex !important;
@@ -273,9 +273,10 @@
   }
 
   .features article {
-    flex: 0 0 80% !important;      /* each card takes ~80% of screen */
-    min-width: 240px !important;
+    flex: 0 0 80% !important;      /* each card ~80% of screen */
+    min-width: 250px !important;
     scroll-snap-align: start !important;
+
     background: #f9f9f9;
     border-radius: 8px;
     padding: 1rem;

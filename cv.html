@@ -293,6 +293,32 @@
             </div>
          </div>
       </div>
-      <!-- /#wrapper --> <!-- Scripts --> <script src="assets/js/jquery.min.js"></script> <script src="assets/js/browser.min.js"></script> <script src="assets/js/breakpoints.min.js"></script> <script src="assets/js/util.js"></script> <script src="assets/js/main.js"></script> <script> document.getElementById('year').textContent = new Date().getFullYear(); // audience filter const buttons = document.querySelectorAll('.aud-btn'); buttons.forEach(btn => { btn.addEventListener('click', () => { if (btn.getAttribute("aria-pressed") === "true") { return; // already active, do nothing } buttons.forEach(b => b.setAttribute('aria-pressed', 'false')); btn.setAttribute('aria-pressed', 'true'); filterCV(btn.dataset.audience); }); }); function filterCV(tag) { // tasks const allItems = document.querySelectorAll('#main li[data-tags]'); allItems.forEach(item => { const tags = item.getAttribute('data-tags').split(','); if (tags.includes(tag)) { item.classList.remove('hidden-role'); } else { item.classList.add('hidden-role'); } }); // pills const allPills = document.querySelectorAll('.pill[data-tags]'); allPills.forEach(pill => { const tags = pill.getAttribute('data-tags').split(','); if (tags.includes(tag)) { pill.classList.remove('hidden-role'); } else { pill.classList.add('hidden-role'); } }); } // collapsible sections document.querySelectorAll('.collapsible-header').forEach(header => { header.addEventListener('click', () => { const card = header.parentElement; card.classList.toggle('open'); const content = header.nextElementSibling; if (card.classList.contains('open')) { content.style.maxHeight = content.scrollHeight + "px"; } else { content.style.maxHeight = null; } }); }); filterCV("data"); </script> 
+      <!-- /#wrapper --> 
+         <!-- Scripts -->
+         <script src="assets/js/jquery.min.js">
+            
+         </script> 
+         <script src="assets/js/browser.min.js"></script>
+         <script src="assets/js/breakpoints.min.js"></script>
+         <script src="assets/js/util.js"></script>
+         <script src="assets/js/main.js"></script>
+         <script> document.getElementById('year').textContent = new Date().getFullYear();
+            // audience filter const buttons = document.querySelectorAll('.aud-btn'); 
+            buttons.forEach(btn => { btn.addEventListener('click', () => { if (btn.getAttribute("aria-pressed") === "true") { return;
+                                                                                                                             // already active, do nothing } 
+                                                                                                                             buttons.forEach(b => b.setAttribute('aria-pressed', 'false')); 
+                                                                                                                             btn.setAttribute('aria-pressed', 'true');
+                                                                                                                             filterCV(btn.dataset.audience); }); }); 
+            function filterCV(tag) { // tasks const allItems = document.querySelectorAll('#main li[data-tags]');
+               allItems.forEach(item => { const tags = item.getAttribute('data-tags').split(',');
+                                         if (tags.includes(tag)) { item.classList.remove('hidden-role'); 
+                                                                 } else { item.classList.add('hidden-role'); } });
+               // pills const allPills = document.querySelectorAll('.pill[data-tags]'); 
+               allPills.forEach(pill => { const tags = pill.getAttribute('data-tags').split(','); if (tags.includes(tag)) { pill.classList.remove('hidden-role');
+                                                                                                                          } else { pill.classList.add('hidden-role'); } });
+            } // collapsible sections document.querySelectorAll('.collapsible-header').forEach(header => { header.addEventListener('click', () => { const card = header.parentElement; card.classList.toggle('open'); 
+            const content = header.nextElementSibling; if (card.classList.contains('open')) { content.style.maxHeight = content.scrollHeight + "px"; } else { content.style.maxHeight = null; } }); }); 
+            filterCV("data"); </script> 
+         <script src="assets/js/sidebar.js"></script>
    </body>
 </html>

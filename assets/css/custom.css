@@ -489,8 +489,7 @@
 	color: #f39c12;
 }
 
-/* === CV audience buttons: force black/white and ignore theme === */
-/* one clean tabs rule (remove any duplicate .audience-tabs blocks) */
+/* Audience tabs container */
 .audience-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -498,47 +497,29 @@
   margin: 0 0 1.25rem 0;
 }
 
-/* neutralize theme button/link styles & restyle */
-.audience-tabs button.aud-btn,
-.audience-tabs a.aud-btn {
-  all: unset;                    /* wipe theme rules */
-  box-sizing: border-box;
-  display: inline-block;
-  cursor: pointer;
-
-  /* desired look */
+/* Audience filter buttons */
+.aud-btn {
+  border: 1px solid #000;
+  border-radius: 6px;     /* not pill, matches OPEN/EXPLORE */
   padding: 0.4rem 1rem;
-  border: 2px solid #000;
-  border-radius: 999px;          /* pill; use 6px if you want rounded-rect */
   background: #fff;
   color: #000;
-
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  font-family: inherit;
-
-  transition: background .2s, color .2s, border-color .2s;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* hover (optional) */
-.audience-tabs button.aud-btn:hover,
-.audience-tabs a.aud-btn:hover {
+/* Hover state */
+.aud-btn:hover {
   background: #000;
   color: #fff;
 }
 
-/* active tab */
-.audience-tabs button.aud-btn[aria-pressed="true"],
-.audience-tabs a.aud-btn[aria-pressed="true"] {
+/* Active (selected) state */
+.aud-btn[aria-pressed="true"] {
   background: #000;
   color: #fff;
   border-color: #000;
-}
-
-/* accessibility focus */
-.audience-tabs .aud-btn:focus-visible {
-  outline: 2px solid #000;
-  outline-offset: 2px;
 }

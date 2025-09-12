@@ -39,7 +39,10 @@
 
     const rect = sidebar.getBoundingClientRect();
     const inSidebar = startX >= rect.left && startX <= rect.right;
-    const inEdge = startX < 60; // make edge zone bigger
+
+    // edge zone = 25% of viewport width
+    const edgeZone = window.innerWidth * 0.25;
+    const inEdge = startX < edgeZone;
 
     if (!html.classList.contains(CLOSED_CLASS) && inSidebar) {
       closing = true; dragging = true;
@@ -90,13 +93,11 @@
 
   MOBILE.addEventListener('change', () => {
     if (!MOBILE.matches) {
-      // Desktop → always open
       html.classList.remove(CLOSED_CLASS);
       sidebar.style.transform = '';
       backdrop.hidden = true;
     } else {
-      // Mobile → start OPEN
-      open();
+      open(); // mobile starts open
     }
   });
 

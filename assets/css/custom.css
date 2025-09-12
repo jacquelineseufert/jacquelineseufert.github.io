@@ -382,3 +382,23 @@
 #sidebar ul.contact li a:hover {
   color: #f39c12;
 }
+/* Make contact links match menu links */
+#sidebar ul.contact li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem; /* same size as menu */
+  color: #fff;
+  text-decoration: none;
+}
+
+#sidebar ul.contact li a:hover {
+  color: #f39c12;
+}
+
+/* Normalize icon widths for alignment */
+#sidebar ul.contact li a i {
+  width: 16px;
+  text-align: center;
+}
+

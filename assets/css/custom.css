@@ -334,7 +334,23 @@
     scrollbar-width: none;    /* hide scrollbar Firefox */
   }
 }
+/* === Normalize sidebar section headers === */
+#menu header.major h2,
+#sidebar h2 {
+  font-size: 0.9rem;              /* same size */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  text-align: left;
+  color: #fff;
+}
 
+/* Extra spacing before "Get in touch" */
+#sidebar h2#get-in-touch {
+  margin-top: 1.5rem;   /* more breathing room */
+  border-top: 1px solid #444; /* optional: subtle divider */
+  padding-top: 0.75rem;
+}
 /* === Accessibility === */
 @media (prefers-reduced-motion: reduce) {
   #sidebar, #backdrop { transition: none !important; }

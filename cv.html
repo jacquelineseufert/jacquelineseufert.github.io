@@ -53,10 +53,11 @@
          <!-- Audience filter tabs --> 
          <div class="legend">View CV as…</div>
          <div class="audience-tabs" role="tablist" aria-label="CV audience views"> <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button> <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button> <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button> <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button> </div>
-         <!-- === ROLES (your full list as you pasted) === --> <!-- Professional Experience --> 
-         <div class="exp-card collapsible open">
-            <h3 class="collapsible-header">Professional Experience</h3>
-          <div class="exp-card collapsible">
+         <!-- === ROLES (your full list as you pasted) === -->
+         <!-- Professional Experience --> 
+        <div class="exp-card collapsible">
+  <h3 class="collapsible-header">Professional Experience</h3>
+  <div class="collapsible-content">
                <!-- KU Leuven --> 
                <div class="exp-card">
                   <h3>KU Leuven — PhD Researcher (Housing Economics)</h3>
@@ -354,8 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Initialize defaults ===
   filterCV("data"); // default audience
-  cvPage.querySelectorAll('.collapsible.open .collapsible-content')
-    .forEach(c => c.style.maxHeight = c.scrollHeight + "px");
+
 });
 </script>
 

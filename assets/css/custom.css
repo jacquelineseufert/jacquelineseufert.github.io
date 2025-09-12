@@ -1,4 +1,3 @@
-<style>
 /* === Layout Wrapper === */
 #wrapper {
   display: block;
@@ -39,33 +38,16 @@
 #sidebar .inner {
   flex: 1;
   padding: 1.5rem;
-
   display: flex;
   flex-direction: column;
-}
-
-/* Center ONLY the profile block vertically */
-.profile {
-  margin: auto 0;              /* pushes profile into the vertical center */
-  display: flex;
-  flex-direction: column;
-  align-items: center;         /* keeps pic + text centered horizontally */
-}
-
-
-/* Sidebar text */
-#sidebar h1,
-#sidebar h2,
-#sidebar p,
-#sidebar a {
-  color: #fff;
-}
-#sidebar a:hover {
-  text-decoration: underline;
 }
 
 /* === Profile block === */
 .profile {
+  margin: auto 0;              /* vertically centered */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 .profile-pic {
@@ -94,6 +76,17 @@
   height: 1px;
   background: #444;
   margin: 1rem auto 0 auto;
+}
+
+/* === Sidebar text === */
+#sidebar h1,
+#sidebar h2,
+#sidebar p,
+#sidebar a {
+  color: #fff;
+}
+#sidebar a:hover {
+  text-decoration: underline;
 }
 
 /* === Sidebar navigation === */
@@ -128,20 +121,40 @@
 }
 
 /* === Contact section === */
-.contact {
-  width: 100%;
+.contact-section header.major h2 {
+  font-size: 0.9rem;              /* match menu header */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
   text-align: left;
+  color: #fff;
+  margin-top: 1.5rem;             /* extra space above */
+  border-top: 1px solid #444;     /* subtle divider */
+  padding-top: 0.75rem;
 }
-.contact li {
-  margin: 0.35rem 0;
+#sidebar ul.contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.contact a {
-  color: #bbb;
-  font-size: 0.85rem;
+#sidebar ul.contact li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0;
+}
+#sidebar ul.contact li i {
+  width: 16px; /* align icons */
+  text-align: center;
+  color: #fff;
+}
+#sidebar ul.contact li a {
+  font-size: 0.9rem;  /* same as menu links */
+  color: #fff;
   text-decoration: none;
 }
-.contact a:hover {
-  color: #fff;
+#sidebar ul.contact li a:hover {
+  color: #f39c12;
 }
 
 /* === Footer === */
@@ -167,8 +180,8 @@
 /* === Expertise (always 2x2 grid) === */
 .expertise-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* always 2 columns */
-  gap: 2rem 3rem; /* row gap, col gap */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
   margin-top: 1.5rem;
 }
 .expertise-item {
@@ -186,12 +199,11 @@
 /* === Quick Links (always 2 side by side) === */
 .ql-flex {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns always */
+  grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
   justify-content: center;
   margin-top: 1.5rem;
 }
-
 .ql-card {
   display: flex;
   flex-direction: column;
@@ -199,7 +211,6 @@
   text-align: center;
   min-height: 230px;
 }
-
 .ql-imgbox {
   height: 100px;
   display: flex;
@@ -211,7 +222,6 @@
   max-height: 80px;
   max-width: 100px;
 }
-
 .ql-card h3 {
   font-size: 1rem;
   font-weight: 600;
@@ -219,7 +229,7 @@
   color: inherit;
 }
 
-/* Buttons */
+/* === Buttons === */
 .button,
 .ql-card .button {
   margin-top: auto;
@@ -236,7 +246,6 @@
   display: inline-block;
   box-shadow: none !important;
 }
-
 .button:hover,
 .ql-card .button:hover {
   background: #000 !important;
@@ -256,7 +265,6 @@
   transition: opacity .25s ease;
 }
 #backdrop[hidden] { display: none; }
-
 #edge-swipe-zone {
   position: fixed;
   top: 0; left: 0; bottom: 0;
@@ -272,18 +280,15 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-
   #sidebar {
     transform: translate3d(0,0,0);
     transition: transform .25s ease;
     box-shadow: var(--drawer-shadow);
   }
-
   .drawer-closed #sidebar {
     transform: translate3d(-100%,0,0);
     box-shadow: none;
   }
-
   #backdrop {
     opacity: .35;
     pointer-events: none;
@@ -291,9 +296,7 @@
   .drawer-closed #backdrop {
     opacity: 0;
   }
-
   #edge-swipe-zone { pointer-events: auto; }
-
   html, body {
     height: 100%;
     overflow-x: hidden;
@@ -303,7 +306,7 @@
 
 /* === Sidebar fix === */
 #sidebar {
-  touch-action: auto !important; /* allow horizontal swipes */
+  touch-action: auto !important;
 }
 
 /* === Mobile: Expertise becomes carousel === */
@@ -319,69 +322,21 @@
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 0.5rem !important;
   }
-
   .features article {
-    flex: 0 0 80% !important; /* each card takes 80% of viewport */
+    flex: 0 0 80% !important;
     min-width: 240px !important;
     scroll-snap-align: start !important;
   }
-
   .features::-webkit-scrollbar {
-    display: none; /* hide scrollbar on iOS/Chrome */
+    display: none;
   }
   .features {
-    -ms-overflow-style: none; /* hide scrollbar IE/Edge */
-    scrollbar-width: none;    /* hide scrollbar Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
-/* === Normalize sidebar section headers === */
-#menu header.major h2,
-#sidebar h2 {
-  font-size: 0.9rem;              /* same size */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.75rem;
-  text-align: left;
-  color: #fff;
-}
 
-/* Extra spacing before "Get in touch" */
-#sidebar h2#get-in-touch {
-  margin-top: 1.5rem;   /* more breathing room */
-  border-top: 1px solid #444; /* optional: subtle divider */
-  padding-top: 0.75rem;
-}
 /* === Accessibility === */
 @media (prefers-reduced-motion: reduce) {
   #sidebar, #backdrop { transition: none !important; }
 }
-</style>
-
-/* Space before GET IN TOUCH */
-#sidebar h2#get-in-touch {
-  display: block;
-  margin-top: 1.5rem !important;  /* adds clear space above */
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;               /* same as other section headers */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* Align contact icons with MENU items */
-#sidebar ul.contact li {
-  margin: 0.4rem 0;
-}
-
-#sidebar ul.contact li a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;  /* same size as menu links */
-  color: #fff;
-  text-decoration: none;
-}
-
-#sidebar ul.contact li a:hover {
-  color: #f39c12;
-}
-

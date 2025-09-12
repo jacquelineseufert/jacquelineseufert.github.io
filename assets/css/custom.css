@@ -340,3 +340,45 @@
 @media (prefers-reduced-motion: reduce) {
   #sidebar, #backdrop { transition: none !important; }
 }
+/* === Normalize sidebar section headers === */
+#menu header.major h2,
+#sidebar section header.major h2 {
+  font-size: 0.9rem;              /* same size as Menu */
+  font-weight: normal;            /* not bold */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 1.2rem 0 0.75rem 0;     /* space above and below */
+  text-align: left;
+  color: #fff;
+}
+
+/* Extra spacing specifically before "Get in touch" */
+#sidebar section header.major h2 {
+  margin-top: 1.8rem;             /* more breathing room */
+  border-top: 1px solid #444;     /* subtle divider */
+  padding-top: 0.75rem;
+}
+
+/* Align contact icons with MENU items */
+#sidebar ul.contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#sidebar ul.contact li {
+  margin: 0.4rem 0;
+}
+
+#sidebar ul.contact li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;                     /* same spacing as menu icons */
+  font-size: 0.9rem;               /* same size as menu links */
+  color: #fff;
+  text-decoration: none;
+}
+
+#sidebar ul.contact li a:hover {
+  color: #f39c12;
+}

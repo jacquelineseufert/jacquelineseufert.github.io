@@ -155,47 +155,47 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (aligned in one row) === */
+/* === Quick Links (side by side, aligned) === */
 .ql-flex {
   display: flex;
   justify-content: center;
-  align-items: stretch;   /* equal height cards */
-  gap: 2rem;
+  align-items: flex-start; /* align top edges */
+  gap: 3rem;
   flex-wrap: nowrap;
   margin-top: 1rem;
 }
 
 .ql-card {
-  flex: 0 0 200px;
+  text-align: center;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* push button down */
   align-items: center;
-  text-align: center;
+  gap: 0.5rem; /* space between icon, title, button */
 }
 
 .ql-imgbox img {
   display: block;
-  margin: 0 auto 0.75rem;
   max-width: 60px;
+  margin-bottom: 0.5rem;
 }
 
 .ql-card h3 {
-  margin: 0.5rem 0;
+  margin: 0;
   font-size: 1rem;
   color: inherit;
 }
 
-/* === Buttons: white background, black text === */
+/* === Buttons: white bg, black border/text === */
 .button,
 .actions .button,
 .ql-card .button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  background: #fff !important;
-  color: #000 !important;
-  border: 2px solid #000 !important;
+  background: #fff !important;      /* white background */
+  color: #000 !important;           /* black text */
+  border: 2px solid #000 !important;/* black border */
   border-radius: 6px;
   padding: 0.4rem 1rem;
   font-size: 0.85rem;
@@ -205,12 +205,15 @@ input[type="button"] {
   text-decoration: none;
   display: inline-block;
 }
+
 .button:hover,
 .actions .button:hover,
 .ql-card .button:hover {
-  background: #000 !important;
+  background: #000 !important;  /* invert on hover */
   color: #fff !important;
+  border-color: #000 !important;
 }
+
 
 /* === Backdrop & Edge swipe zone === */
 #backdrop {

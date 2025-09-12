@@ -10,7 +10,7 @@
   --accent: #000; /* black border/text */
 }
 
-/* === Sidebar (fixed, full height on desktop) === */
+/* === Sidebar === */
 #sidebar {
   position: fixed;
   top: 0;
@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   will-change: transform;
-  touch-action: pan-y; /* will be relaxed on mobile */
+  transition: transform .25s ease;
 }
 
 #sidebar::before {
@@ -155,7 +155,7 @@
   line-height: 1.6;
 }
 
-/* === Expertise (desktop: 2x2 grid) === */
+/* === Expertise (desktop grid) === */
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -174,7 +174,7 @@
   font-weight: 700;
 }
 
-/* === Quick Links (always 2 side by side) === */
+/* === Quick Links (desktop: 2 side by side) === */
 .ql-flex {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -182,7 +182,6 @@
   justify-content: center;
   margin-top: 1.5rem;
 }
-
 .ql-card {
   display: flex;
   flex-direction: column;
@@ -190,7 +189,6 @@
   text-align: center;
   min-height: 230px;
 }
-
 .ql-imgbox {
   height: 100px;
   display: flex;
@@ -202,7 +200,6 @@
   max-height: 80px;
   max-width: 100px;
 }
-
 .ql-card h3 {
   font-size: 1rem;
   font-weight: 600;
@@ -227,7 +224,6 @@
   display: inline-block;
   box-shadow: none !important;
 }
-
 .button:hover,
 .ql-card .button:hover {
   background: #000 !important;
@@ -251,35 +247,44 @@
 #edge-swipe-zone {
   position: fixed;
   top: 0; left: 0; bottom: 0;
-  width: 24px;
+  width: 50px; /* bigger grab zone */
   z-index: 950;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
+/* === Mobile overrides === */
 @media (max-width: 768px) {
-  body section.features,
-  body section .features {
+  #main {
+    margin-left: 0; /* no reserved space */
+  }
+
+  /* Sidebar: JS controls transforms */
+  #sidebar {
+    box-shadow: var(--drawer-shadow);
+    touch-action: auto; /* allow horizontal drag */
+  }
+
+  /* Expertise -> horizontal carousel */
+  section .features,
+  .expertise-grid {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: 1rem !important;
-
     overflow-x: auto !important;
     overflow-y: hidden !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-
     padding-bottom: 0.5rem !important;
-    grid-template-columns: unset !important;
   }
-
-  body section.features article,
-  body section .features article {
+  section .features article,
+  .expertise-item {
     flex: 0 0 80% !important;
     min-width: 240px !important;
     scroll-snap-align: start !important;
   }
-
-  body section.features::-webkit-scrollbar,
-  body section .features::-webkit-scrollbar { display: none; }
+  section .features::-webkit-scrollbar,
+  .expertise-grid::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -276,3 +276,33 @@
   section .features::-webkit-scrollbar { display: none; }
   section .features { -ms-overflow-style: none; scrollbar-width: none; }
 }
+/* === Mobile: Expertise as swipeable carousel === */
+@media (max-width: 768px) {
+  /* Turn the Expertise container into a horizontal scroller */
+  .features {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1rem !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  /* Style each card */
+  .features article {
+    flex: 0 0 80% !important;   /* takes 80% of viewport width */
+    min-width: 240px !important;
+    scroll-snap-align: start !important;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  /* Hide scrollbars */
+  .features::-webkit-scrollbar { display: none; }
+  .features { -ms-overflow-style: none; scrollbar-width: none; }
+}

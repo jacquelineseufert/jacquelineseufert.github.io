@@ -12,12 +12,16 @@
   const open = () => {
     html.classList.remove(CLOSED_CLASS);
     backdrop.hidden = false;
+    sidebar.style.transition = 'transform .25s ease';
     sidebar.style.transform = 'translate3d(0,0,0)';
+    backdrop.style.opacity = 0.35;
   };
 
   const close = () => {
     html.classList.add(CLOSED_CLASS);
-    sidebar.style.transform = '';
+    sidebar.style.transition = 'transform .25s ease';
+    sidebar.style.transform = `translate3d(-${sidebarWidth()}px,0,0)`;
+    backdrop.style.opacity = 0;
     setTimeout(() => {
       if (html.classList.contains(CLOSED_CLASS)) backdrop.hidden = true;
     }, 250);
@@ -35,12 +39,16 @@
 
     const rect = sidebar.getBoundingClientRect();
     const inSidebar = startX >= rect.left && startX <= rect.right;
-    const inEdge = startX < 30;
+    const inEdge = startX < 64; // wider thumb-friendly grab zone
 
     if (!html.classList.contains(CLOSED_CLASS) && inSidebar) {
-      closing = true; dragging = true;
+      // swipe inside sidebar to close
+      closing = true; 
+      dragging = true;
     } else if (html.classList.contains(CLOSED_CLASS) && inEdge) {
-      closing = false; dragging = true;
+      // swipe from edge to open
+      closing = false; 
+      dragging = true;
       backdrop.hidden = false;
     }
   };
@@ -69,6 +77,8 @@
     const delta = currentX - startX;
     const w = sidebarWidth();
 
+    sidebar.style.transition = 'transform .25s ease';
+
     if (closing) {
       delta < -w * 0.3 ? close() : open();
     } else {
@@ -84,14 +94,21 @@
 
   MOBILE.addEventListener('change', () => {
     if (!MOBILE.matches) {
+      // desktop: sidebar always visible
       html.classList.remove(CLOSED_CLASS);
       sidebar.style.transform = '';
       backdrop.hidden = true;
     } else {
-      open();
+      // mobile: sidebar starts closed
+      close();
     }
   });
 
-  // Start visible on mobile
-  if (MOBILE.matches) open();
+  // Initial setup
+  if (MOBILE.matches) {
+    close();   // start closed on mobile
+  } else {
+    html.classList.remove(CLOSED_CLASS); // open on desktop
+    backdrop.hidden = true;
+  }
 })();

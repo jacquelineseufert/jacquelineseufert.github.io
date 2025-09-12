@@ -503,24 +503,32 @@
   margin: 0 0 1.25rem 0;
 }
 
+/* Audience tabs */
+.audience-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin: 0 0 1.25rem 0;
+}
+
 /* Audience filter buttons */
 .aud-btn {
-  border: 2px solid #000 !important;
+  border: 1px solid rgba(0,0,0,.25);
   border-radius: 999px;
-  padding: .4rem .9rem;
+  padding: .4rem 1rem;
   cursor: pointer;
-  background: #fff !important;
-  color: #000 !important;
-  font-size: .9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-family: inherit;
-  transition: all 0.2s ease;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 600; /* bold like OPEN/EXPLORE */
+  letter-spacing: 0.05em; /* slight spacing */
+  text-transform: uppercase; /* matches theme buttons */
+  font-family: inherit; /* inherits the same as OPEN/EXPLORE */
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .aud-btn[aria-pressed="true"] {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
+  background: #111;
+  color: #fff;
+  border-color: #111;
 }
+

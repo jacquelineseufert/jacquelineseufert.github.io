@@ -256,10 +256,10 @@
   pointer-events: none;
 }
 
-/* === Mobile: Expertise as horizontal carousel === */
+/* === Mobile: make Expertise swipeable carousel === */
 @media (max-width: 768px) {
   .expertise-grid {
-    display: flex !important;        /* override grid */
+    display: flex !important;         /* override grid */
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: 1rem !important;
@@ -270,16 +270,20 @@
     -webkit-overflow-scrolling: touch !important;
 
     padding-bottom: 0.5rem !important;
-    grid-template-columns: none !important; /* kill grid */
+    grid-template-columns: none !important; /* disable grid completely */
   }
 
   .expertise-item {
-    flex: 0 0 80% !important;   /* each card ~80% of viewport */
+    flex: 0 0 80% !important;         /* ~80% of screen */
     min-width: 240px !important;
     scroll-snap-align: start !important;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
   }
 
-  /* hide scrollbars */
+  /* Hide scrollbars */
   .expertise-grid::-webkit-scrollbar { display: none; }
   .expertise-grid { -ms-overflow-style: none; scrollbar-width: none; }
 }
+

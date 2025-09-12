@@ -252,7 +252,7 @@
   pointer-events: none;
 }
 
-/* === Mobile: Sidebar drawer + swipable sections === */
+/* === Mobile: Sidebar drawer + swipable expertise === */
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
@@ -284,10 +284,9 @@
     overflow-y: auto;
   }
 
-  /* FORCE swipeable layout */
-  .expertise-grid,
-  .ql-flex {
-    display: flex !important;    /* override grid */
+  /* === Make only EXPERTISE swipeable === */
+  .expertise-grid {
+    display: flex !important;       /* override grid */
     flex-wrap: nowrap;
     gap: 1rem;
     overflow-x: auto;
@@ -296,24 +295,28 @@
     padding-bottom: 0.5rem;
   }
 
-  .expertise-item,
-  .ql-card {
-    flex: 0 0 80%;               /* each card takes ~80% of screen */
-    min-width: 240px;            /* wide enough to require swiping */
+  .expertise-item {
+    flex: 0 0 80%;                  /* each card ~80% of screen */
+    min-width: 240px;               /* ensure swipe space */
     scroll-snap-align: start;
     background: #f9f9f9;
     border-radius: 8px;
     padding: 1rem;
   }
 
-  /* Hide scrollbars */
-  .expertise-grid::-webkit-scrollbar,
-  .ql-flex::-webkit-scrollbar {
+  /* Hide scrollbars for expertise only */
+  .expertise-grid::-webkit-scrollbar {
     display: none;
   }
-  .expertise-grid,
-  .ql-flex {
+  .expertise-grid {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Quick Links stays grid */
+  .ql-flex {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 2rem;
   }
 }

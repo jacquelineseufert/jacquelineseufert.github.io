@@ -155,17 +155,17 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (aligned row, responsive) === */
+/* === Quick Links (always in row, scroll on mobile) === */
 .ql-flex {
   display: flex;
   justify-content: center;
   align-items: stretch;
   gap: 2rem;
   margin-top: 1rem;
-  flex-wrap: nowrap;        /* stay in one row */
-  overflow-x: auto;         /* scrollable on small screens */
+  flex-wrap: nowrap;        /* force one row */
+  overflow-x: auto;         /* allow scroll if needed */
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 0.5rem;   /* prevent scrollbar overlap */
+  padding-bottom: 0.5rem;
 }
 
 .ql-card {
@@ -175,20 +175,19 @@
   text-align: center;
   width: 180px;
   min-height: 230px;
-  flex: 0 0 auto;  /* don’t shrink */
+  flex: 0 0 auto;
   box-sizing: border-box;
 }
 
-/* Logo/image */
 .ql-imgbox {
-  height: 100px;  /* taller container */
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.75rem;
 }
 .ql-imgbox img {
-  max-height: 80px;   /* bigger logos */
+  max-height: 80px;
   max-width: 100px;
 }
 

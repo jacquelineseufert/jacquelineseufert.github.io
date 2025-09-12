@@ -497,3 +497,13 @@
   color: #fff !important;
   border-color: #000 !important;
 }
+/* Publications and Languages lists keep bullets */
+.pub-list, .lang-list {
+  list-style: disc;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.pub-list li, .lang-list li {
+  margin-bottom: 0.5rem;
+}

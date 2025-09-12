@@ -155,48 +155,53 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (side by side, aligned) === */
+/* === Quick Links (aligned in a row) === */
 .ql-flex {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* align top edges */
-  gap: 4rem;               /* space between cards */
-  flex-wrap: nowrap;
+  align-items: stretch;  /* make all cards equal height */
+  gap: 4rem;
   margin-top: 1rem;
 }
 
 .ql-card {
-  text-align: center;
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem; /* consistent spacing */
+  text-align: center;
+  width: 180px;     /* equal width */
+  min-height: 220px;/* equal height for alignment */
+  box-sizing: border-box;
 }
 
+/* Logo/image */
+.ql-imgbox {
+  height: 60px;   /* same logo area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
 .ql-imgbox img {
-  display: block;
+  max-height: 40px;
   max-width: 60px;
-  margin: 0 auto;
 }
 
+/* Title text */
 .ql-card h3 {
-  margin: 0.25rem 0;
   font-size: 1rem;
   font-weight: 600;
+  margin: 0.5rem 0 1rem 0;
   color: inherit;
 }
 
-/* === Buttons: white background, black text/border === */
+/* Button: aligned at bottom */
 .button,
-.actions .button,
-.ql-card .button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-  background: #fff !important;      /* white background */
-  color: #000 !important;           /* black text */
-  border: 2px solid #000 !important;/* black border */
+.ql-card .button {
+  margin-top: auto; /* pushes button to bottom */
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
   border-radius: 6px;
   padding: 0.4rem 1rem;
   font-size: 0.85rem;
@@ -205,13 +210,13 @@ input[type="button"] {
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  box-shadow: none !important;      /* kill red glow/shadow */
+  box-shadow: none !important;
 }
 
+/* Hover: invert colors */
 .button:hover,
-.actions .button:hover,
 .ql-card .button:hover {
-  background: #000 !important;      /* invert on hover */
+  background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
   box-shadow: none !important;

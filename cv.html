@@ -12,7 +12,7 @@
 
         /* Desktop: adjust layout without breaking sliding */ @media (max-width: 1024px) { #sidebar { transform: translate3d(0,0,0); transition: transform .25s ease; } .drawer-closed #sidebar { transform: translate3d(-100%,0,0); } #backdrop { opacity: .35; transition: opacity .25s ease; } .drawer-closed #backdrop { opacity: 0; } } </style>
    </head>
-   <body class="is-preload drawer-closed">
+   <body class="is-preload">
       <div id="wrapper">
       <!-- Sidebar --> 
       <div id="sidebar">
@@ -301,68 +301,73 @@
          <!-- /#wrapper -->
 
 <!-- Scripts -->
+<!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-document.addEventListener("DOMContentLoaded", () => {
-  const cvPage = document.querySelector("#main.alt");
-  if (!cvPage) return; // do nothing if not on CV page
+  // CV-only behavior (audience filter + collapsibles)
+  document.addEventListener("DOMContentLoaded", () => {
+    const cvPage = document.querySelector("#main.alt");
+    if (!cvPage) return;
 
-  // === Audience filter ===
-  const buttons = cvPage.querySelectorAll('.aud-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.getAttribute("aria-pressed") === "true") return; // already active
-      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-      btn.setAttribute('aria-pressed', 'true');
-      filterCV(btn.dataset.audience);
+    // Audience filter
+    const buttons = cvPage.querySelectorAll('.aud-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.getAttribute("aria-pressed") === "true") return;
+        buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        filterCV(btn.dataset.audience);
+      });
     });
+
+    function filterCV(tag) {
+      const allItems = cvPage.querySelectorAll('li[data-tags]');
+      allItems.forEach(item => {
+        const attr = item.getAttribute('data-tags');
+        if (!attr) return;
+        const tags = attr.split(',');
+        item.classList.toggle('hidden-role', !tags.includes(tag));
+      });
+      const allPills = cvPage.querySelectorAll('.pill[data-tags]');
+      allPills.forEach(pill => {
+        const tags = pill.getAttribute('data-tags').split(',');
+        pill.classList.toggle('hidden-role', !tags.includes(tag));
+      });
+    }
+
+    // Collapsibles
+    cvPage.querySelectorAll('.collapsible-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const card = header.parentElement;
+        card.classList.toggle('open');
+        const content = header.nextElementSibling;
+        if (card.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    });
+
+    filterCV("data");
   });
-
-  function filterCV(tag) {
-    // tasks
-    const allItems = cvPage.querySelectorAll('li[data-tags]');
-    allItems.forEach(item => {
-      const attr = item.getAttribute('data-tags');
-      if (!attr) return;
-      const tags = attr.split(',');
-      item.classList.toggle('hidden-role', !tags.includes(tag));
-    });
-
-    // pills
-    const allPills = cvPage.querySelectorAll('.pill[data-tags]');
-    allPills.forEach(pill => {
-      const tags = pill.getAttribute('data-tags').split(',');
-      pill.classList.toggle('hidden-role', !tags.includes(tag));
-    });
-  }
-
-  // === Collapsible sections ===
-  cvPage.querySelectorAll('.collapsible-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const card = header.parentElement;
-      card.classList.toggle('open');
-      const content = header.nextElementSibling;
-      if (card.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = null;
-      }
-    });
-  });
-
-  // === Initialize defaults ===
-  filterCV("data"); // default audience
-});
 </script>
 
 <script src="assets/js/sidebar.js"></script>
+
+<script>
+  // match index.html: remove preload on load
+  window.addEventListener('load', () => {
+    document.body.classList.remove('is-preload');
+  });
+</script>
+
 
       </body>
 </html>

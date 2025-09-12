@@ -42,9 +42,14 @@
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;   /* <--- centers vertically */
-  gap: 1.2rem;
+}
+
+/* Center ONLY the profile block vertically */
+.profile {
+  margin: auto 0;              /* pushes profile into the vertical center */
+  display: flex;
+  flex-direction: column;
+  align-items: center;         /* keeps pic + text centered horizontally */
 }
 
 

@@ -497,9 +497,8 @@
   color: #fff !important;
   border-color: #000 !important;
 }
-/* Publications and Languages lists keep bullets */
 .pub-list, .lang-list {
-  list-style: disc;
+  list-style: disc !important;   /* force bullets */
   margin-left: 1.5rem;
   padding-left: 0.5rem;
 }

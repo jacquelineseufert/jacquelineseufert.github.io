@@ -256,9 +256,10 @@
   pointer-events: none;
 }
 
-/* === Mobile: turn Expertise into swipeable carousel === */
+/* === Mobile: Expertise becomes swipeable carousel === */
 @media (max-width: 768px) {
-  .features {
+  /* only target the Expertise section */
+  section .features {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -272,17 +273,13 @@
     padding-bottom: 0.5rem !important;
   }
 
-  .features article {
-    flex: 0 0 80% !important;      /* each card ~80% of screen */
-    min-width: 250px !important;
+  section .features article {
+    flex: 0 0 80% !important;   /* each card ~80% of screen */
+    min-width: 240px !important;
     scroll-snap-align: start !important;
-
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 1rem;
   }
 
   /* Hide scrollbars */
-  .features::-webkit-scrollbar { display: none; }
-  .features { -ms-overflow-style: none; scrollbar-width: none; }
+  section .features::-webkit-scrollbar { display: none; }
+  section .features { -ms-overflow-style: none; scrollbar-width: none; }
 }

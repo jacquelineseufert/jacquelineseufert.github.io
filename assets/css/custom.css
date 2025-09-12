@@ -503,20 +503,24 @@
   margin: 0 0 1.25rem 0;
 }
 
+/* Audience filter buttons */
 .aud-btn {
-  border: 1px solid #000;
+  border: 2px solid #000 !important;
   border-radius: 999px;
   padding: .4rem .9rem;
   cursor: pointer;
-  background: #fff;
-  color: #000;
+  background: #fff !important;
+  color: #000 !important;
   font-size: .9rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-family: inherit;
   transition: all 0.2s ease;
 }
 
 .aud-btn[aria-pressed="true"] {
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
 }
-

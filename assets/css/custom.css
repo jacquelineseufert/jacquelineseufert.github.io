@@ -424,26 +424,24 @@
   text-align: center;
   flex-shrink: 0;
 }
-/* Audience Tabs in Pure Black & White */
+/* Audience filter button reset + custom style */
 .aud-btn {
-  border: 1px solid #000;
+  all: unset; /* reset any theme inheritance */
+  display: inline-block;
+  border: 1px solid #aaa;  /* neutral gray border */
   border-radius: 999px;
-  padding: .35rem .9rem;
-  font-size: .85rem;
-  background: transparent;
-  color: #000;
+  padding: 0.4rem 0.85rem;
   cursor: pointer;
-  transition: all .2s ease;
-  font-weight: 600;
-}
-
-.aud-btn:hover {
-  background: #f2f2f2; /* light grey hover */
+  background: transparent;
+  font-size: 0.9rem;
+  line-height: 1;
+  font-family: inherit;
+  text-transform: none; /* remove forced uppercase */
+  color: #111;
 }
 
 .aud-btn[aria-pressed="true"] {
-  background: #000;
+  background: #111;
   color: #fff;
-  border-color: #000;
+  border-color: #111;
 }
-

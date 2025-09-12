@@ -172,5 +172,11 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/sidebar.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+  window.addEventListener('load', () => {
+    document.body.classList.remove('is-preload');
+  });
+</script>
+
 </body>
 </html>

@@ -12,14 +12,14 @@
   const open = () => {
     html.classList.remove(CLOSED_CLASS);
     backdrop.hidden = false;
-    sidebar.style.transition = 'transform .25s ease';
+    sidebar.style.transition = '';
     sidebar.style.transform = 'translate3d(0,0,0)';
     backdrop.style.opacity = 0.35;
   };
 
   const close = () => {
     html.classList.add(CLOSED_CLASS);
-    sidebar.style.transition = 'transform .25s ease';
+    sidebar.style.transition = '';
     sidebar.style.transform = `translate3d(-${sidebarWidth()}px,0,0)`;
     backdrop.style.opacity = 0;
     setTimeout(() => {
@@ -32,29 +32,22 @@
     sidebar.style.transform = `translate3d(${x}px,0,0)`;
   };
 
-const onStart = (e) => {
-  if (!MOBILE.matches) return;
-  startX = e.touches[0].clientX;
-  currentX = startX;
+  const onStart = (e) => {
+    if (!MOBILE.matches) return;
+    startX = e.touches[0].clientX;
+    currentX = startX;
 
-  const rect = sidebar.getBoundingClientRect();
-  const inSidebar = startX >= rect.left && startX <= rect.right;
+    const rect = sidebar.getBoundingClientRect();
+    const inSidebar = startX >= rect.left && startX <= rect.right;
+    const inEdge = startX < 60; // widen swipe-in zone
 
-  // Allow up to 40% of screen width as swipe-in zone
-  const screenW = window.innerWidth;
-  const inEdge = startX < screenW * 0.4;
-
-  if (!html.classList.contains(CLOSED_CLASS) && inSidebar) {
-    closing = true; 
-    dragging = true;
-  } else if (html.classList.contains(CLOSED_CLASS) && inEdge) {
-    closing = false; 
-    dragging = true;
-    backdrop.hidden = false;
-  }
-};
-
-
+    if (!html.classList.contains(CLOSED_CLASS) && inSidebar) {
+      closing = true; dragging = true;
+    } else if (html.classList.contains(CLOSED_CLASS) && inEdge) {
+      closing = false; dragging = true;
+      backdrop.hidden = false;
+    }
+  };
 
   const onMove = (e) => {
     if (!dragging) return;
@@ -97,21 +90,21 @@ const onStart = (e) => {
 
   MOBILE.addEventListener('change', () => {
     if (!MOBILE.matches) {
-      // desktop: sidebar always visible
+      // Desktop → always open
       html.classList.remove(CLOSED_CLASS);
       sidebar.style.transform = '';
       backdrop.hidden = true;
     } else {
-      // mobile: sidebar starts closed
-      close();
+      // Mobile → start OPEN by default
+      open();
     }
   });
 
   // Initial setup
   if (MOBILE.matches) {
-    close();   // start closed on mobile
+    open(); // visible by default on mobile
   } else {
-    html.classList.remove(CLOSED_CLASS); // open on desktop
+    html.classList.remove(CLOSED_CLASS);
     backdrop.hidden = true;
   }
 })();

@@ -496,10 +496,10 @@
 	text-align: center;
 	flex-shrink: 0;
 
-/* Audience filter buttons styled like OPEN / EXPLORE */
-button.aud-btn {
+/* Force audience filter buttons to match OPEN/EXPLORE style */
+.audience-tabs .aud-btn {
   border: 2px solid #000 !important;
-  border-radius: 6px !important;   /* same as OPEN/EXPLORE */
+  border-radius: 6px !important;
   padding: 0.4rem 1rem !important;
   cursor: pointer;
   background: #fff !important;
@@ -508,17 +508,17 @@ button.aud-btn {
   font-weight: bold !important;
   text-transform: uppercase !important;
   font-family: inherit !important;
-  transition: background 0.2s ease, color 0.2s ease !important;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
 }
 
-/* Hover matches OPEN/EXPLORE */
-button.aud-btn:hover {
+/* Hover */
+.audience-tabs .aud-btn:hover {
   background: #000 !important;
   color: #fff !important;
 }
 
-/* Active (aria-pressed true) */
-button.aud-btn[aria-pressed="true"] {
+/* Active (aria-pressed) */
+.audience-tabs .aud-btn[aria-pressed="true"] {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;

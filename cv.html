@@ -302,23 +302,63 @@
          <script src="assets/js/breakpoints.min.js"></script>
          <script src="assets/js/util.js"></script>
          <script src="assets/js/main.js"></script>
-         <script> document.getElementById('year').textContent = new Date().getFullYear();
-            // audience filter const buttons = document.querySelectorAll('.aud-btn'); 
-            buttons.forEach(btn => { btn.addEventListener('click', () => { if (btn.getAttribute("aria-pressed") === "true") { return;
-                                                                                                                             // already active, do nothing } 
-                                                                                                                             buttons.forEach(b => b.setAttribute('aria-pressed', 'false')); 
-                                                                                                                             btn.setAttribute('aria-pressed', 'true');
-                                                                                                                             filterCV(btn.dataset.audience); }); }); 
-            function filterCV(tag) { // tasks const allItems = document.querySelectorAll('#main li[data-tags]');
-               allItems.forEach(item => { const tags = item.getAttribute('data-tags').split(',');
-                                         if (tags.includes(tag)) { item.classList.remove('hidden-role'); 
-                                                                 } else { item.classList.add('hidden-role'); } });
-               // pills const allPills = document.querySelectorAll('.pill[data-tags]'); 
-               allPills.forEach(pill => { const tags = pill.getAttribute('data-tags').split(','); if (tags.includes(tag)) { pill.classList.remove('hidden-role');
-                                                                                                                          } else { pill.classList.add('hidden-role'); } });
-            } // collapsible sections document.querySelectorAll('.collapsible-header').forEach(header => { header.addEventListener('click', () => { const card = header.parentElement; card.classList.toggle('open'); 
-            const content = header.nextElementSibling; if (card.classList.contains('open')) { content.style.maxHeight = content.scrollHeight + "px"; } else { content.style.maxHeight = null; } }); }); 
-            filterCV("data"); </script> 
+      <script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cvPage = document.querySelector("#main.alt"); 
+  if (!cvPage) return; // do nothing if not on CV page
+
+  // === Audience filter ===
+  const buttons = cvPage.querySelectorAll('.aud-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.getAttribute("aria-pressed") === "true") return; // already active
+      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      filterCV(btn.dataset.audience);
+    });
+  });
+
+  function filterCV(tag) {
+    // tasks
+    const allItems = cvPage.querySelectorAll('li[data-tags]');
+    allItems.forEach(item => {
+      const attr = item.getAttribute('data-tags');
+      if (!attr) return;
+      const tags = attr.split(',');
+      item.classList.toggle('hidden-role', !tags.includes(tag));
+    });
+
+    // pills
+    const allPills = cvPage.querySelectorAll('.pill[data-tags]');
+    allPills.forEach(pill => {
+      const tags = pill.getAttribute('data-tags').split(',');
+      pill.classList.toggle('hidden-role', !tags.includes(tag));
+    });
+  }
+
+  // === Collapsible sections ===
+  cvPage.querySelectorAll('.collapsible-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const card = header.parentElement;
+      card.classList.toggle('open');
+      const content = header.nextElementSibling;
+      if (card.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
+    });
+  });
+
+  // === Initialize defaults ===
+  filterCV("data"); // default audience
+  cvPage.querySelectorAll('.collapsible.open .collapsible-content')
+    .forEach(c => c.style.maxHeight = c.scrollHeight + "px");
+});
+</script>
+
          <script src="assets/js/sidebar.js"></script>
    </body>
 </html>

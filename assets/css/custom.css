@@ -357,22 +357,28 @@
 }
 </style>
 
-/* === Spacing before GET IN TOUCH === */
+/* === Add space above GET IN TOUCH heading === */
 #sidebar h2#get-in-touch {
-  margin-top: 1.5rem; /* space between Projects and Get in touch */
+  margin-top: 2rem !important; /* stronger spacing */
+  font-size: 0.9rem;            /* same as MENU / PROJECTS */
+  text-transform: uppercase;    /* match style */
+  letter-spacing: 1px;
 }
 
 /* === Align contact links with menu icons === */
-.contact li a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;   /* space between icon + text */
-  color: #bbb;
-  font-size: 0.85rem;
+#sidebar .contact li {
+  margin: 0.4rem 0; /* same vertical spacing as menu items */
+}
+
+#sidebar .contact li a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem;
+  font-size: 0.9rem;   /* same size as menu text */
+  color: #fff;         /* same as menu links */
   text-decoration: none;
 }
 
-.contact li a:hover {
-  color: #fff;
+#sidebar .contact li a:hover {
+  color: #f39c12;
 }
-

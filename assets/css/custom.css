@@ -155,19 +155,23 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (side by side, aligned) === */
+/* === Quick Links (aligned in one row) === */
 .ql-flex {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;   /* equal height cards */
   gap: 2rem;
   flex-wrap: nowrap;
   margin-top: 1rem;
 }
 
 .ql-card {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* push button down */
+  align-items: center;
   text-align: center;
-  flex: 0 0 auto;
 }
 
 .ql-imgbox img {
@@ -177,7 +181,7 @@
 }
 
 .ql-card h3 {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
   font-size: 1rem;
   color: inherit;
 }
@@ -189,9 +193,9 @@
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  background: #fff !important;      /* white background */
-  color: #000 !important;           /* black text */
-  border: 2px solid #000 !important;/* black border */
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
   border-radius: 6px;
   padding: 0.4rem 1rem;
   font-size: 0.85rem;
@@ -204,7 +208,7 @@ input[type="button"] {
 .button:hover,
 .actions .button:hover,
 .ql-card .button:hover {
-  background: #000 !important;  /* invert on hover */
+  background: #000 !important;
   color: #fff !important;
 }
 

@@ -7,6 +7,7 @@
   --sidebar-w: 20rem;
   --backdrop-bg: rgba(0,0,0,.35);
   --drawer-shadow: 0 10px 30px rgba(0,0,0,.35);
+  --accent: #000; /* black buttons */
 }
 
 /* === Sidebar (fixed, full height on desktop) === */
@@ -44,9 +45,9 @@
 }
 
 /* Sidebar text */
-#sidebar h1, 
-#sidebar h2, 
-#sidebar p, 
+#sidebar h1,
+#sidebar h2,
+#sidebar p,
 #sidebar a {
   color: #fff;
 }
@@ -154,6 +155,76 @@
   line-height: 1.6;
 }
 
+/* === Quick Links (side by side) === */
+.ql-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* force them side by side */
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.ql-card {
+  flex: 0 0 200px;
+  text-align: center;
+  background: #2c3e50;
+  color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  transition: transform .2s ease;
+}
+.ql-card:hover {
+  transform: translateY(-4px);
+}
+
+.ql-card h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.ql-card a {
+  color: #f39c12;
+  text-decoration: none;
+  font-weight: bold;
+}
+.ql-card a:hover {
+  text-decoration: underline;
+}
+
+.ql-imgbox img {
+  display: block;
+  margin: 0 auto 0.75rem;
+  max-width: 60px;
+}
+
+/* === Buttons (black instead of red) === */
+.button,
+.actions .button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  background: var(--accent);
+  color: #fff !important;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.button:hover,
+.actions .button:hover {
+  background: #444;
+  border-color: #444;
+}
+
 /* === Backdrop & Edge swipe zone === */
 #backdrop {
   position: fixed;
@@ -178,12 +249,12 @@
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
-    overflow-y: auto;               /* ensure main scrolls */
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   #sidebar {
-    transform: translate3d(0,0,0);  /* visible by default */
+    transform: translate3d(0,0,0); /* visible by default */
     transition: transform .25s ease;
     box-shadow: var(--drawer-shadow);
   }
@@ -194,10 +265,9 @@
     box-shadow: none;
   }
 
-  /* Backdrop shows but does NOT block scroll */
   #backdrop {
     opacity: .35;
-    pointer-events: none;           /* allow page scrolling */
+    pointer-events: none; /* let page scroll */
   }
   .drawer-closed #backdrop {
     opacity: 0;
@@ -205,7 +275,6 @@
 
   #edge-swipe-zone { pointer-events: auto; }
 
-  /* Always allow vertical scroll */
   html, body {
     height: 100%;
     overflow-x: hidden;

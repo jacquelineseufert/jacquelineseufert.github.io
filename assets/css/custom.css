@@ -252,7 +252,7 @@
   pointer-events: none;
 }
 
-/* === Mobile: Sidebar drawer + swipable expertise === */
+/* === Mobile: Sidebar drawer + swipeable Expertise, fixed-grid Quick Links === */
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
@@ -284,39 +284,37 @@
     overflow-y: auto;
   }
 
-  /* === Make only EXPERTISE swipeable === */
+  /* === EXPERTISE: swipeable carousel on mobile === */
   .expertise-grid {
-    display: flex !important;       /* override grid */
-    flex-wrap: nowrap;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
+    display: flex !important;          /* override desktop grid */
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 1rem !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 0.5rem !important;
   }
-
   .expertise-item {
-    flex: 0 0 80%;                  /* each card ~80% of screen */
-    min-width: 240px;               /* ensure swipe space */
-    scroll-snap-align: start;
+    flex: 0 0 80% !important;          /* wide enough to require swipe */
+    min-width: 240px !important;
+    scroll-snap-align: start !important;
     background: #f9f9f9;
     border-radius: 8px;
     padding: 1rem;
   }
+  /* hide scrollbar only for expertise */
+  .expertise-grid::-webkit-scrollbar { display: none; }
+  .expertise-grid { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Hide scrollbars for expertise only */
-  .expertise-grid::-webkit-scrollbar {
-    display: none;
-  }
-  .expertise-grid {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* Quick Links stays grid */
+  /* === QUICK LINKS: KEEP 2-COLUMN GRID (NOT swipeable) === */
   .ql-flex {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
-    gap: 2rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(140px, 1fr)) !important;
+    gap: 2rem !important;
+    justify-content: center !important;
+    overflow-x: visible !important;
+    scroll-snap-type: none !important;
+    -webkit-overflow-scrolling: auto !important;
   }
 }

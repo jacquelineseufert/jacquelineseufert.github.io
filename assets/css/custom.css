@@ -155,11 +155,11 @@
   line-height: 1.6;
 }
 
-/* === Quick Links (aligned in a row) === */
+/* === Quick Links (aligned row, equal height) === */
 .ql-flex {
   display: flex;
   justify-content: center;
-  align-items: stretch;  /* make all cards equal height */
+  align-items: stretch;
   gap: 4rem;
   margin-top: 1rem;
 }
@@ -168,23 +168,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   text-align: center;
-  width: 180px;     /* equal width */
-  min-height: 220px;/* equal height for alignment */
+  width: 220px;        /* bigger card */
+  min-height: 280px;   /* taller for bigger logos */
   box-sizing: border-box;
 }
 
 /* Logo/image */
 .ql-imgbox {
-  height: 60px;   /* same logo area */
+  height: 120px; /* more vertical space for logos */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 .ql-imgbox img {
-  max-height: 40px;
-  max-width: 60px;
+  max-height: 100px; /* bigger logos */
+  max-width: 100px;
+  object-fit: contain; /* keep proportions */
 }
 
 /* Title text */
@@ -195,31 +197,28 @@
   color: inherit;
 }
 
-/* Button: aligned at bottoms */
+/* Buttons aligned at bottom */
 .button,
 .ql-card .button {
-  margin-top: auto; /* pushes button to bottom */
   background: #fff !important;
   color: #000 !important;
   border: 2px solid #000 !important;
   border-radius: 6px;
-  padding: 0.4rem 1rem;
-  font-size: 0.85rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
+  margin-top: auto; /* pushes button to bottom */
   box-shadow: none !important;
 }
-
-/* Hover: invert colors */
 .button:hover,
 .ql-card .button:hover {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;
-  box-shadow: none !important;
 }
 
 

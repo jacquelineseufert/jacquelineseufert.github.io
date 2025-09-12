@@ -356,3 +356,23 @@
   #sidebar, #backdrop { transition: none !important; }
 }
 </style>
+
+/* === Spacing before GET IN TOUCH === */
+#sidebar h2#get-in-touch {
+  margin-top: 1.5rem; /* space between Projects and Get in touch */
+}
+
+/* === Align contact links with menu icons === */
+.contact li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;   /* space between icon + text */
+  color: #bbb;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.contact li a:hover {
+  color: #fff;
+}
+

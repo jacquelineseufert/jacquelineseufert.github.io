@@ -496,12 +496,14 @@
 	text-align: center;
 	flex-shrink: 0;
 
-/* Force audience filter buttons to match OPEN/EXPLORE style */
-.audience-tabs .aud-btn {
+/* FORCE override for audience buttons */
+.aud-btn {
+  all: unset !important; /* wipe everything */
+  display: inline-block !important;
   border: 2px solid #000 !important;
   border-radius: 6px !important;
   padding: 0.4rem 1rem !important;
-  cursor: pointer;
+  cursor: pointer !important;
   background: #fff !important;
   color: #000 !important;
   font-size: 0.85rem !important;
@@ -512,13 +514,13 @@
 }
 
 /* Hover */
-.audience-tabs .aud-btn:hover {
+.aud-btn:hover {
   background: #000 !important;
   color: #fff !important;
 }
 
-/* Active (aria-pressed) */
-.audience-tabs .aud-btn[aria-pressed="true"] {
+/* Active */
+.aud-btn[aria-pressed="true"] {
   background: #000 !important;
   color: #fff !important;
   border-color: #000 !important;

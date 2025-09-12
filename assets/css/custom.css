@@ -254,10 +254,11 @@
   top: 0; 
   left: 0; 
   bottom: 0;
-  width: 128px;   /* match JS threshold */
-  z-index: 950;
-  pointer-events: none;
+  width: 40vw;   /* 40% of viewport width */
+  z-index: 2000;
+  pointer-events: auto;
 }
+
 
 
 /* === Mobile: Sidebar drawer === */

@@ -284,27 +284,36 @@
     overflow-y: auto;
   }
 
-  /* Skills & Quick Links become swipeable */
+  /* Skills & Quick Links become swipeable carousels */
   .expertise-grid,
   .ql-flex {
     display: flex;
+    flex-wrap: nowrap;         /* make sure it flows in one row */
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     padding-bottom: 0.5rem;
   }
+
   .expertise-item,
   .ql-card {
-    flex: 0 0 75%;
-    min-width: 220px;
+    flex: 0 0 80%;             /* force item width ~80% of screen */
+    min-width: 240px;          /* so it’s larger than screen fraction */
     scroll-snap-align: start;
     background: #f9f9f9;
     border-radius: 8px;
     padding: 1rem;
   }
-}
 
-/* === Accessibility === */
-@media (prefers-reduced-motion: reduce) {
-  #sidebar, #backdrop { transition: none !important; }
+  /* Hide scrollbars */
+  .expertise-grid::-webkit-scrollbar,
+  .ql-flex::-webkit-scrollbar {
+    display: none;
+  }
+  .expertise-grid,
+  .ql-flex {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

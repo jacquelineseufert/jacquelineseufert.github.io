@@ -493,21 +493,12 @@
 }
 
 /* === Collapsible job entries === */
-.collapsible .collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  margin-top: 0.5rem;
+.collapsible {
+  border-bottom: 1px solid #ddd;
+  padding: 0.75rem 0;
 }
 
-/* Open state */
-.collapsible.open .collapsible-content {
-  max-height: 2000px; /* big enough */
-  overflow: visible;  /* show bullets */
-}
-
-/* Header + arrow */
-.collapsible-header {
+.collapsible .collapsible-header {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -516,7 +507,7 @@
   position: relative;
 }
 
-.collapsible-header::after {
+.collapsible .collapsible-header::after {
   content: "▸";
   font-size: 0.9rem;
   margin-left: 0.5rem;
@@ -527,14 +518,25 @@
   transform: rotate(90deg);
 }
 
-/* Bullets always visible in lists */
-.collapsible-content ul {
+.collapsible .collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.collapsible.open .collapsible-content {
+  max-height: 2000px;
+  overflow: visible;
+}
+
+.collapsible .collapsible-content ul {
   list-style: disc;
   margin-left: 1.5rem;
   padding-left: 0.5rem;
 }
 
-.collapsible-content li {
+.collapsible .collapsible-content li {
   margin-bottom: 0.4rem;
 }
 

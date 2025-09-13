@@ -150,7 +150,7 @@
 .collapsible{ border-bottom:1px solid #ddd; padding:.75rem 0; }
 .collapsible-header{ cursor:pointer; display:flex; justify-content:space-between; align-items:center;
   font-weight:600; position:relative; padding-right:1.5rem; }
-.collapsible-header::after{ content:"▸"; position:absolute; right:0; font-size:.9rem; transition:transform .2s ease; }
+
 .collapsible-content{ max-height:0; overflow:hidden; transition:max-height .3s ease; margin-top:.5rem; display:block; }
 .collapsible.open .collapsible-content{ overflow:visible; max-height:2000px; }
 
@@ -166,6 +166,7 @@
   transition: transform .2s ease;
   font-size: .9rem;
 }
+
 
 .collapsible.open .collapsible-header .arrow {
   transform: rotate(90deg);

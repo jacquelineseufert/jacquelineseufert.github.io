@@ -424,117 +424,105 @@
   // footer year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const cvPage = document.querySelector("#main.alt");
+  document.addEventListener('DOMContentLoaded', function () {
+    const cvPage = document.querySelector('#main.alt');
     if (!cvPage) return;
 
-    /* === Audience filter === */
+    /* ===== Audience filter ===== */
     const buttons = cvPage.querySelectorAll('.aud-btn');
-    buttons.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        if (btn.getAttribute("aria-pressed") === "true") return;
-        buttons.forEach(b => b.setAttribute('aria-pressed','false'));
-        btn.setAttribute('aria-pressed','true');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.getAttribute('aria-pressed') === 'true') return;
+        buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
         filterCV(btn.dataset.audience);
       });
     });
 
     function filterCV(tag){
-      cvPage.querySelectorAll('li[data-tags]').forEach(function(item){
-        const attr = item.getAttribute('data-tags');
-        if (!attr) return;
+      cvPage.querySelectorAll('li[data-tags]').forEach(item => {
+        const attr = item.getAttribute('data-tags'); if (!attr) return;
         const tags = attr.split(',');
         item.classList.toggle('hidden-role', !tags.includes(tag));
       });
-      cvPage.querySelectorAll('.pill[data-tags]').forEach(function(pill){
+      cvPage.querySelectorAll('.pill[data-tags]').forEach(pill => {
         const tags = pill.getAttribute('data-tags').split(',');
         pill.classList.toggle('hidden-role', !tags.includes(tag));
       });
     }
 
-    /* === Collapsibles === */
-    function setHeight(content) {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
+    /* ===== Collapsibles ===== */
 
-    function collapseAll() {
-      cvPage.querySelectorAll(".collapsible").forEach(function(card) {
-        const content = card.querySelector(":scope > .collapsible-content");
-        if (content) {
-          card.classList.remove("open");
-          content.style.maxHeight = null;
-        }
-      });
-    }
+    // collapse everything on load (desktop & mobile)
+    [...cvPage.querySelectorAll('.collapsible')].forEach(card => {
+      const content = card.querySelector(':scope > .collapsible-content');
+      if (content) {
+        content.style.maxHeight = '0px';
+        card.classList.remove('open');
+      }
+    });
 
-    function attachCollapsibleHandlers() {
-      cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
-        header.setAttribute("tabindex","0"); // keyboard focusable
+    // click handling with delegation (works for all current & future headers)
+    cvPage.addEventListener('click', function (e) {
+      const header = e.target.closest('.collapsible-header');
+      if (!header || !cvPage.contains(header)) return;
 
-        header.addEventListener('click', function(){
-          const card = header.closest('.collapsible');
-          const content = card && card.querySelector(":scope > .collapsible-content");
-          if (!card || !content) return;
+      const card = header.closest('.collapsible');
+      const content = header.nextElementSibling; // MUST be the immediate .collapsible-content
+      if (!card || !content || !content.classList.contains('collapsible-content')) return;
 
-          // Mobile → accordion (close siblings)
-          if (window.innerWidth < 1024) {
-            const siblings = Array.from(card.parentElement.children)
-              .filter(el => el.classList && el.classList.contains('collapsible'));
-            siblings.forEach(function(sib){
-              if (sib !== card && sib.classList.contains('open')) {
-                sib.classList.remove('open');
-                const sibContent = sib.querySelector(":scope > .collapsible-content");
-                if (sibContent) sibContent.style.maxHeight = null;
-              }
-            });
-          }
-
-          // Toggle current card
-          if (card.classList.contains('open')) {
-            card.classList.remove('open');
-            content.style.maxHeight = null;
-          } else {
-            card.classList.add('open');
-            setHeight(content);
+      // Mobile: close sibling cards at same level (accordion)
+      if (window.innerWidth < 1024) {
+        [...card.parentNode.children].forEach(sib => {
+          if (sib !== card && sib.classList && sib.classList.contains('collapsible') && sib.classList.contains('open')) {
+            sib.classList.remove('open');
+            const sibContent = sib.querySelector(':scope > .collapsible-content');
+            if (sibContent) sibContent.style.maxHeight = '0px';
           }
         });
+      }
 
-        // Keyboard accessibility
-        header.addEventListener('keydown', function(e){
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            header.click();
-          }
-        });
-      });
-    }
+      // Toggle current card
+      if (card.classList.contains('open')) {
+        card.classList.remove('open');
+        content.style.maxHeight = '0px';
+      } else {
+        card.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
 
-    /* === Init === */
-    collapseAll();              // collapsed everywhere by default
-    attachCollapsibleHandlers();
+    // keyboard accessibility
+    cvPage.addEventListener('keydown', function(e){
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('collapsible-header')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
 
-    // Recalculate heights only for *open* cards
-    window.addEventListener("resize", function(){
-      cvPage.querySelectorAll(".collapsible.open > .collapsible-content").forEach(function(content){
-        setHeight(content);
+    // keep heights correct on resize for open cards
+    window.addEventListener('resize', function(){
+      cvPage.querySelectorAll('.collapsible.open > .collapsible-content').forEach(content => {
+        content.style.maxHeight = content.scrollHeight + 'px';
       });
     });
 
     // default audience
-    filterCV("data");
+    filterCV('data');
   });
 
-  /* === After load, adjust heights === */
+  // remove preload + final height correction
   window.addEventListener('load', function(){
     document.body.classList.remove('is-preload');
-    document.querySelectorAll('.collapsible.open > .collapsible-content').forEach(function(content){
-      content.style.maxHeight = content.scrollHeight + "px";
+    document.querySelectorAll('.collapsible.open > .collapsible-content').forEach(content => {
+      content.style.maxHeight = content.scrollHeight + 'px';
     });
   });
 </script>
 
 <!-- sliding sidebar logic (same file as index.html) -->
 <script src="assets/js/sidebar.js"></script>
+
 
 </body>
 </html>

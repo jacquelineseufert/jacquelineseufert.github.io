@@ -182,3 +182,13 @@
 .professional-experience .scroll-area::-webkit-scrollbar{ width:8px; }
 .professional-experience .scroll-area::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.3); border-radius:4px; }
 .professional-experience .scroll-area::-webkit-scrollbar-track{ background:transparent; }
+
+.tasks {
+  list-style: disc outside !important;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+.tasks li {
+  display: list-item !important; /* ensures bullets show */
+  margin-bottom: 0.5rem;
+}

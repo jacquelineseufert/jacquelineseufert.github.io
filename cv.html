@@ -457,16 +457,6 @@
       content.style.maxHeight = content.scrollHeight + "px";
     }
 
-    function expandAll() {
-      cvPage.querySelectorAll(".collapsible").forEach(function(card) {
-        const content = card.querySelector(":scope > .collapsible-content");
-        if (content) {
-          card.classList.add("open");
-          setHeight(content);
-        }
-      });
-    }
-
     function collapseAll() {
       cvPage.querySelectorAll(".collapsible").forEach(function(card) {
         const content = card.querySelector(":scope > .collapsible-content");
@@ -520,11 +510,7 @@
     }
 
     /* === Init === */
-    if (window.innerWidth >= 1024) {
-      expandAll();   // desktop → expanded
-    } else {
-      collapseAll(); // mobile → collapsed
-    }
+    collapseAll();              // collapsed everywhere by default
     attachCollapsibleHandlers();
 
     // Recalculate heights only for *open* cards
@@ -549,7 +535,6 @@
 
 <!-- sliding sidebar logic (same file as index.html) -->
 <script src="assets/js/sidebar.js"></script>
-
 
 </body>
 </html>

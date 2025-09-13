@@ -403,11 +403,11 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Footer year
+    /* === Footer year === */
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // CV-only behavior
+    /* === CV-only behavior === */
     const cvPage = document.querySelector("#main.alt");
     if (!cvPage) return;
 
@@ -442,7 +442,7 @@
       const content = card.querySelector(".collapsible-content");
       if (!header || !content) return;
 
-      // start collapsed
+      // collapsed by default
       content.style.maxHeight = null;
 
       header.addEventListener("click", () => {
@@ -456,11 +456,11 @@
       });
     });
 
-    // Default audience view
+    /* === Default audience view === */
     filterCV("data");
   });
 
-  // Remove preload class once page fully loaded
+  /* === Remove preload class once fully loaded === */
   window.addEventListener("load", () => {
     document.body.classList.remove("is-preload");
   });

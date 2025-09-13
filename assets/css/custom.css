@@ -504,12 +504,15 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
+  position: relative;
+  padding-right: 1.5rem; /* space for arrow */
 }
 
 .collapsible-header::after {
   content: "▸";
+  position: absolute;
+  right: 0;
   font-size: 0.9rem;
-  margin-left: 0.5rem;
   transition: transform 0.2s ease;
 }
 
@@ -524,9 +527,9 @@
   margin-top: 0.5rem;
 }
 
+/* let JS control height — remove fixed 2000px */
 .collapsible.open .collapsible-content {
-  max-height: 2000px;
-  overflow: visible;
+  overflow: visible; /* allow content inside to display normally */
 }
 
 .collapsible-content ul {

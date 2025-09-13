@@ -494,12 +494,14 @@
 
 /* === Collapsible job entries === */
 .collapsible .collapsible-content {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
   margin-top: 0.5rem;
 }
 
 .collapsible.open .collapsible-content {
-  display: block;
+  max-height: 1000px; /* large enough for content */
 }
 
 .collapsible-header {
@@ -511,17 +513,18 @@
 
 .collapsible-header::after {
   content: "▸";
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .collapsible.open .collapsible-header::after {
   transform: rotate(90deg);
 }
 
-/* Desktop: always expanded */
+/* Desktop: expanded by default */
 @media (min-width: 769px) {
   .collapsible .collapsible-content {
-    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
   .collapsible-header::after {
     display: none;

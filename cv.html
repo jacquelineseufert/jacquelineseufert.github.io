@@ -455,23 +455,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* === Collapsibles === */
-cvPage.querySelectorAll(".collapsible").forEach(card => {
+document.querySelectorAll(".collapsible").forEach(card => {
   const header = card.querySelector(".collapsible-header");
   const content = card.querySelector(".collapsible-content");
   const arrow = header.querySelector(".arrow");
 
   if (!header || !content) return;
 
-  // initialize open state correctly
+  // initialize
   if (card.classList.contains("open")) {
     content.style.maxHeight = content.scrollHeight + "px";
     if (arrow) arrow.style.transform = "rotate(90deg)";
-  } else {
-    content.style.maxHeight = null;
-    if (arrow) arrow.style.transform = "rotate(0deg)";
   }
 
-  // toggle on click
   header.addEventListener("click", () => {
     card.classList.toggle("open");
 
@@ -484,6 +480,7 @@ cvPage.querySelectorAll(".collapsible").forEach(card => {
     }
   });
 });
+
 
   /* === Default audience view === */
   filterCV("data");

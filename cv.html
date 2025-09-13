@@ -109,7 +109,8 @@
 
         <!-- Professional Experience (outer collapsible) -->
         <div class="exp-card collapsible professional-experience open">
-          <h3 class="collapsible-header">Professional Experience</h3>
+ <h3 class="collapsible-header">Professional Experience <span class="arrow">▸</span></h3>
+
          <div class="collapsible-content">
 
             <div class="scroll-area">
@@ -454,35 +455,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* === Collapsibles === */
-  cvPage.querySelectorAll(".collapsible").forEach(card => {
-    const header = card.querySelector(".collapsible-header");
-    const content = card.querySelector(".collapsible-content");
-    const arrow = header.querySelector(".arrow");
+cvPage.querySelectorAll(".collapsible").forEach(card => {
+  const header = card.querySelector(".collapsible-header");
+  const content = card.querySelector(".collapsible-content");
+  const arrow = header.querySelector(".arrow");
 
-   if (!header || !content) return;
+  if (!header || !content) return;
 
-if (arrow) {
-  arrow.style.transform = card.classList.contains("open") 
-    ? "rotate(90deg)" 
-    : "rotate(0deg)";
-}
-
-
-    // collapsed by default
+  // initialize open state correctly
+  if (card.classList.contains("open")) {
+    content.style.maxHeight = content.scrollHeight + "px";
+    if (arrow) arrow.style.transform = "rotate(90deg)";
+  } else {
     content.style.maxHeight = null;
+    if (arrow) arrow.style.transform = "rotate(0deg)";
+  }
 
-    header.addEventListener("click", () => {
-      card.classList.toggle("open");
+  // toggle on click
+  header.addEventListener("click", () => {
+    card.classList.toggle("open");
 
-      if (card.classList.contains("open")) {
-        content.style.maxHeight = content.scrollHeight + "px";
-        arrow.style.transform = "rotate(90deg)";
-      } else {
-        content.style.maxHeight = null;
-        arrow.style.transform = "rotate(0deg)";
-      }
-    });
+    if (card.classList.contains("open")) {
+      content.style.maxHeight = content.scrollHeight + "px";
+      if (arrow) arrow.style.transform = "rotate(90deg)";
+    } else {
+      content.style.maxHeight = null;
+      if (arrow) arrow.style.transform = "rotate(0deg)";
+    }
   });
+});
 
   /* === Default audience view === */
   filterCV("data");

@@ -401,87 +401,96 @@
       </div><!-- /.inner -->
     </div><!-- /#main -->
   </div><!-- /#wrapper -->
+<!-- Core scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/sidebar.js"></script>
 
-  <!-- Core scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/sidebar.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* === Footer year === */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      /* === Footer year === */
-      const yearEl = document.getElementById("year");
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+  const cvPage = document.querySelector("#main");
+  if (!cvPage) return;
 
-      const cvPage = document.querySelector("#main");
-      if (!cvPage) return;
-
-      /* === Audience filter === */
-      function filterCV(tag) {
-        // Tasks
-        cvPage.querySelectorAll("li[data-tags]").forEach(item => {
-          const tags = item.getAttribute("data-tags")?.split(",") || [];
-          item.classList.toggle("hidden-role", !tags.includes(tag));
-        });
-
-        // Pills
-        cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
-          const tags = pill.getAttribute("data-tags")?.split(",") || [];
-          pill.classList.toggle("hidden-role", !tags.includes(tag));
-        });
+  /* === Audience filter === */
+  function filterCV(tag) {
+    // Tasks (bullet points)
+    cvPage.querySelectorAll("li[data-tags]").forEach(item => {
+      const tags = item.getAttribute("data-tags")?.split(",") || [];
+      if (tags.includes(tag)) {
+        item.classList.remove("hidden-role");
+      } else {
+        item.classList.add("hidden-role");
       }
-
-      function resetFilter() {
-        cvPage.querySelectorAll("li[data-tags], .pill[data-tags]").forEach(el => {
-          el.classList.remove("hidden-role");
-        });
-      }
-
-      /* === Audience tab buttons === */
-      const buttons = document.querySelectorAll(".aud-btn"); // 🔑 define here
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const tag = btn.dataset.tag;
-          if (!tag) return;
-
-          // update button states
-          buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
-          btn.setAttribute("aria-pressed", "true");
-
-          if (tag === "all") {
-            resetFilter();
-          } else {
-            filterCV(tag);
-          }
-        });
-      });
-
-      /* === Collapsibles === */
-      cvPage.querySelectorAll(".collapsible").forEach(card => {
-        const header = card.querySelector(".collapsible-header");
-        const content = card.querySelector(".collapsible-content");
-        if (!header || !content) return;
-        content.style.maxHeight = null; // collapsed by default
-
-        header.addEventListener("click", () => {
-          card.classList.toggle("open");
-          if (card.classList.contains("open")) {
-            content.style.maxHeight = content.scrollHeight + "px";
-          } else {
-            content.style.maxHeight = null;
-          }
-        });
-      });
-
-      /* === Default audience view === */
-      resetFilter(); // show everything by default
     });
 
-    window.addEventListener("load", () => {
-      document.body.classList.remove("is-preload");
+    // Pills (skills)
+    cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
+      const tags = pill.getAttribute("data-tags")?.split(",") || [];
+      if (tags.includes(tag)) {
+        pill.classList.remove("hidden-role");
+      } else {
+        pill.classList.add("hidden-role");
+      }
     });
-  </script>
+  }
+
+  function resetFilter() {
+    cvPage.querySelectorAll("li[data-tags], .pill[data-tags]").forEach(el => {
+      el.classList.remove("hidden-role");
+    });
+  }
+
+  /* === Audience tab buttons === */
+  const buttons = document.querySelectorAll(".aud-btn");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tag = btn.dataset.tag;
+      if (!tag) return;
+
+      // Update pressed states
+      buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+
+      if (tag === "all") {
+        resetFilter();
+      } else {
+        filterCV(tag);
+      }
+    });
+  });
+
+  /* === Collapsibles === */
+  cvPage.querySelectorAll(".collapsible").forEach(card => {
+    const header = card.querySelector(".collapsible-header");
+    const content = card.querySelector(".collapsible-content");
+    if (!header || !content) return;
+    content.style.maxHeight = null; // collapsed by default
+
+    header.addEventListener("click", () => {
+      card.classList.toggle("open");
+      if (card.classList.contains("open")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
+    });
+  });
+
+  /* === Default: show everything === */
+  resetFilter();
+});
+
+window.addEventListener("load", () => {
+  document.body.classList.remove("is-preload");
+});
+</script>
+
+  
 </body>
 </html>

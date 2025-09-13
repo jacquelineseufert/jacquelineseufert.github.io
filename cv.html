@@ -461,14 +461,23 @@ document.addEventListener("DOMContentLoaded", () => {
   cvPage.querySelectorAll(".collapsible").forEach(card => {
     const header = card.querySelector(".collapsible-header");
     const content = card.querySelector(".collapsible-content");
-    if (!header || !content) return;
+    const arrow = header.querySelector(".arrow");
+
+    if (!header || !content || !arrow) return;
+
+    // collapsed by default
     content.style.maxHeight = null;
 
     header.addEventListener("click", () => {
       card.classList.toggle("open");
-      content.style.maxHeight = card.classList.contains("open")
-        ? content.scrollHeight + "px"
-        : null;
+
+      if (card.classList.contains("open")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        arrow.style.transform = "rotate(90deg)";
+      } else {
+        content.style.maxHeight = null;
+        arrow.style.transform = "rotate(0deg)";
+      }
     });
   });
 

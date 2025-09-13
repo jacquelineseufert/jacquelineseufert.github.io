@@ -169,14 +169,11 @@
   overflow:hidden;
   transition:max-height .3s ease;
   margin-top:.5rem;
-  display:block;
+}
+.collapsible.open > .collapsible-content {
+  max-height:2000px; /* big enough to fit your job text */
 }
 
-/* only expand direct child */
-.collapsible.open > .collapsible-content {
-  overflow:visible;
-  max-height:2000px;
-}
 
 /* arrow rotation */
 .collapsible-header .arrow {

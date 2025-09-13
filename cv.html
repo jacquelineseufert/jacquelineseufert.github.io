@@ -504,26 +504,24 @@ cvPage.querySelectorAll(".collapsible").forEach(function (card) {
 <script src="assets/js/sidebar.js"></script>
 <script>
   // Remove preload class once loaded
-  window.addEventListener("load", function () {
+  window.addEventListener("load", () => {
     document.body.classList.remove("is-preload");
   });
-</script>
-<script>
-document.querySelectorAll('.collapsible-header').forEach(header => {
-  header.addEventListener('click', () => {
-    const card = header.parentElement;
-    card.classList.toggle('open');
 
-    const content = card.querySelector('.collapsible-content');
-    if (card.classList.contains('open')) {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } else {
-      content.style.maxHeight = null;
-    }
+  // Collapsible logic
+  document.querySelectorAll('.collapsible-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const card = header.parentElement;
+      const content = card.querySelector('.collapsible-content');
+      card.classList.toggle('open');
+
+      if (card.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
+    });
   });
-});
 </script>
-
-
 </body>
 </html>

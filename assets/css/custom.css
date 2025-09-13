@@ -493,6 +493,7 @@
 }
 
 /* === Collapsible job entries === */
+
 .collapsible .collapsible-content {
   max-height: 0;
   overflow: hidden;
@@ -501,7 +502,7 @@
 }
 
 .collapsible.open .collapsible-content {
-  max-height: 1000px; /* large enough for content */
+  max-height: 2000px; /* big enough for long content */
 }
 
 .collapsible-header {
@@ -523,25 +524,9 @@
   transform: rotate(90deg);
 }
 
-/* Desktop: expanded by default */
+/* Desktop: start expanded, but keep toggle available */
 @media (min-width: 769px) {
   .collapsible .collapsible-content {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-  /* keep arrow visible, but rotated so user can collapse */
-  .collapsible-header::after {
-    display: inline-block;
-  }
-}
-
-/* Desktop: expanded by default */
-@media (min-width: 769px) {
-  .collapsible .collapsible-content {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-  .collapsible-header::after {
-    display: none;
+    max-height: 2000px; /* expanded by default */
   }
 }

@@ -305,19 +305,26 @@
     }
 
     // --- Collapsibles ---
-    cvPage.querySelectorAll(".collapsible").forEach(function (card) {
-      const header = card.querySelector(".collapsible-header");
-      const content = card.querySelector(".collapsible-content");
+// --- Collapsibles ---
+cvPage.querySelectorAll(".collapsible").forEach(function (card) {
+  const header = card.querySelector(".collapsible-header");
+  const content = card.querySelector(".collapsible-content");
 
-      header.addEventListener("click", function () {
-        card.classList.toggle("open");
-        if (card.classList.contains("open")) {
-          content.style.maxHeight = content.scrollHeight + "px";
-        } else {
-          content.style.maxHeight = null;
-        }
-      });
-    });
+  // Ensure collapsed at start
+  content.style.maxHeight = null;
+
+  header.addEventListener("click", function () {
+    card.classList.toggle("open");
+
+    if (card.classList.contains("open")) {
+      // force browser to recalc before setting scrollHeight
+      content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      content.style.maxHeight = null;
+    }
+  });
+});
+
 
     // Default audience view
     filterCV("data");

@@ -464,27 +464,24 @@
         });
       }
 
-      if (window.innerWidth >= 1024) {
-        // Desktop → expand all
-        expandAll();
-      } else {
-        // Mobile → accordion behavior (scoped to siblings)
+      function attachCollapsibleHandlers() {
         cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
           header.addEventListener('click', function(){
-            var card = header.closest('.collapsible'); // safer than parentElement
+            var card = header.closest('.collapsible');
             var content = card.querySelector(":scope > .collapsible-content");
 
-            // Close only sibling collapsibles at the same level
-            var siblings = Array.from(card.parentElement.children)
-              .filter(el => el.classList.contains('collapsible'));
-
-            siblings.forEach(function(sib){
-              if (sib !== card && sib.classList.contains('open')) {
-                sib.classList.remove('open');
-                var sibContent = sib.querySelector(":scope > .collapsible-content");
-                if (sibContent) sibContent.style.maxHeight = null;
-              }
-            });
+            // On mobile: accordion behavior
+            if (window.innerWidth < 1024) {
+              var siblings = Array.from(card.parentElement.children)
+                .filter(el => el.classList.contains('collapsible'));
+              siblings.forEach(function(sib){
+                if (sib !== card && sib.classList.contains('open')) {
+                  sib.classList.remove('open');
+                  var sibContent = sib.querySelector(":scope > .collapsible-content");
+                  if (sibContent) sibContent.style.maxHeight = null;
+                }
+              });
+            }
 
             // Toggle current
             card.classList.toggle('open');
@@ -495,6 +492,15 @@
             }
           });
         });
+      }
+
+      if (window.innerWidth >= 1024) {
+        // Desktop → expand all but keep toggling enabled
+        expandAll();
+        attachCollapsibleHandlers();
+      } else {
+        // Mobile → accordion behavior
+        attachCollapsibleHandlers();
       }
 
       // default audience

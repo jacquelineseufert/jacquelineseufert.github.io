@@ -466,7 +466,8 @@
       if (!header || !cvPage.contains(header)) return;
 
       const card = header.closest('.collapsible');
-      const content = header.nextElementSibling; // MUST be the immediate .collapsible-content
+    const content = header.closest('.collapsible').querySelector(':scope > .collapsible-content');
+
       if (!card || !content || !content.classList.contains('collapsible-content')) return;
 
       // Mobile: close sibling cards at same level (accordion)

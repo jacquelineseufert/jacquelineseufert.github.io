@@ -474,10 +474,11 @@ document.querySelectorAll(".collapsible").forEach(card => {
     if (card.classList.contains("open")) {
       content.style.maxHeight = content.scrollHeight + "px";
       if (arrow) arrow.style.transform = "rotate(90deg)";
-    } else {
-      content.style.maxHeight = null;
-      if (arrow) arrow.style.transform = "rotate(0deg)";
-    }
+   } else {
+  content.style.maxHeight = "0px";
+  if (arrow) arrow.style.transform = "rotate(0deg)";
+}
+
   });
 });
 

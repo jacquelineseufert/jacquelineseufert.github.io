@@ -518,3 +518,28 @@
 .tasks li {
   margin-bottom: 0.5rem;
 }
+
+.collapsible .collapsible-content {
+  display: none; /* hide by default */
+  margin-top: 0.5rem;
+}
+
+.collapsible.open .collapsible-content {
+  display: block; /* show when toggled */
+}
+
+.collapsible-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapsible-header::after {
+  content: "▸"; /* arrow */
+  transition: transform 0.2s;
+}
+
+.collapsible.open .collapsible-header::after {
+  transform: rotate(90deg); /* arrow rotates when open */
+}

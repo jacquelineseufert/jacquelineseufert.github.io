@@ -419,16 +419,26 @@
       if (!cvPage) return;
 
       /* === Audience filter === */
-    function filterCV(tag) {
+  function filterCV(tag) {
   cvPage.querySelectorAll("li[data-tags]").forEach(item => {
     const tags = item.getAttribute("data-tags")?.split(",") || [];
-    item.classList.toggle("hidden-role", !(tags.includes(tag) || tags.includes("all")));
+    if (tags.includes(tag)) {
+      item.classList.remove("hidden-role");
+    } else {
+      item.classList.add("hidden-role");
+    }
   });
+
   cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
     const tags = pill.getAttribute("data-tags")?.split(",") || [];
-    pill.classList.toggle("hidden-role", !(tags.includes(tag) || tags.includes("all")));
+    if (tags.includes(tag)) {
+      pill.classList.remove("hidden-role");
+    } else {
+      pill.classList.add("hidden-role");
+    }
   });
 }
+
 
       
       buttons.forEach(btn => {

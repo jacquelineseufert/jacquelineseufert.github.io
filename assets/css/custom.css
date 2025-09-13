@@ -497,6 +497,7 @@
   color: #fff !important;
   border-color: #000 !important;
 }
+
 .pub-list, .lang-list {
   list-style: disc !important;   /* force bullets */
   margin-left: 1.5rem;
@@ -504,5 +505,16 @@
 }
 
 .pub-list li, .lang-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* === FIX: Show bullets globally for all .tasks === */
+.tasks {
+  list-style: disc !important;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.tasks li {
   margin-bottom: 0.5rem;
 }

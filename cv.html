@@ -414,7 +414,7 @@
 
   </div><!-- /#wrapper -->
 
- <!-- Scripts (match index.html order) -->
+<!-- Scripts (match index.html order) -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
@@ -454,7 +454,7 @@
 
     // === Collapsibles ===
     function setHeight(content) {
-      content.style.maxHeight = content.scrollHeight + "px";
+      if (content) content.style.maxHeight = content.scrollHeight + "px";
     }
 
     function expandAll() {
@@ -519,15 +519,15 @@
       });
     }
 
-    // Desktop → expand all, but still allow toggle
+    // === Init ===
     if (window.innerWidth >= 1024) {
-      expandAll();
+      expandAll();  // desktop → expanded
     } else {
-      collapseAll();
+      collapseAll(); // mobile → collapsed
     }
     attachCollapsibleHandlers();
 
-    // Recalculate heights on resize
+    // Recalculate heights only for *open* cards
     window.addEventListener("resize", function(){
       cvPage.querySelectorAll(".collapsible.open > .collapsible-content").forEach(function(content){
         setHeight(content);

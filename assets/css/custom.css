@@ -542,3 +542,9 @@
 .tasks li[hidden] {
   display: none !important; /* filter hides properly */
 }
+/* Scrollbar only for the entire Professional Experience section */
+.exp-card.professional > .collapsible-content {
+  max-height: 600px;   /* adjust height as needed */
+  overflow-y: auto;    /* vertical scrollbar */
+  padding-right: 8px;  /* space so text doesn’t touch scrollbar */
+}

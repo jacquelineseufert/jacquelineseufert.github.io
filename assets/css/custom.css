@@ -144,19 +144,31 @@
 .pub-list,.lang-list{ list-style:disc !important; margin-left:1.5rem; padding-left:.5rem; }
 .pub-list li,.lang-list li{ margin-bottom:.5rem; }
 .tasks{ list-style:disc !important; margin-left:1.5rem; padding-left:.5rem; }
-.tasks li{ margin-bottom:.5rem; }
+.tasks li{ margin-bottom:.5rem; display:list-item !important; }
 
 /* Used by audience filter */
 .hidden-role{ display:none !important; }
 
 /* === Collapsible job entries === */
-.collapsible{ border-bottom:1px solid #ddd; padding:.75rem 0; }
+.collapsible{
+  border-bottom:1px solid #ddd;
+  padding:.75rem 0;
+}
 .collapsible-header{
-  cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:600;
-  position:relative; padding-right:1.5rem; /* for arrow */
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+  position:relative;
+  padding-right:1.5rem; /* for arrow */
 }
 .collapsible-header::after{
-  content:"▸"; position:absolute; right:0; font-size:.9rem; transition:transform .2s ease;
+  content:"▸";
+  position:absolute;
+  right:0;
+  font-size:.9rem;
+  transition:transform .2s ease;
 }
 .collapsible.open .collapsible-header::after{ transform:rotate(90deg); }
 
@@ -167,28 +179,18 @@
   margin-top:.5rem;
   display:block;
 }
-/* Let JS set max-height; only relax overflow when open */
-.collapsible.open .collapsible-content{ overflow:visible; }
+.collapsible.open .collapsible-content{
+  overflow:visible;
+  max-height:2000px; /* plenty of room */
+}
 
-/* === Professional Experience: one big scrollbar INSIDE outer card === */
-/* Requires: <div class="scroll-area">…</div> inside the outer .collapsible-content */
+/* === Professional Experience: scrollable inner content === */
 .professional-experience .scroll-area{
   max-height:70vh;
   overflow-y:auto;
   padding-right:.5rem;
   -webkit-overflow-scrolling:touch;
 }
-/* Optional: nicer scrollbar */
 .professional-experience .scroll-area::-webkit-scrollbar{ width:8px; }
 .professional-experience .scroll-area::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.3); border-radius:4px; }
 .professional-experience .scroll-area::-webkit-scrollbar-track{ background:transparent; }
-
-.tasks {
-  list-style: disc outside !important;
-  margin-left: 1.5rem;
-  padding-left: 0.5rem;
-}
-.tasks li {
-  display: list-item !important; /* ensures bullets show */
-  margin-bottom: 0.5rem;
-}

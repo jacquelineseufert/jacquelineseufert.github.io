@@ -485,9 +485,8 @@
   display: inline-block;
   box-shadow: none !important;
   transition: background .2s, color .2s, border-color .2s;
-  /* 🔑 removed font-family so it inherits the same as .button */
-  line-height: 1.2; /* keep consistent vertical rhythm */
-  letter-spacing: normal; /* ensure same spacing */
+  line-height: 1.2;
+  letter-spacing: normal;
 }
 
 /* Hover and active (pressed) states */
@@ -519,6 +518,7 @@
   margin-bottom: 0.5rem;
 }
 
+/* === Collapsible job entries === */
 .collapsible .collapsible-content {
   display: none; /* hide by default */
   margin-top: 0.5rem;
@@ -542,4 +542,14 @@
 
 .collapsible.open .collapsible-header::after {
   transform: rotate(90deg); /* arrow rotates when open */
+}
+
+/* On desktop: keep everything expanded */
+@media (min-width: 769px) {
+  .collapsible .collapsible-content {
+    display: block !important;
+  }
+  .collapsible-header::after {
+    display: none;
+  }
 }

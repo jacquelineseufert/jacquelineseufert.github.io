@@ -414,46 +414,7 @@
 
   </div><!-- /#wrapper -->
 
-   <!-- Scripts (match index.html order) -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-
-  <script>
-    // footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // CV-only behavior (audience filter + collapsibles)
-    document.addEventListener("DOMContentLoaded", function () {
-      var cvPage = document.querySelector("#main.alt");
-      if (!cvPage) return;
-
-      // Audience filter
-      var buttons = cvPage.querySelectorAll('.aud-btn');
-      buttons.forEach(function(btn){
-        btn.addEventListener('click', function(){
-          if (btn.getAttribute("aria-pressed") === "true") return;
-          buttons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
-          btn.setAttribute('aria-pressed','true');
-          filterCV(btn.dataset.audience);
-        });
-      });
-
-      function filterCV(tag){
-        cvPage.querySelectorAll('li[data-tags]').forEach(function(item){
-          var attr = item.getAttribute('data-tags');
-          if (!attr) return;
-          var tags = attr.split(',');
-          item.classList.toggle('hidden-role', !tags.includes(tag));
-        });
-        cvPage.querySelectorAll('.pill[data-tags]').forEach(function(pill){
-          var tags = pill.getAttribute('data-tags').split(',');
-          pill.classList.toggle('hidden-role', !tags.includes(tag));
-        });
-      }
-
-   <!-- Scripts (match index.html order) -->
+  <!-- Scripts (match index.html order) -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/browser.min.js"></script>
   <script src="assets/js/breakpoints.min.js"></script>
@@ -507,7 +468,6 @@
           header.addEventListener('click', function(){
             var card = header.closest('.collapsible');
             var content = card.querySelector(":scope > .collapsible-content");
-
             if (!content) return;
 
             // Mobile → accordion behavior
@@ -535,12 +495,18 @@
         });
       }
 
+      // Desktop → expand all, but keep toggle functionality
       if (window.innerWidth >= 1024) {
-        // Desktop → expand all but still allow toggling
         expandAll();
       }
-      // Always attach handlers so user can toggle
       attachCollapsibleHandlers();
+
+      // Recalculate heights on resize (important!)
+      window.addEventListener("resize", function(){
+        cvPage.querySelectorAll(".collapsible.open .collapsible-content").forEach(function(content){
+          content.style.maxHeight = content.scrollHeight + "px";
+        });
+      });
 
       // default audience
       filterCV("data");

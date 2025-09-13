@@ -451,10 +451,10 @@
         });
       }
 
-      // Collapsibles
+       // Collapsibles
       function expandAll() {
         cvPage.querySelectorAll(".collapsible").forEach(function(card) {
-          var content = card.querySelector(".collapsible-content");
+          var content = card.querySelector(":scope > .collapsible-content");
           if (content) {
             card.classList.add("open");
             content.style.maxHeight = content.scrollHeight + "px";
@@ -479,7 +479,8 @@
             siblings.forEach(function(sib){
               if (sib !== card && sib.classList.contains('open')) {
                 sib.classList.remove('open');
-                sib.querySelector('.collapsible-content').style.maxHeight = null;
+                var sibContent = sib.querySelector(":scope > .collapsible-content");
+                if (sibContent) sibContent.style.maxHeight = null;
               }
             });
 
@@ -497,17 +498,3 @@
       // default audience
       filterCV("data");
     });
-  </script>
-
-  <!-- sliding sidebar logic (same file as index.html) -->
-  <script src="assets/js/sidebar.js"></script>
-
-  <script>
-    // match index.html: remove preload on load
-    window.addEventListener('load', function(){
-      document.body.classList.remove('is-preload');
-    });
-  </script>
-
-</body>
-</html>

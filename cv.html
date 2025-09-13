@@ -414,113 +414,143 @@
 
   </div><!-- /#wrapper -->
 
-  <!-- Scripts (match index.html order) -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
+ <!-- Scripts (match index.html order) -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
 
-  <script>
-    // footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  // footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    document.addEventListener("DOMContentLoaded", function () {
-      var cvPage = document.querySelector("#main.alt");
-      if (!cvPage) return;
+  document.addEventListener("DOMContentLoaded", function () {
+    var cvPage = document.querySelector("#main.alt");
+    if (!cvPage) return;
 
-      // === Audience filter ===
-      var buttons = cvPage.querySelectorAll('.aud-btn');
-      buttons.forEach(function(btn){
-        btn.addEventListener('click', function(){
-          if (btn.getAttribute("aria-pressed") === "true") return;
-          buttons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
-          btn.setAttribute('aria-pressed','true');
-          filterCV(btn.dataset.audience);
-        });
+    // === Audience filter ===
+    var buttons = cvPage.querySelectorAll('.aud-btn');
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if (btn.getAttribute("aria-pressed") === "true") return;
+        buttons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+        btn.setAttribute('aria-pressed','true');
+        filterCV(btn.dataset.audience);
       });
+    });
 
-      function filterCV(tag){
-        cvPage.querySelectorAll('li[data-tags]').forEach(function(item){
-          var attr = item.getAttribute('data-tags');
-          if (!attr) return;
-          var tags = attr.split(',');
-          item.classList.toggle('hidden-role', !tags.includes(tag));
-        });
-        cvPage.querySelectorAll('.pill[data-tags]').forEach(function(pill){
-          var tags = pill.getAttribute('data-tags').split(',');
-          pill.classList.toggle('hidden-role', !tags.includes(tag));
-        });
-      }
+    function filterCV(tag){
+      cvPage.querySelectorAll('li[data-tags]').forEach(function(item){
+        var attr = item.getAttribute('data-tags');
+        if (!attr) return;
+        var tags = attr.split(',');
+        item.classList.toggle('hidden-role', !tags.includes(tag));
+      });
+      cvPage.querySelectorAll('.pill[data-tags]').forEach(function(pill){
+        var tags = pill.getAttribute('data-tags').split(',');
+        pill.classList.toggle('hidden-role', !tags.includes(tag));
+      });
+    }
 
-      // === Collapsibles ===
-      function expandAll() {
-        cvPage.querySelectorAll(".collapsible").forEach(function(card) {
-          var content = card.querySelector(":scope > .collapsible-content");
-          if (content) {
-            card.classList.add("open");
-            content.style.maxHeight = content.scrollHeight + "px";
+    // === Collapsibles ===
+    function setHeight(content) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    function expandAll() {
+      cvPage.querySelectorAll(".collapsible").forEach(function(card) {
+        var content = card.querySelector(":scope > .collapsible-content");
+        if (content) {
+          card.classList.add("open");
+          setHeight(content);
+        }
+      });
+    }
+
+    function collapseAll() {
+      cvPage.querySelectorAll(".collapsible").forEach(function(card) {
+        var content = card.querySelector(":scope > .collapsible-content");
+        if (content) {
+          card.classList.remove("open");
+          content.style.maxHeight = null;
+        }
+      });
+    }
+
+    function attachCollapsibleHandlers() {
+      cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
+        header.setAttribute("tabindex","0"); // keyboard focusable
+
+        header.addEventListener('click', function(){
+          var card = header.closest('.collapsible');
+          var content = card && card.querySelector(":scope > .collapsible-content");
+          if (!card || !content) return;
+
+          // Mobile → accordion behavior
+          if (window.innerWidth < 1024) {
+            var siblings = Array.from(card.parentElement.children)
+              .filter(el => el.classList && el.classList.contains('collapsible'));
+            siblings.forEach(function(sib){
+              if (sib !== card && sib.classList.contains('open')) {
+                sib.classList.remove('open');
+                var sibContent = sib.querySelector(":scope > .collapsible-content");
+                if (sibContent) sibContent.style.maxHeight = null;
+              }
+            });
+          }
+
+          // Toggle current
+          if (card.classList.contains('open')) {
+            card.classList.remove('open');
+            content.style.maxHeight = null;
+          } else {
+            card.classList.add('open');
+            setHeight(content);
           }
         });
-      }
 
-      function attachCollapsibleHandlers() {
-        cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
-          header.addEventListener('click', function(){
-            var card = header.closest('.collapsible');
-            var content = card && card.querySelector(":scope > .collapsible-content");
-            if (!card || !content) return;
-
-            // Mobile → accordion behavior
-            if (window.innerWidth < 1024) {
-              var siblings = Array.from(card.parentElement.children)
-                .filter(function(el){ return el.classList && el.classList.contains('collapsible'); });
-              siblings.forEach(function(sib){
-                if (sib !== card && sib.classList.contains('open')) {
-                  sib.classList.remove('open');
-                  var sibContent = sib.querySelector(":scope > .collapsible-content");
-                  if (sibContent) sibContent.style.maxHeight = null;
-                }
-              });
-            }
-
-            // Toggle current
-            if (card.classList.contains('open')) {
-              card.classList.remove('open');
-              content.style.maxHeight = null;
-            } else {
-              card.classList.add('open');
-              content.style.maxHeight = content.scrollHeight + "px";
-            }
-          });
-        });
-      }
-
-      // Desktop → expand all, but keep toggle functionality
-      if (window.innerWidth >= 1024) {
-        expandAll();
-      }
-      attachCollapsibleHandlers();
-
-      // Recalculate heights on resize
-      window.addEventListener("resize", function(){
-        cvPage.querySelectorAll(".collapsible.open > .collapsible-content").forEach(function(content){
-          content.style.maxHeight = content.scrollHeight + "px";
+        // Keyboard accessibility
+        header.addEventListener('keydown', function(e){
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            header.click();
+          }
         });
       });
+    }
 
-      // default audience
-      filterCV("data");
+    // Desktop → expand all, but still allow toggle
+    if (window.innerWidth >= 1024) {
+      expandAll();
+    } else {
+      collapseAll();
+    }
+    attachCollapsibleHandlers();
+
+    // Recalculate heights on resize
+    window.addEventListener("resize", function(){
+      cvPage.querySelectorAll(".collapsible.open > .collapsible-content").forEach(function(content){
+        setHeight(content);
+      });
     });
-  </script>
 
-  <!-- sliding sidebar logic (same file as index.html) -->
-  <script src="assets/js/sidebar.js"></script>
+    // default audience
+    filterCV("data");
+  });
+</script>
 
-  <script>
-    window.addEventListener('load', function(){
-      document.body.classList.remove('is-preload');
+<!-- sliding sidebar logic (same file as index.html) -->
+<script src="assets/js/sidebar.js"></script>
+
+<script>
+  window.addEventListener('load', function(){
+    document.body.classList.remove('is-preload');
+    // recalc open sections after fonts/images loaded
+    document.querySelectorAll('.collapsible.open > .collapsible-content').forEach(function(content){
+      content.style.maxHeight = content.scrollHeight + "px";
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>

@@ -402,7 +402,7 @@
     </div><!-- /#main -->
   </div><!-- /#wrapper -->
 
-   <!-- Core scripts -->
+  <!-- Core scripts -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/browser.min.js"></script>
   <script src="assets/js/breakpoints.min.js"></script>
@@ -440,12 +440,13 @@
       }
 
       /* === Audience tab buttons === */
-      const buttons = document.querySelectorAll(".aud-btn");
+      const buttons = document.querySelectorAll(".aud-btn"); // 🔑 define here
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
           const tag = btn.dataset.tag;
           if (!tag) return;
 
+          // update button states
           buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
           btn.setAttribute("aria-pressed", "true");
 

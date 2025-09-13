@@ -194,3 +194,7 @@
 .professional-experience .scroll-area::-webkit-scrollbar{ width:8px; }
 .professional-experience .scroll-area::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.3); border-radius:4px; }
 .professional-experience .scroll-area::-webkit-scrollbar-track{ background:transparent; }
+.hidden-role {
+  display: none !important;
+  visibility: hidden;
+}

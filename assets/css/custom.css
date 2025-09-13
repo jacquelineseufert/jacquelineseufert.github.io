@@ -525,19 +525,20 @@
   overflow: hidden;
   transition: max-height 0.3s ease;
   margin-top: 0.5rem;
+  display: block; /* keep block for animation */
 }
 
-/* let JS control height — remove fixed 2000px */
 .collapsible.open .collapsible-content {
-  overflow: visible; /* allow content inside to display normally */
+  max-height: 2000px; /* large enough to fit expanded content */
+  overflow: visible;
 }
 
-.collapsible-content ul {
-  list-style: disc;
-  margin-left: 1.5rem;
-  padding-left: 0.5rem;
+/* --- Important fix for audience filtering --- */
+.tasks li {
+  margin-bottom: 0.5rem;
+  display: list-item; /* default, ensures filter can toggle display:none */
 }
 
-.collapsible-content li {
-  margin-bottom: 0.4rem;
+.tasks li[hidden] {
+  display: none !important; /* filter hides properly */
 }

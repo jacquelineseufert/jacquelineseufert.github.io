@@ -542,9 +542,23 @@
 .tasks li[hidden] {
   display: none !important; /* filter hides properly */
 }
-/* Scrollbar only for the entire Professional Experience section */
-.exp-card.professional > .collapsible-content {
-  max-height: 600px;   /* adjust height as needed */
-  overflow-y: auto;    /* vertical scrollbar */
-  padding-right: 8px;  /* space so text doesn’t touch scrollbar */
+/* === Professional Experience Scrollbar === */
+#main.alt .exp-card.professional-experience .collapsible-content {
+  max-height: 70vh;        /* adjust height relative to screen */
+  overflow-y: auto;        /* enables vertical scrolling */
+  padding-right: 0.5rem;   /* space for scrollbar */
+}
+
+/* Optional: nicer looking scrollbar */
+#main.alt .exp-card.professional-experience .collapsible-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+#main.alt .exp-card.professional-experience .collapsible-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+#main.alt .exp-card.professional-experience .collapsible-content::-webkit-scrollbar-track {
+  background: transparent;
 }

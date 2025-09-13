@@ -425,15 +425,15 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   document.addEventListener("DOMContentLoaded", function () {
-    var cvPage = document.querySelector("#main.alt");
+    const cvPage = document.querySelector("#main.alt");
     if (!cvPage) return;
 
-    // === Audience filter ===
-    var buttons = cvPage.querySelectorAll('.aud-btn');
+    /* === Audience filter === */
+    const buttons = cvPage.querySelectorAll('.aud-btn');
     buttons.forEach(function(btn){
       btn.addEventListener('click', function(){
         if (btn.getAttribute("aria-pressed") === "true") return;
-        buttons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+        buttons.forEach(b => b.setAttribute('aria-pressed','false'));
         btn.setAttribute('aria-pressed','true');
         filterCV(btn.dataset.audience);
       });
@@ -441,25 +441,25 @@
 
     function filterCV(tag){
       cvPage.querySelectorAll('li[data-tags]').forEach(function(item){
-        var attr = item.getAttribute('data-tags');
+        const attr = item.getAttribute('data-tags');
         if (!attr) return;
-        var tags = attr.split(',');
+        const tags = attr.split(',');
         item.classList.toggle('hidden-role', !tags.includes(tag));
       });
       cvPage.querySelectorAll('.pill[data-tags]').forEach(function(pill){
-        var tags = pill.getAttribute('data-tags').split(',');
+        const tags = pill.getAttribute('data-tags').split(',');
         pill.classList.toggle('hidden-role', !tags.includes(tag));
       });
     }
 
-    // === Collapsibles ===
+    /* === Collapsibles === */
     function setHeight(content) {
-      if (content) content.style.maxHeight = content.scrollHeight + "px";
+      content.style.maxHeight = content.scrollHeight + "px";
     }
 
     function expandAll() {
       cvPage.querySelectorAll(".collapsible").forEach(function(card) {
-        var content = card.querySelector(":scope > .collapsible-content");
+        const content = card.querySelector(":scope > .collapsible-content");
         if (content) {
           card.classList.add("open");
           setHeight(content);
@@ -469,7 +469,7 @@
 
     function collapseAll() {
       cvPage.querySelectorAll(".collapsible").forEach(function(card) {
-        var content = card.querySelector(":scope > .collapsible-content");
+        const content = card.querySelector(":scope > .collapsible-content");
         if (content) {
           card.classList.remove("open");
           content.style.maxHeight = null;
@@ -482,24 +482,24 @@
         header.setAttribute("tabindex","0"); // keyboard focusable
 
         header.addEventListener('click', function(){
-          var card = header.closest('.collapsible');
-          var content = card && card.querySelector(":scope > .collapsible-content");
+          const card = header.closest('.collapsible');
+          const content = card && card.querySelector(":scope > .collapsible-content");
           if (!card || !content) return;
 
-          // Mobile → accordion behavior
+          // Mobile → accordion (close siblings)
           if (window.innerWidth < 1024) {
-            var siblings = Array.from(card.parentElement.children)
+            const siblings = Array.from(card.parentElement.children)
               .filter(el => el.classList && el.classList.contains('collapsible'));
             siblings.forEach(function(sib){
               if (sib !== card && sib.classList.contains('open')) {
                 sib.classList.remove('open');
-                var sibContent = sib.querySelector(":scope > .collapsible-content");
+                const sibContent = sib.querySelector(":scope > .collapsible-content");
                 if (sibContent) sibContent.style.maxHeight = null;
               }
             });
           }
 
-          // Toggle current
+          // Toggle current card
           if (card.classList.contains('open')) {
             card.classList.remove('open');
             content.style.maxHeight = null;
@@ -519,9 +519,9 @@
       });
     }
 
-    // === Init ===
+    /* === Init === */
     if (window.innerWidth >= 1024) {
-      expandAll();  // desktop → expanded
+      expandAll();   // desktop → expanded
     } else {
       collapseAll(); // mobile → collapsed
     }
@@ -537,20 +537,19 @@
     // default audience
     filterCV("data");
   });
-</script>
 
-<!-- sliding sidebar logic (same file as index.html) -->
-<script src="assets/js/sidebar.js"></script>
-
-<script>
+  /* === After load, adjust heights === */
   window.addEventListener('load', function(){
     document.body.classList.remove('is-preload');
-    // recalc open sections after fonts/images loaded
     document.querySelectorAll('.collapsible.open > .collapsible-content').forEach(function(content){
       content.style.maxHeight = content.scrollHeight + "px";
     });
   });
 </script>
+
+<!-- sliding sidebar logic (same file as index.html) -->
+<script src="assets/js/sidebar.js"></script>
+
 
 </body>
 </html>

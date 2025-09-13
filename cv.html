@@ -112,7 +112,8 @@
         <!-- Professional Experience (outer collapsible) -->
         <div class="exp-card collapsible professional-experience open">
           <h3 class="collapsible-header">Professional Experience</h3>
-          <div class="collapsible-content" style="max-height:none;">
+         <div class="collapsible-content">
+
             <div class="scroll-area">
 
               <!-- === KU Leuven (example) === -->
@@ -418,17 +419,18 @@
       if (!cvPage) return;
 
       /* === Audience filter === */
-      const buttons = cvPage.querySelectorAll(".aud-btn");
-      function filterCV(tag) {
-        cvPage.querySelectorAll("li[data-tags]").forEach(item => {
-          const tags = item.getAttribute("data-tags")?.split(",") || [];
-          item.classList.toggle("hidden-role", !tags.includes(tag));
-        });
-        cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
-          const tags = pill.getAttribute("data-tags")?.split(",") || [];
-          pill.classList.toggle("hidden-role", !tags.includes(tag));
-        });
-      }
+    function filterCV(tag) {
+  cvPage.querySelectorAll("li[data-tags]").forEach(item => {
+    const tags = item.getAttribute("data-tags")?.split(",") || [];
+    item.classList.toggle("hidden-role", !(tags.includes(tag) || tags.includes("all")));
+  });
+  cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
+    const tags = pill.getAttribute("data-tags")?.split(",") || [];
+    pill.classList.toggle("hidden-role", !(tags.includes(tag) || tags.includes("all")));
+  });
+}
+
+      
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
           if (btn.getAttribute("aria-pressed") === "true") return;

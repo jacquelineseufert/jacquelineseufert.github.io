@@ -402,6 +402,7 @@
     </div><!-- /#main -->
   </div><!-- /#wrapper -->
 <!-- Core scripts -->
+
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
@@ -414,54 +415,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  const cvPage = document.querySelector("#main");
+  const cvPage = document.querySelector("#main.alt");
   if (!cvPage) return;
+
+  const buttons = document.querySelectorAll(".aud-btn");
 
   /* === Audience filter === */
   function filterCV(tag) {
-    // Tasks (bullet points)
     cvPage.querySelectorAll("li[data-tags]").forEach(item => {
       const tags = item.getAttribute("data-tags")?.split(",") || [];
-      if (tags.includes(tag)) {
-        item.classList.remove("hidden-role");
-      } else {
-        item.classList.add("hidden-role");
-      }
+      item.classList.toggle("hidden-role", !tags.includes(tag));
     });
 
-    // Pills (skills)
     cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
       const tags = pill.getAttribute("data-tags")?.split(",") || [];
-      if (tags.includes(tag)) {
-        pill.classList.remove("hidden-role");
-      } else {
-        pill.classList.add("hidden-role");
-      }
+      pill.classList.toggle("hidden-role", !tags.includes(tag));
     });
   }
 
-  function resetFilter() {
-    cvPage.querySelectorAll("li[data-tags], .pill[data-tags]").forEach(el => {
-      el.classList.remove("hidden-role");
-    });
-  }
-
-  /* === Audience tab buttons === */
-  const buttons = document.querySelectorAll(".aud-btn");
+  /* === Audience buttons === */
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-      const tag = btn.dataset.tag;
-      if (!tag) return;
-
-      // Update pressed states
+      if (btn.getAttribute("aria-pressed") === "true") return;
       buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
       btn.setAttribute("aria-pressed", "true");
-
-      if (tag === "all") {
-        resetFilter();
-      } else {
-        filterCV(tag);
-      }
+      filterCV(btn.dataset.audience);
     });
   });
 
@@ -470,27 +448,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = card.querySelector(".collapsible-header");
     const content = card.querySelector(".collapsible-content");
     if (!header || !content) return;
-    content.style.maxHeight = null; // collapsed by default
+    content.style.maxHeight = null;
 
     header.addEventListener("click", () => {
       card.classList.toggle("open");
-      if (card.classList.contains("open")) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = null;
-      }
+      content.style.maxHeight = card.classList.contains("open")
+        ? content.scrollHeight + "px"
+        : null;
     });
   });
 
-  /* === Default: show everything === */
-  resetFilter();
+  /* === Default audience view === */
+  filterCV("data");
 });
 
 window.addEventListener("load", () => {
   document.body.classList.remove("is-preload");
 });
 </script>
-
-  
 </body>
 </html>

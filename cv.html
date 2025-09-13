@@ -410,7 +410,7 @@
       </div>
     </div><!-- /#main -->
 
-  </div><!-- /#wrapper -->
+</div><!-- /#wrapper -->
 
 <!-- Scripts (match index.html order) -->
 <script src="assets/js/jquery.min.js"></script>
@@ -450,8 +450,6 @@
     }
 
     /* ===== Collapsibles ===== */
-
-    // collapse everything on load (desktop & mobile)
     [...cvPage.querySelectorAll('.collapsible')].forEach(card => {
       const content = card.querySelector(':scope > .collapsible-content');
       if (content) {
@@ -460,20 +458,18 @@
       }
     });
 
-    // click handling with delegation (works for all current & future headers)
     cvPage.addEventListener('click', function (e) {
       const header = e.target.closest('.collapsible-header');
       if (!header || !cvPage.contains(header)) return;
 
       const card = header.closest('.collapsible');
-    const content = header.closest('.collapsible').querySelector(':scope > .collapsible-content');
+      const content = card.querySelector(':scope > .collapsible-content');
+      if (!card || !content) return;
 
-      if (!card || !content || !content.classList.contains('collapsible-content')) return;
-
-      // Mobile: close sibling cards at same level (accordion)
+      // Mobile: close siblings (accordion behaviour)
       if (window.innerWidth < 1024) {
         [...card.parentNode.children].forEach(sib => {
-          if (sib !== card && sib.classList && sib.classList.contains('collapsible') && sib.classList.contains('open')) {
+          if (sib !== card && sib.classList.contains('collapsible') && sib.classList.contains('open')) {
             sib.classList.remove('open');
             const sibContent = sib.querySelector(':scope > .collapsible-content');
             if (sibContent) sibContent.style.maxHeight = '0px';
@@ -499,7 +495,7 @@
       }
     });
 
-    // keep heights correct on resize for open cards
+    // keep heights correct on resize
     window.addEventListener('resize', function(){
       cvPage.querySelectorAll('.collapsible.open > .collapsible-content').forEach(content => {
         content.style.maxHeight = content.scrollHeight + 'px';
@@ -519,31 +515,7 @@
   });
 </script>
 
-<!-- sliding sidebar logic (same file as index.html) -->
+<!-- sliding sidebar logic -->
 <script src="assets/js/sidebar.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const headers = document.querySelectorAll(".collapsible-header");
-
-  headers.forEach(header => {
-    header.addEventListener("click", function() {
-      const collapsible = header.closest(".collapsible");
-      const content = collapsible.querySelector(".collapsible-content");
-
-      // toggle active class
-      collapsible.classList.toggle("active");
-
-      // toggle display
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  });
-});
-</script>
-
 </body>
 </html>

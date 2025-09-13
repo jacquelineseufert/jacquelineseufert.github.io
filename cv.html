@@ -399,9 +399,9 @@
         Schneider, R., Seufert, J. (2017). Impact of monetary policy on yields. 
         <em>Allianz Economic Research</em>, Working Paper 209.
       </li>
-      <li>
-        Weicher, J.C., Seufert, J. (2016). Vacation Homes and Vacation Homeowners. 
-        <em>The Journal of the Center for Real Estate Studies</em>, 4(1).
+           <li>
+        Weicher, J.C., Seufert, J. (2016). Vacation Homes and Vacation Homeowners.
+        <em>Journal of the Center for Real Estate Studies</em>, 4(1).
       </li>
     </ul>
   </div>
@@ -467,13 +467,13 @@
         cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
           header.addEventListener('click', function(){
             var card = header.closest('.collapsible');
-            var content = card.querySelector(":scope > .collapsible-content");
-            if (!content) return;
+            var content = card && card.querySelector(":scope > .collapsible-content");
+            if (!card || !content) return;
 
             // Mobile → accordion behavior
             if (window.innerWidth < 1024) {
               var siblings = Array.from(card.parentElement.children)
-                .filter(el => el.classList.contains('collapsible'));
+                .filter(function(el){ return el.classList && el.classList.contains('collapsible'); });
               siblings.forEach(function(sib){
                 if (sib !== card && sib.classList.contains('open')) {
                   sib.classList.remove('open');
@@ -501,9 +501,9 @@
       }
       attachCollapsibleHandlers();
 
-      // Recalculate heights on resize (important!)
+      // Recalculate heights on resize
       window.addEventListener("resize", function(){
-        cvPage.querySelectorAll(".collapsible.open .collapsible-content").forEach(function(content){
+        cvPage.querySelectorAll(".collapsible.open > .collapsible-content").forEach(function(content){
           content.style.maxHeight = content.scrollHeight + "px";
         });
       });

@@ -500,18 +500,22 @@
   margin-top: 0.5rem;
 }
 
+/* Open state */
 .collapsible.open .collapsible-content {
-  max-height: 2000px; /* big enough for long content */
+  max-height: 2000px; /* big enough */
+  overflow: visible;  /* show bullets */
 }
 
+/* Header + arrow */
 .collapsible-header {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
+  position: relative;
 }
 
-/* Arrow always visible */
 .collapsible-header::after {
   content: "▸";
   font-size: 0.9rem;
@@ -523,10 +527,21 @@
   transform: rotate(90deg);
 }
 
-/* Desktop: expand all by default, but allow toggling */
+/* Bullets always visible in lists */
+.collapsible-content ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.collapsible-content li {
+  margin-bottom: 0.4rem;
+}
+
+/* Desktop expanded by default */
 @media (min-width: 769px) {
-  .collapsible {
-    /* start expanded on load */
-    /* JS adds .open to all on desktop */
+  .collapsible.open .collapsible-content {
+    max-height: none;
+    overflow: visible;
   }
 }

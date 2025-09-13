@@ -527,3 +527,13 @@
     display: none;
   }
 }
+
+/* === Mobile: Scrollable top-level sections === */
+@media (max-width: 768px) {
+  section {
+    overflow-y: auto;
+    max-height: 80vh;
+    margin-bottom: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+}

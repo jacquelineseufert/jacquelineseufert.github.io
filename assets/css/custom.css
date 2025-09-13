@@ -511,13 +511,28 @@
   align-items: center;
 }
 
+/* Arrow always visible */
 .collapsible-header::after {
   content: "▸";
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
   transition: transform 0.2s ease;
 }
 
 .collapsible.open .collapsible-header::after {
   transform: rotate(90deg);
+}
+
+/* Desktop: expanded by default */
+@media (min-width: 769px) {
+  .collapsible .collapsible-content {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  /* keep arrow visible, but rotated so user can collapse */
+  .collapsible-header::after {
+    display: inline-block;
+  }
 }
 
 /* Desktop: expanded by default */

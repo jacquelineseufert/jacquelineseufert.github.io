@@ -457,28 +457,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /* === Collapsibles === */
 document.querySelectorAll(".collapsible").forEach(card => {
   const header = card.querySelector(".collapsible-header");
-  const content = card.querySelector(".collapsible-content");
   const arrow = header.querySelector(".arrow");
-
-  if (!header || !content) return;
-
-  // initialize
-  if (card.classList.contains("open")) {
-    content.style.maxHeight = content.scrollHeight + "px";
-    if (arrow) arrow.style.transform = "rotate(90deg)";
-  }
 
   header.addEventListener("click", () => {
     card.classList.toggle("open");
-
-    if (card.classList.contains("open")) {
-      content.style.maxHeight = content.scrollHeight + "px";
-      if (arrow) arrow.style.transform = "rotate(90deg)";
-   } else {
-  content.style.maxHeight = "0px";
-  if (arrow) arrow.style.transform = "rotate(0deg)";
-}
-
+    if (arrow) {
+      arrow.style.transform = card.classList.contains("open")
+        ? "rotate(90deg)"
+        : "rotate(0deg)";
+    }
   });
 });
 

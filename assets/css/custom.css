@@ -44,7 +44,7 @@
 
 /* === Profile block === */
 .profile {
-  margin: auto 0;  /* vertically centered */
+  margin: auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,14 +129,14 @@
 
 /* === Contact section === */
 .contact-section header.major h2 {
-  font-size: 0.9rem;  /* match menu header */
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.75rem;
   text-align: left;
   color: #fff;
-  margin-top: 1.5rem;  /* extra space above */
-  border-top: 1px solid #444;  /* subtle divider */
+  margin-top: 1.5rem;
+  border-top: 1px solid #444;
   padding-top: 0.75rem;
 }
 
@@ -154,13 +154,13 @@
 }
 
 #sidebar ul.contact li i {
-  width: 16px;  /* align icons */
+  width: 16px;
   text-align: center;
   color: #fff;
 }
 
 #sidebar ul.contact li a {
-  font-size: 0.9rem;  /* same as menu links */
+  font-size: 0.9rem;
   color: #fff;
   text-decoration: none;
 }
@@ -329,8 +329,7 @@
     pointer-events: auto;
   }
 
-  html,
-  body {
+  html, body {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -382,55 +381,31 @@
 
 /* === Normalize sidebar section headers === */
 #menu header.major h2, #sidebar section header.major h2 {
-  font-size: 0.9rem;  /* same size as Menu */
-  font-weight: normal;  /* not bold */
+  font-size: 0.9rem;
+  font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 1.2rem 0 0.75rem 0;  /* space above and below */
+  margin: 1.2rem 0 0.75rem 0;
   text-align: left;
   color: #fff;
 }
 
 /* Extra spacing specifically before "Get in touch" */
 #sidebar section header.major h2 {
-  margin-top: 1.8rem;  /* more breathing room */
-  border-top: 1px solid #444;  /* subtle divider */
+  margin-top: 1.8rem;
+  border-top: 1px solid #444;
   padding-top: 0.75rem;
 }
 
 /* === Normalize ALL sidebar icons for alignment === */
 #sidebar ul li a i, #sidebar ul.contact li a i {
-  width: 1.25rem;  /* consistent width for all icons */
+  width: 1.25rem;
   min-width: 1.25rem;
-  text-align: center;  /* center the icon inside */
+  text-align: center;
   flex-shrink: 0;
 }
 
 /* === Contact section matches MENU styling === */
-#sidebar ul.contact {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#sidebar ul.contact li {
-  margin: 0.4rem 0;
-}
-
-#sidebar ul.contact li a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;  /* same spacing as menu items */
-  font-size: 0.9rem;  /* match menu text size */
-  color: #fff;
-  text-decoration: none;
-}
-
-#sidebar ul.contact li a:hover {
-  color: #f39c12;
-}
-
-/* --- Contact section: make it line up exactly like MENU --- */
 #sidebar ul.contact {
   list-style: none;
   padding: 0 !important;
@@ -469,7 +444,7 @@
   margin: 0 0 1.25rem 0;
 }
 
-/* === Audience filter buttons – EXACT match with OPEN/EXPLORE === */
+/* === Audience filter buttons === */
 .audience-tabs .aud-btn {
   margin-top: auto;
   background: #fff !important;
@@ -489,7 +464,6 @@
   letter-spacing: normal;
 }
 
-/* Hover and active (pressed) states */
 .audience-tabs .aud-btn:hover,
 .audience-tabs .aud-btn[aria-pressed="true"] {
   background: #000 !important;
@@ -497,8 +471,9 @@
   border-color: #000 !important;
 }
 
+/* === Lists === */
 .pub-list, .lang-list {
-  list-style: disc !important;   /* force bullets */
+  list-style: disc !important;
   margin-left: 1.5rem;
   padding-left: 0.5rem;
 }
@@ -507,7 +482,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* === FIX: Show bullets globally for all .tasks === */
 .tasks {
   list-style: disc !important;
   margin-left: 1.5rem;
@@ -520,12 +494,12 @@
 
 /* === Collapsible job entries === */
 .collapsible .collapsible-content {
-  display: none; /* hide by default */
+  display: none;
   margin-top: 0.5rem;
 }
 
 .collapsible.open .collapsible-content {
-  display: block; /* show when toggled */
+  display: block;
 }
 
 .collapsible-header {
@@ -536,15 +510,15 @@
 }
 
 .collapsible-header::after {
-  content: "▸"; /* arrow */
+  content: "▸";
   transition: transform 0.2s;
 }
 
 .collapsible.open .collapsible-header::after {
-  transform: rotate(90deg); /* arrow rotates when open */
+  transform: rotate(90deg);
 }
 
-/* On desktop: keep everything expanded */
+/* Desktop: always expanded */
 @media (min-width: 769px) {
   .collapsible .collapsible-content {
     display: block !important;

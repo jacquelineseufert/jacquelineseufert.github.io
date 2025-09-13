@@ -493,7 +493,6 @@
 }
 
 /* === Collapsible job entries === */
-
 .collapsible .collapsible-content {
   max-height: 0;
   overflow: hidden;
@@ -524,9 +523,10 @@
   transform: rotate(90deg);
 }
 
-/* Desktop: start expanded, but keep toggle available */
+/* Desktop: expand all by default, but allow toggling */
 @media (min-width: 769px) {
-  .collapsible .collapsible-content {
-    max-height: 2000px; /* expanded by default */
+  .collapsible {
+    /* start expanded on load */
+    /* JS adds .open to all on desktop */
   }
 }

@@ -522,6 +522,28 @@
 <!-- sliding sidebar logic (same file as index.html) -->
 <script src="assets/js/sidebar.js"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const headers = document.querySelectorAll(".collapsible-header");
+
+  headers.forEach(header => {
+    header.addEventListener("click", function() {
+      const collapsible = header.closest(".collapsible");
+      const content = collapsible.querySelector(".collapsible-content");
+
+      // toggle active class
+      collapsible.classList.toggle("active");
+
+      // toggle display
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>

@@ -147,12 +147,46 @@
 .hidden-role { display:none !important; }
 
 /* === Collapsible job entries === */
-.collapsible{ border-bottom:1px solid #ddd; padding:.75rem 0; }
-.collapsible-header{ cursor:pointer; display:flex; justify-content:space-between; align-items:center;
-  font-weight:600; position:relative; padding-right:1.5rem; }
+.collapsible {
+  border-bottom:1px solid #ddd;
+  padding:.75rem 0;
+}
 
-.collapsible-content{ max-height:0; overflow:hidden; transition:max-height .3s ease; margin-top:.5rem; display:block; }
-.collapsible.open .collapsible-content{ overflow:visible; max-height:2000px; }
+/* header clickable */
+.collapsible-header {
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+  position:relative;
+  padding-right:1.5rem;
+}
+
+/* hidden by default */
+.collapsible-content {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+  margin-top:.5rem;
+  display:block;
+}
+
+/* only expand direct child */
+.collapsible.open > .collapsible-content {
+  overflow:visible;
+  max-height:2000px;
+}
+
+/* arrow rotation */
+.collapsible-header .arrow {
+  margin-left:auto;
+  transition:transform .2s ease;
+  font-size:.9rem;
+}
+.collapsible.open > .collapsible-header .arrow {
+  transform: rotate(90deg);
+}
 
 /* === Scrollable experience === */
 .professional-experience .scroll-area {
@@ -161,19 +195,3 @@
 .professional-experience .scroll-area::-webkit-scrollbar{ width:8px; }
 .professional-experience .scroll-area::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.3); border-radius:4px; }
 .professional-experience .scroll-area::-webkit-scrollbar-track{ background:transparent; }
-
-/* === Manual arrow span === */
-.collapsible-header .arrow {
-  margin-left: auto;
-  transition: transform .2s ease;
-  font-size: .9rem;
-}
-.collapsible.open .collapsible-header .arrow {
-  transform: rotate(90deg);
-}
-.collapsible-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}

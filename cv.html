@@ -453,7 +453,45 @@
         });
       }
 
-      // Collapsibles
+   <!-- Scripts (match index.html order) -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+
+  <script>
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var cvPage = document.querySelector("#main.alt");
+      if (!cvPage) return;
+
+      // === Audience filter ===
+      var buttons = cvPage.querySelectorAll('.aud-btn');
+      buttons.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          if (btn.getAttribute("aria-pressed") === "true") return;
+          buttons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+          btn.setAttribute('aria-pressed','true');
+          filterCV(btn.dataset.audience);
+        });
+      });
+
+      function filterCV(tag){
+        cvPage.querySelectorAll('li[data-tags]').forEach(function(item){
+          var attr = item.getAttribute('data-tags');
+          if (!attr) return;
+          var tags = attr.split(',');
+          item.classList.toggle('hidden-role', !tags.includes(tag));
+        });
+        cvPage.querySelectorAll('.pill[data-tags]').forEach(function(pill){
+          var tags = pill.getAttribute('data-tags').split(',');
+          pill.classList.toggle('hidden-role', !tags.includes(tag));
+        });
+      }
+
+      // === Collapsibles ===
       function expandAll() {
         cvPage.querySelectorAll(".collapsible").forEach(function(card) {
           var content = card.querySelector(":scope > .collapsible-content");
@@ -470,7 +508,9 @@
             var card = header.closest('.collapsible');
             var content = card.querySelector(":scope > .collapsible-content");
 
-            // On mobile: accordion behavior
+            if (!content) return;
+
+            // Mobile → accordion behavior
             if (window.innerWidth < 1024) {
               var siblings = Array.from(card.parentElement.children)
                 .filter(el => el.classList.contains('collapsible'));
@@ -484,24 +524,23 @@
             }
 
             // Toggle current
-            card.classList.toggle('open');
             if (card.classList.contains('open')) {
-              content.style.maxHeight = content.scrollHeight + "px";
-            } else {
+              card.classList.remove('open');
               content.style.maxHeight = null;
+            } else {
+              card.classList.add('open');
+              content.style.maxHeight = content.scrollHeight + "px";
             }
           });
         });
       }
 
       if (window.innerWidth >= 1024) {
-        // Desktop → expand all but keep toggling enabled
+        // Desktop → expand all but still allow toggling
         expandAll();
-        attachCollapsibleHandlers();
-      } else {
-        // Mobile → accordion behavior
-        attachCollapsibleHandlers();
       }
+      // Always attach handlers so user can toggle
+      attachCollapsibleHandlers();
 
       // default audience
       filterCV("data");
@@ -512,7 +551,6 @@
   <script src="assets/js/sidebar.js"></script>
 
   <script>
-    // match index.html: remove preload on load
     window.addEventListener('load', function(){
       document.body.classList.remove('is-preload');
     });

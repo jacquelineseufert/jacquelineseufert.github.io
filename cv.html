@@ -452,18 +452,30 @@
       }
 
       // Collapsibles
-      cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
-        header.addEventListener('click', function(){
-          var card = header.parentElement;
-          var content = header.nextElementSibling;
-          card.classList.toggle('open');
-          if (card.classList.contains('open')){
-            content.style.maxHeight = content.scrollHeight + "px";
-          } else {
-            content.style.maxHeight = null;
-          }
-        });
-      });
+     // Collapsibles (accordion behavior)
+cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
+  header.addEventListener('click', function(){
+    var card = header.parentElement;
+    var content = header.nextElementSibling;
+
+    // Close all others
+    cvPage.querySelectorAll('.collapsible.open').forEach(function(openCard){
+      if (openCard !== card) {
+        openCard.classList.remove('open');
+        openCard.querySelector('.collapsible-content').style.maxHeight = null;
+      }
+    });
+
+    // Toggle current
+    card.classList.toggle('open');
+    if (card.classList.contains('open')) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      content.style.maxHeight = null;
+    }
+  });
+});
+
 
       // default audience
       filterCV("data");
@@ -478,20 +490,6 @@
     window.addEventListener('load', function(){
       document.body.classList.remove('is-preload');
     });
-  </script>
-    document.querySelectorAll('.collapsible-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const parent = header.parentElement;
-      parent.classList.toggle('open');
 
-      const content = parent.querySelector('.collapsible-content');
-      if (parent.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = null;
-      }
-    });
-  });
-</script>
 </body>
 </html>

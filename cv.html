@@ -398,129 +398,70 @@
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
+<script src="assets/js/sidebar.js"></script>
 
 <script>
-  // Footer year
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.addEventListener("DOMContentLoaded", () => {
+    // Footer year
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // CV-only behavior: audience filter + collapsibles
-  document.addEventListener("DOMContentLoaded", function () {
+    // CV-only behavior
     const cvPage = document.querySelector("#main.alt");
     if (!cvPage) return;
 
-    // --- Audience filter ---
+    /* === Audience filter === */
     const buttons = cvPage.querySelectorAll(".aud-btn");
 
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
         if (btn.getAttribute("aria-pressed") === "true") return;
 
-        buttons.forEach(function (b) {
-          b.setAttribute("aria-pressed", "false");
-        });
+        buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
         btn.setAttribute("aria-pressed", "true");
         filterCV(btn.dataset.audience);
       });
     });
 
     function filterCV(tag) {
-      cvPage.querySelectorAll("li[data-tags]").forEach(function (item) {
+      cvPage.querySelectorAll("li[data-tags]").forEach(item => {
         const tags = item.getAttribute("data-tags")?.split(",") || [];
         item.classList.toggle("hidden-role", !tags.includes(tag));
       });
 
-      cvPage.querySelectorAll(".pill[data-tags]").forEach(function (pill) {
+      cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
         const tags = pill.getAttribute("data-tags")?.split(",") || [];
         pill.classList.toggle("hidden-role", !tags.includes(tag));
       });
     }
 
-    // --- Collapsibles ---
-// --- Collapsibles ---
-cvPage.querySelectorAll(".collapsible").forEach(function (card) {
-  const header = card.querySelector(".collapsible-header");
-  const content = card.querySelector(".collapsible-content");
+    /* === Collapsibles === */
+    cvPage.querySelectorAll(".collapsible").forEach(card => {
+      const header = card.querySelector(".collapsible-header");
+      const content = card.querySelector(".collapsible-content");
+      if (!header || !content) return;
 
-  // Ensure collapsed at start
-  content.style.maxHeight = null;
-
-  header.addEventListener("click", function () {
-    card.classList.toggle("open");
-
-    if (card.classList.contains("open")) {
-      // force browser to recalc before setting scrollHeight
-      content.style.maxHeight = content.scrollHeight + "px";
-    } else {
+      // start collapsed
       content.style.maxHeight = null;
-    }
-  });
-});
 
+      header.addEventListener("click", () => {
+        card.classList.toggle("open");
 
-    // Default audience view
-    filterCV("data");
-  });    // --- Collapsibles ---
-// --- Collapsibles ---
-cvPage.querySelectorAll(".collapsible").forEach(function (card) {
-  const header = card.querySelector(".collapsible-header");
-  const content = card.querySelector(".collapsible-content");
-
-  // Ensure collapsed at start
-  content.style.maxHeight = null;
-
-  header.addEventListener("click", function () {
-    card.classList.toggle("open");
-
-    if (card.classList.contains("open")) {
-      // force browser to recalc before setting scrollHeight
-      content.style.maxHeight = content.scrollHeight + "px";
-    } else {
-      content.style.maxHeight = null;
-    }
-  });
-});
-
+        if (card.classList.contains("open")) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    });
 
     // Default audience view
     filterCV("data");
   });
-</script>
 
-<!-- Sliding sidebar logic -->
-<script src="assets/js/sidebar.js"></script>
-<script>
-  // Remove preload class once loaded
-  window.addEventListener("load", function () {
-    document.body.classList.remove("is-preload");
-  });
-</script>
-
-</body>
-</html>
-
-</script>
-
-<!-- Sliding sidebar logic -->
-<script src="assets/js/sidebar.js"></script>
-<script>
-  // Remove preload class once loaded
+  // Remove preload class once page fully loaded
   window.addEventListener("load", () => {
     document.body.classList.remove("is-preload");
-  });
-
-  // Collapsible logic
-  document.querySelectorAll('.collapsible-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const card = header.parentElement;
-      const content = card.querySelector('.collapsible-content');
-      card.classList.toggle('open');
-
-      if (card.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = null;
-      }
-    });
   });
 </script>
 </body>

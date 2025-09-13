@@ -466,17 +466,20 @@
         // Desktop → expand all
         expandAll();
       } else {
-        // Mobile → accordion behavior
+        // Mobile → accordion behavior (scoped to siblings)
         cvPage.querySelectorAll('.collapsible-header').forEach(function(header){
           header.addEventListener('click', function(){
             var card = header.parentElement;
             var content = header.nextElementSibling;
 
-            // Close all others
-            cvPage.querySelectorAll('.collapsible.open').forEach(function(openCard){
-              if (openCard !== card) {
-                openCard.classList.remove('open');
-                openCard.querySelector('.collapsible-content').style.maxHeight = null;
+            // Close only sibling collapsibles at the same level
+            var siblings = Array.from(card.parentElement.children)
+              .filter(el => el.classList.contains('collapsible'));
+
+            siblings.forEach(function(sib){
+              if (sib !== card && sib.classList.contains('open')) {
+                sib.classList.remove('open');
+                sib.querySelector('.collapsible-content').style.maxHeight = null;
               }
             });
 

@@ -14,55 +14,88 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
+  <!-- Put our overrides LAST so they win the cascade -->
   <style>
-    .swiper {
-      width: 100%;
-      padding: 2rem 0;
+    :root{
+      /* tweak these if you want taller/shorter cards per breakpoint */
+      --card-min-h-mobile: 420px;
+      --card-min-h-tablet: 460px;
+      --card-min-h-desktop: 500px;
     }
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
+
+    /* Swiper layout */
+    .swiper{ width:100%; padding:2rem 0; }
+    /* Swiper already uses flex; we make sure slides stretch to same height */
+    .swiper-wrapper{ align-items:stretch; }
+    .swiper-slide{
+      display:flex;            /* so child can stretch */
+      align-items:stretch;
+      justify-content:center;
     }
-    .project-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      max-width: 350px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
+
+    /* Project card — equal height with CSS grid */
+    .project-card{
+      box-sizing:border-box;
+      display:grid;
+      grid-template-rows: auto auto 1fr auto; /* img | title | text (flexible) | actions at bottom */
+      gap:.75rem;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      padding:1.1rem 1.1rem 1rem;
+      width:100%;
+      max-width:340px;
+      min-height:var(--card-min-h-mobile);  /* baseline equal height */
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .project-card img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 1rem;
+    @media (min-width:768px){ .project-card{ min-height:var(--card-min-h-tablet);} }
+    @media (min-width:1024px){ .project-card{ min-height:var(--card-min-h-desktop);} }
+
+    .project-card:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(0,0,0,.12); }
+
+    .project-card img{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:8px;
     }
-    .actions {
-      margin-top: auto;
+    .project-card h3{ margin:.25rem 0 .25rem; font-size:1.05rem; line-height:1.35; }
+    .project-card p{ margin:0; font-size:.92rem; line-height:1.5; color:#222; }
+
+    /* Optional clamps to keep text from making one card taller than the rest */
+    .project-card p.description{
+      display:-webkit-box;
+      -webkit-line-clamp:6; /* change to 5/7 if you want */
+      -webkit-box-orient:vertical;
+      overflow:hidden;
     }
-    .swiper-button-next, .swiper-button-prev {
-      color: #333;
+
+    .actions{ display:flex; justify-content:flex-end; align-items:center; margin-top:.25rem; }
+    .button{
+      display:inline-block;
+      padding:.45rem .9rem;
+      font-size:.8rem;
+      font-weight:600;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      border:1px solid #222;
+      border-radius:6px;
+      background:#f7f7f7;
+      color:#222;
+      transition:all .2s ease;
     }
-    .swiper-pagination-bullet {
-      background: #333;
-    }
+    .button:hover{ background:#222; color:#fff; }
+
+    .swiper-button-next, .swiper-button-prev{ color:#333; }
+    .swiper-pagination-bullet{ background:#333; }
   </style>
 </head>
 
 <body class="is-preload">
-
-  <!-- Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
     <aside id="sidebar">
       <div class="inner">
-
-        <!-- Profile -->
         <section class="profile" style="text-align:center; margin-bottom:2rem;">
           <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" style="width:140px; border-radius:50%; margin-bottom:1rem;">
           <h1 style="margin:0;">Jacqueline Seufert</h1>
@@ -72,7 +105,6 @@
           <p style="font-size:.9rem;">Economist &amp; Data Scientist</p>
         </section>
 
-        <!-- Menu -->
         <nav id="menu">
           <header class="major"><h2>Menu</h2></header>
           <ul>
@@ -82,7 +114,6 @@
           </ul>
         </nav>
 
-        <!-- Contact -->
         <section>
           <header class="major"><h2>Get in touch</h2></header>
           <ul class="contact">
@@ -96,57 +127,127 @@
           </ul>
         </section>
 
-        <!-- Footer -->
         <footer id="footer">
-          <p class="copyright">
-            © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
-          </p>
+          <p class="copyright">© <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
         </footer>
-
       </div>
     </aside>
 
-    <!-- Main -->
     <main id="main">
       <div class="inner">
 
-        <!-- Cover / Title -->
         <section id="cover" style="text-align:center; padding:3rem 1rem;">
           <h1>Eurostat Projects</h1>
-          <p class="subtitle">
-            Building tools to tackle Eurostat’s methodological challenges — from reproducibility gaps to survey metadata chaos.  
-          </p>
+          <p class="subtitle">Building tools to tackle Eurostat’s methodological challenges — from reproducibility gaps to survey metadata chaos.</p>
         </section>
 
-        <!-- Swiper Carousel -->
         <section>
           <div class="swiper">
             <div class="swiper-wrapper">
 
-              <!-- Project slides (1–10) -->
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project1.jpg" alt="Reproducibility Receipts"><h3>1. Reproducibility Receipts</h3><p>CLI tool in R/Python that fetches data by DOI, saves data + metadata, and verifies integrity via SHA-256 hashes.</p><p><strong>Tech:</strong> Cryptographic hashing, metadata harvesting, DOI fetching.</p><div class="actions"><a href="https://github.com/jacquelineseufert/reprorec/" target="_blank" class="button">Repository</a></div></div></div>
+              <!-- 1–10 -->
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project1.jpg" alt="Reproducibility Receipts">
+                  <h3>1. Reproducibility Receipts</h3>
+                  <p class="description">CLI tool in R/Python that fetches data by DOI, saves data + metadata, and verifies integrity via SHA-256 hashes.</p>
+                  <p><strong>Tech:</strong> Cryptographic hashing, metadata harvesting, DOI fetching.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/reprorec/" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project2.jpg" alt="LOD Mashup Gallery"><h3>2. LOD Mashup Gallery</h3><p>Gallery of Jupyter notebooks combining Eurostat LOD with external sources (EU-LFS × Copernicus, GDP × nightlights).</p><p><strong>Tech:</strong> SPARQL, RDF parsing, geospatial APIs.</p><div class="actions"><a href="https://github.com/jacquelineseufert/lod-mashup-gallery" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project2.jpg" alt="LOD Mashup Gallery">
+                  <h3>2. LOD Mashup Gallery</h3>
+                  <p class="description">Gallery of Jupyter notebooks combining Eurostat LOD with external sources (EU-LFS × Copernicus, GDP × nightlights).</p>
+                  <p><strong>Tech:</strong> SPARQL, RDF parsing, geospatial APIs.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/lod-mashup-gallery" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project3.jpg" alt="NUTS Crosswalk Generator"><h3>3. NUTS Crosswalk Generator</h3><p>Generates crosswalks between NUTS versions using GIS overlays and area-weighted interpolation (CSV + GeoJSON outputs).</p><p><strong>Tech:</strong> Shapefile overlays, R (sf), Python (geopandas).</p><div class="actions"><a href="https://github.com/jacquelineseufert/nuts-crosswalk" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project3.jpg" alt="NUTS Crosswalk Generator">
+                  <h3>3. NUTS Crosswalk Generator</h3>
+                  <p class="description">Generates crosswalks between NUTS versions using GIS overlays and area-weighted interpolation (CSV + GeoJSON outputs).</p>
+                  <p><strong>Tech:</strong> Shapefile overlays, R (sf), Python (geopandas).</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/nuts-crosswalk" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project4.jpg" alt="Eurostat in Parquet"><h3>4. Eurostat in Parquet</h3><p>Converter that downloads Eurostat datasets and saves them in Parquet/Arrow with schema and metadata for big-data analytics.</p><p><strong>Tech:</strong> Data pipelines, Arrow/Parquet, Spark/Dask/Polars.</p><div class="actions"><a href="https://github.com/jacquelineseufert/eurostat-parquet" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project4.jpg" alt="Eurostat in Parquet">
+                  <h3>4. Eurostat in Parquet</h3>
+                  <p class="description">Converter that downloads Eurostat datasets and saves them in Parquet/Arrow with schema and metadata for big-data analytics.</p>
+                  <p><strong>Tech:</strong> Data pipelines, Arrow/Parquet, Spark/Dask/Polars.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/eurostat-parquet" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project5.jpg" alt="Survey Metadata Harvester"><h3>5. Survey Metadata Harvester</h3><p>Scraper that collects survey documentation (variables, weights, methods) into harmonised JSON/YAML across Eurostat surveys.</p><p><strong>Tech:</strong> Scraping, text mining, schema standardisation.</p><div class="actions"><a href="https://github.com/jacquelineseufert/survey-metadata-harvester" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project5.jpg" alt="Survey Metadata Harvester">
+                  <h3>5. Survey Metadata Harvester</h3>
+                  <p class="description">Scraper that collects survey documentation (variables, weights, methods) into harmonised JSON/YAML across Eurostat surveys.</p>
+                  <p><strong>Tech:</strong> Scraping, text mining, schema standardisation.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/survey-metadata-harvester" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project6.jpg" alt="Break Detection QA"><h3>6. Break Detection QA</h3><p>Automated structural break detection in Eurostat time series (Bai-Perron, CUSUM), with annotated reproducible charts.</p><p><strong>Tech:</strong> Structural break econometrics, reproducible visualisation.</p><div class="actions"><a href="https://github.com/jacquelineseufert/break-detection-qa" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project6.jpg" alt="Break Detection QA">
+                  <h3>6. Break Detection QA</h3>
+                  <p class="description">Automated structural break detection in Eurostat time series (Bai-Perron, CUSUM), with annotated reproducible charts.</p>
+                  <p><strong>Tech:</strong> Structural break econometrics, reproducible visualisation.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/break-detection-qa" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project7.jpg" alt="Vacancy Explorer"><h3>7. Vacancy Explorer</h3><p>Combines Eurostat vacancy data with Online Job Ads (OJA), deduplicates ads, and maps regional labour market trends.</p><p><strong>Tech:</strong> Web scraping, NLP deduplication, entity matching.</p><div class="actions"><a href="https://github.com/jacquelineseufert/vacancy-explorer" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project7.jpg" alt="Vacancy Explorer">
+                  <h3>7. Vacancy Explorer</h3>
+                  <p class="description">Combines Eurostat vacancy data with Online Job Ads (OJA), deduplicates ads, and maps regional labour market trends.</p>
+                  <p><strong>Tech:</strong> Web scraping, NLP deduplication, entity matching.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/vacancy-explorer" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project8.jpg" alt="OJA Deduplication Engine"><h3>8. OJA Deduplication Engine</h3><p>Open-source dedupe toolkit for job ads using TF-IDF, embeddings, clustering, and probabilistic record linkage.</p><p><strong>Tech:</strong> NLP, clustering, probabilistic linkage.</p><div class="actions"><a href="https://github.com/jacquelineseufert/oja-deduplication" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project8.jpg" alt="OJA Deduplication Engine">
+                  <h3>8. OJA Deduplication Engine</h3>
+                  <p class="description">Open-source dedupe toolkit for job ads using TF-IDF, embeddings, clustering, and probabilistic record linkage.</p>
+                  <p><strong>Tech:</strong> NLP, clustering, probabilistic linkage.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/oja-deduplication" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project9.jpg" alt="Disclosure Control Toolkit"><h3>9. Disclosure Control Toolkit</h3><p>Toolkit implementing k-anonymity, l-diversity, and differential privacy for Eurostat-like microdata, with utility metrics.</p><p><strong>Tech:</strong> Privacy-preserving statistics, synthetic data generation.</p><div class="actions"><a href="https://github.com/jacquelineseufert/disclosure-control" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project9.jpg" alt="Disclosure Control Toolkit">
+                  <h3>9. Disclosure Control Toolkit</h3>
+                  <p class="description">Toolkit implementing k-anonymity, l-diversity, and differential privacy for Eurostat-like microdata, with utility metrics.</p>
+                  <p><strong>Tech:</strong> Privacy-preserving statistics, synthetic data generation.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/disclosure-control" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
-              <div class="swiper-slide"><div class="project-card"><img src="images/projects/project10.jpg" alt="Revision Tracker"><h3>10. Revision Tracker</h3><p>Tracks dataset revisions, computes revision statistics (bias, mean absolute revision), and visualises dataset stability.</p><p><strong>Tech:</strong> Time series analytics, API version control, dashboards.</p><div class="actions"><a href="https://github.com/jacquelineseufert/revision-tracker" target="_blank" class="button">Repository</a></div></div></div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <img src="images/projects/project10.jpg" alt="Revision Tracker">
+                  <h3>10. Revision Tracker</h3>
+                  <p class="description">Tracks dataset revisions, computes revision statistics (bias, mean absolute revision), and visualises dataset stability.</p>
+                  <p><strong>Tech:</strong> Time series analytics, API version control, dashboards.</p>
+                  <div class="actions"><a href="https://github.com/jacquelineseufert/revision-tracker" target="_blank" class="button">Repository</a></div>
+                </div>
+              </div>
 
             </div>
 
-            <!-- Arrows + Dots -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -155,8 +256,7 @@
 
       </div>
     </main>
-
-  </div><!-- /#wrapper -->
+  </div>
 
   <!-- Scripts -->
   <script src="assets/js/jquery.min.js"></script>
@@ -169,28 +269,39 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    window.addEventListener('load', () => {
-      document.body.classList.remove('is-preload');
-    });
+    window.addEventListener('load', () => document.body.classList.remove('is-preload'));
 
     var swiper = new Swiper('.swiper', {
       slidesPerView: 1,
       spaceBetween: 20,
       loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      autoHeight: false,           // keep row height stable
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       breakpoints: {
-        768: { slidesPerView: 2 },
+        768:  { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
         1400: { slidesPerView: 4 }
       }
     });
+
+    /* Hard equalizer (guarantees same card height across slides).
+       Runs on init, resize, and when slides/layout change. */
+    function equalizeCards(){
+      var cards = Array.from(document.querySelectorAll('.project-card'));
+      if(!cards.length) return;
+      cards.forEach(c => c.style.height = 'auto');              // reset
+      var max = cards.reduce((m,c) => Math.max(m, c.offsetHeight), 0);
+      cards.forEach(c => c.style.height = max + 'px');          // lock equal height
+    }
+    window.addEventListener('load', equalizeCards);
+    window.addEventListener('resize', equalizeCards);
+    swiper.on('resize', equalizeCards);
+    swiper.on('slideChangeTransitionEnd', equalizeCards);
+    // once after init too
+    swiper.on('afterInit', equalizeCards);
+    // if Swiper version doesn't emit afterInit, just call now:
+    equalizeCards();
   </script>
 </body>
 </html>

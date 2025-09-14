@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Eurostat Projects — Sidebar Test</title>
+  <title>Jacqueline Seufert — Eurostat Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
+  <!-- Theme styles -->
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
+  <link rel="icon" href="images/favicon.ico" />
 
   <style>
-    body { font-family: sans-serif; }
-    #main .inner { max-width: 600px; margin: auto; padding: 2rem; }
+    body { font-family: sans-serif; font-size: 15px; line-height: 1.55; }
+    #main .inner { max-width: 900px; margin: auto; padding: 2rem; }
     #sidebar .inner { width: 18rem; padding: 1rem; background: #f0f0f0; }
 
-    /* mobile slide behaviour */
+    h1 { font-size: clamp(1.65rem, 3.0vw, 2.1rem); margin-bottom: .35rem; }
+    h2 { font-size: clamp(1.15rem, 2.0vw, 1.35rem); }
+    h3 { font-size: 1rem; font-weight: 600; }
+    section { margin: 1.8rem 0; }
+
+    /* Project cards */
+    .project-card {
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:10px;
+      padding:1rem 1.25rem;
+      margin:0 0 1rem 0;
+      background:#fff;
+    }
+    .project-card h3 { margin:0 0 .4rem 0; }
+    .project-card p { margin:.35rem 0; font-size:.95rem; }
+    .project-card .actions { margin-top:.6rem; }
+    .project-card .button { padding:.4rem .85rem; font-size:.9rem; }
+
+    /* Mobile sidebar behaviour */
     @media (max-width: 1024px) {
       #sidebar { 
         transform: translate3d(0,0,0); 
@@ -34,7 +55,7 @@
   </style>
 </head>
 
-<body class="is-preload">
+<body class="is-preload drawer-closed">
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -42,9 +63,9 @@
       <div class="inner">
         <h2>Menu</h2>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">CV</a></li>
-          <li><a href="#">Projects</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/cv.html">CV / Experience</a></li>
+          <li><a href="/projects.html">Projects</a></li>
         </ul>
       </div>
     </div>
@@ -62,25 +83,54 @@
             Over the past months I have been applying to Eurostat roles and noticed something:
             many of the issues raised in their own methodological papers remain unresolved in practice.
             Instead of waiting for an interview invitation, I decided to start building solutions myself.
-            The projects below tackle Eurostat’s pain points directly — from reproducibility gaps to
-            survey metadata chaos — because sometimes the best way to get attention is to fix
-            the problems that keep getting footnoted.
           </p>
           <p>
-            I will continue to post the projects here as they progress. If any of these ideas resonate
-            or spark interest, I would be happy to discuss them further — feel free to reach out.
+            The projects below tackle Eurostat’s pain points directly — from reproducibility gaps to survey metadata chaos —
+            because sometimes the best way to get attention is to fix the problems that keep getting footnoted.
           </p>
         </header>
 
-        <button id="toggle">Toggle Sidebar</button>
+        <!-- Project list -->
+        <section>
+          <div class="project-card">
+            <h3>1. Reproducibility Receipts</h3>
+            <p>CLI tool in R/Python that fetches data by DOI, saves data + metadata, and verifies integrity via SHA-256 hashes.</p>
+            <p><strong>Tech:</strong> Cryptographic hashing, metadata harvesting, DOI fetching.</p>
+            <div class="actions">
+              <a href="https://github.com/jacquelineseufert/reprorec/" target="_blank" class="button">Repository</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>2. LOD Mashup Gallery</h3>
+            <p>Gallery of Jupyter notebooks combining Eurostat LOD with external sources (EU-LFS × Copernicus, GDP × nightlights).</p>
+            <p><strong>Tech:</strong> SPARQL, RDF parsing, geospatial APIs.</p>
+            <div class="actions">
+              <a href="https://github.com/jacquelineseufert/lod-mashup-gallery" target="_blank" class="button">Repository</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>3. NUTS Crosswalk Generator</h3>
+            <p>Generates crosswalks between NUTS versions using GIS overlays and area-weighted interpolation (CSV + GeoJSON outputs).</p>
+            <p><strong>Tech:</strong> Shapefile overlays, R (sf), Python (geopandas).</p>
+            <div class="actions">
+              <a href="https://github.com/jacquelineseufert/nuts-crosswalk" target="_blank" class="button">Repository</a>
+            </div>
+          </div>
+          <!-- keep adding other project cards here -->
+        </section>
       </div>
     </div>
 
   </div>
 
+  <!-- Scripts -->
   <script src="assets/js/sidebar.js"></script>
   <script>
-    document.getElementById("toggle").addEventListener("click", () => {
-      document.body.classList.toggle("drawer-closed");
-    });
     window.addEventListener("load", () => {
+      document.body.classList.remove("is-preload");
+    });
+  </script>
+</body>
+</html>

@@ -1,145 +1,74 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <title>Jacqueline Seufert — Eurostat Projects</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/sidebar.js"></script>
 
-  <!-- Theme styles -->
-  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/custom.css" />
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* === Footer year === */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  <link rel="icon" href="images/favicon.ico" />
-</head>
+  const cvPage = document.querySelector("#main.alt");
+  if (!cvPage) return;
 
-<style>
-  #main .inner { max-width: 900px; }
-  body { font-size: 15px; line-height: 1.55; }
-  h1 { font-size: clamp(1.65rem, 3.0vw, 2.1rem); margin-bottom: .35rem; }
-  h2 { font-size: clamp(1.15rem, 2.0vw, 1.35rem); }
-  h3 { font-size: 1rem; font-weight: 600; }
-  section { margin: 1.8rem 0; }
-  header.major h2 { font-size: 1.25rem; margin-bottom: .35rem; }
+  const buttons = document.querySelectorAll(".aud-btn");
 
-  .project-card {
-    border:1px solid rgba(0,0,0,.08);
-    border-radius:10px;
-    padding:1rem 1.25rem;
-    margin:0 0 1rem 0;
-    background:#fff;
+  /* === Audience filter === */
+  function filterCV(tag) {
+    cvPage.querySelectorAll("li[data-tags]").forEach(item => {
+      const tags = item.getAttribute("data-tags")?.split(",") || [];
+      item.classList.toggle("hidden-role", !tags.includes(tag));
+    });
+
+    cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
+      const tags = pill.getAttribute("data-tags")?.split(",") || [];
+      pill.classList.toggle("hidden-role", !tags.includes(tag));
+    });
   }
-  .project-card h3 { margin:0 0 .4rem 0; }
-  .project-card p { margin:.35rem 0; font-size:.95rem; }
-  .project-card .actions { margin-top:.6rem; }
-  .project-card .button { padding:.4rem .85rem; font-size:.9rem; }
 
-  /* Sidebar width */
-  #sidebar .inner { width: 22rem; }
+  /* === Audience buttons === */
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.getAttribute("aria-pressed") === "true") return;
+      buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      filterCV(btn.dataset.audience);
+    });
+  });
 
-  /* Desktop: tighten sidebar + main content gap */
-  @media (min-width: 1025px) {
-    #wrapper {
-      display: flex;
-      gap: 1.5rem; /* controls the space between sidebar and main */
-    }
+  /* === Collapsibles === */
+  cvPage.querySelectorAll(".collapsible").forEach(card => {
+    const header = card.querySelector(".collapsible-header");
+    const content = card.querySelector(".collapsible-content");
+    const arrow = header.querySelector(".arrow");
 
-    #sidebar {
-      flex: 0 0 16rem; /* narrower sidebar (default ~22rem) */
-    }
+    if (!header || !content || !arrow) return;
 
-    #main .inner {
-      max-width: 1000px; /* keep text comfortably readable */
-      margin: 0;         /* remove unnecessary left margin */
-    }
-  }
-</style>
+    // collapsed by default
+    content.style.maxHeight = null;
 
-<body class="is-preload">
-  <div id="wrapper">
+    header.addEventListener("click", () => {
+      card.classList.toggle("open");
 
-    <!-- Sidebar -->
-    <div id="sidebar">
-      <div class="inner">
+      if (card.classList.contains("open")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        arrow.style.transform = "rotate(90deg)";
+      } else {
+        content.style.maxHeight = null;
+        arrow.style.transform = "rotate(0deg)";
+      }
+    });
+  });
 
-        <!-- Menu -->
-        <nav id="menu">
-          <header class="major"><h2>Menu</h2></header>
-          <ul>
-            <li><a href="/" class="fas fa-home">Home</a></li>
-            <li><a href="/cv.html" class="fas fa-file-alt">CV / Experience</a></li>
-            <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
-          </ul>
-        </nav>
+  /* === Default audience view === */
+  filterCV("data");
+});
 
-        <!-- Contact -->
-        <section>
-          <header class="major"><h2>Get in touch</h2></header>
-          <ul class="contact">
-            <li>
-              <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
-                <i class="fas fa-envelope"></i> Contact
-              </a>
-            </li>
-            <li><i class="fab fa-github"></i>
-              <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a></li>
-            <li><i class="fab fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a></li>
-          </ul>
-        </section>
-
-        <!-- Footer -->
-        <footer id="footer">
-          <p class="copyright">
-            © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
-          </p>
-        </footer>
-
-      </div>
-    </div>
-
-    <!-- Backdrop + swipe zone (needed for sidebar.js) -->
-    <div id="backdrop" hidden></div>
-    <div id="edge-swipe-zone" aria-hidden="true"></div>
-
-    <!-- Main -->
-    <div id="main">
-      <div class="inner">
-        <header class="major">
-          <h1>Eurostat Projects</h1>
-          <p>
-            Over the past months I have been applying to Eurostat roles and noticed something:
-            many of the issues raised in their own methodological papers remain unresolved in practice.
-            Instead of waiting for an interview invitation, I decided to start building solutions myself.
-            The projects below tackle Eurostat’s pain points directly — from reproducibility gaps to
-            survey metadata chaos — because sometimes the best way to get attention is to fix
-            the problems that keep getting footnoted.
-          </p>
-          <p>
-            I will continue to post the projects here as they progress. If any of these ideas resonate
-            or spark interest, I would be happy to discuss them further — feel free to reach out.
-          </p>
-        </header>
-
-        <!-- Project list -->
-        <section>
-          <!-- Project cards (1–10) -->
-          <!-- Keeping your project cards unchanged -->
-          <!-- … -->
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/sidebar.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+window.addEventListener("load", () => {
+  document.body.classList.remove("is-preload");
+});
+</script>
 </body>
 </html>

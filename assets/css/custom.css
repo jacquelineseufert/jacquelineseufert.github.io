@@ -326,3 +326,28 @@
   min-height: 480px;  /* optional: keeps them balanced */
 }
 
+/* -- Neutral button override: remove HTML5UP red ring -- */
+a.button, .button {
+  box-shadow: none !important;              /* kills red inset border */
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+a.button:hover, .button:hover {
+  box-shadow: none !important;
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+/* Accessible, non-red focus ring */
+a.button:focus, .button:focus, 
+a.button:focus-visible, .button:focus-visible {
+  outline: 2px solid #000 !important;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+
+/* Make sure card buttons inherit the same reset */
+.project-card .button { box-shadow: none !important; }

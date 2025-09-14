@@ -277,4 +277,38 @@
     display: block !important;
   }
 }
+/* === Audience dropdown (mobile) === */
+.audience-dropdown select {
+  appearance: none;              /* remove native styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: .4rem 1rem;
+  font-size: .85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: none;
+  width: 100%;                   /* full width for mobile */
+}
+
+/* Wrap + custom arrow */
+.audience-dropdown {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 300px;              /* keep it neat */
+}
+.audience-dropdown::after {
+  content: "▾";                  /* custom arrow */
+  font-size: .85rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
 

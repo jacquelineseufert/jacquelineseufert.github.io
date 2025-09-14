@@ -34,8 +34,17 @@
     .project-card .actions { margin-top:.6rem; }
     .project-card .button { padding:.4rem .85rem; font-size:.9rem; }
 
-  /* Match CV: sidebar width handled by global CSS; keep only inner width hint */
-    /*#sidebar .inner { width:22rem; } /* same as CV */
+ /* Sidebar width */
+    #sidebar .inner { width:22rem; }
+
+    /* Desktop: adjust layout without breaking sliding */
+    @media (max-width:1024px){
+      #sidebar{transform:translate3d(0,0,0);transition:transform .25s ease;}
+      .drawer-closed #sidebar{transform:translate3d(-100%,0,0);}
+      #backdrop{opacity:.35;transition:opacity .25s ease;}
+      .drawer-closed #backdrop{opacity:0;}
+    }
+  </style>
   </style>
 </head>
 

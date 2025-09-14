@@ -284,6 +284,104 @@
             </ul>
          </div>
       </div>
-      <!-- Core scripts --> <script src="assets/js/jquery.min.js"></script> <script src="assets/js/browser.min.js"></script> <script src="assets/js/breakpoints.min.js"></script> <script src="assets/js/util.js"></script> <script src="assets/js/sidebar.js"></script> <script> document.addEventListener("DOMContentLoaded", () => { /* === Footer year === */ const yearEl = document.getElementById("year"); if (yearEl) yearEl.textContent = new Date().getFullYear(); const cvPage = document.querySelector("#main.alt"); if (!cvPage) return; const buttons = document.querySelectorAll(".aud-btn"); /* === Audience filter === */ function filterCV(tag) { cvPage.querySelectorAll("li[data-tags]").forEach(item => { const tags = item.getAttribute("data-tags")?.split(",") || []; item.classList.toggle("hidden-role", !tags.includes(tag)); }); cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => { const tags = pill.getAttribute("data-tags")?.split(",") || []; pill.classList.toggle("hidden-role", !tags.includes(tag)); }); } /* === Audience buttons (desktop) === */ buttons.forEach(btn => { btn.addEventListener("click", () => { if (btn.getAttribute("aria-pressed") === "true") return; buttons.forEach(b => b.setAttribute("aria-pressed", "false")); btn.setAttribute("aria-pressed", "true"); filterCV(btn.dataset.audience); }); }); /* === Audience dropdown (mobile) === */ const dropdown = document.getElementById("audience-select"); if (dropdown) { // Apply same typography as .aud-btn const refBtn = document.querySelector(".aud-btn"); const applyTabTypographyToDropdown = () => { if (!refBtn) return; const cs = getComputedStyle(refBtn); dropdown.style.fontFamily = cs.fontFamily; dropdown.style.fontSize = cs.fontSize; dropdown.style.fontWeight = cs.fontWeight; dropdown.style.textTransform = cs.textTransform; dropdown.style.letterSpacing = cs.letterSpacing; dropdown.style.lineHeight = cs.lineHeight; }; // Run immediately + after webfonts load applyTabTypographyToDropdown(); if (document.fonts && document.fonts.ready) { document.fonts.ready.then(applyTabTypographyToDropdown).catch(()=>{}); } // Filter on change dropdown.addEventListener("change", () => { filterCV(dropdown.value); }); } /* === Collapsibles === */ document.querySelectorAll(".collapsible").forEach(card => { const header = card.querySelector(".collapsible-header"); const arrow = header.querySelector(".arrow"); header.addEventListener("click", () => { card.classList.toggle("open"); if (arrow) { arrow.style.transform = card.classList.contains("open") ? "rotate(90deg)" : "rotate(0deg)"; } }); }); /* === Default audience view === */ filterCV("data"); }); window.addEventListener("load", () => { document.body.classList.remove("is-preload"); }); </script> 
-   </body>
+         <!-- Core scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        /* === Footer year === */
+        const yearEl = document.getElementById("year");
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+
+        const cvPage = document.querySelector("#main.alt");
+        if (!cvPage) return;
+
+        const buttons = document.querySelectorAll(".aud-btn");
+
+        /* === Audience filter === */
+        function filterCV(tag) {
+          cvPage.querySelectorAll("li[data-tags]").forEach(item => {
+            const tags = item.getAttribute("data-tags")?.split(",") || [];
+            item.classList.toggle("hidden-role", !tags.includes(tag));
+          });
+
+          cvPage.querySelectorAll(".pill[data-tags]").forEach(pill => {
+            const tags = pill.getAttribute("data-tags")?.split(",") || [];
+            pill.classList.toggle("hidden-role", !tags.includes(tag));
+          });
+        }
+
+        /* === Audience buttons (desktop) === */
+        buttons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            if (btn.getAttribute("aria-pressed") === "true") return;
+
+            buttons.forEach(b => b.setAttribute("aria-pressed", "false"));
+            btn.setAttribute("aria-pressed", "true");
+
+            filterCV(btn.dataset.audience);
+          });
+        });
+
+        /* === Audience dropdown (mobile) === */
+        const dropdown = document.getElementById("audience-select");
+        if (dropdown) {
+          // Apply same typography as .aud-btn
+          const refBtn = document.querySelector(".aud-btn");
+
+          const applyTabTypographyToDropdown = () => {
+            if (!refBtn) return;
+            const cs = getComputedStyle(refBtn);
+            dropdown.style.fontFamily = cs.fontFamily;
+            dropdown.style.fontSize = cs.fontSize;
+            dropdown.style.fontWeight = cs.fontWeight;
+            dropdown.style.textTransform = cs.textTransform;
+            dropdown.style.letterSpacing = cs.letterSpacing;
+            dropdown.style.lineHeight = cs.lineHeight;
+          };
+
+          // Run immediately + after webfonts load
+          applyTabTypographyToDropdown();
+          if (document.fonts && document.fonts.ready) {
+            document.fonts.ready
+              .then(applyTabTypographyToDropdown)
+              .catch(() => {});
+          }
+
+          // Filter on change
+          dropdown.addEventListener("change", () => {
+            filterCV(dropdown.value);
+          });
+        }
+
+        /* === Collapsibles === */
+        document.querySelectorAll(".collapsible").forEach(card => {
+          const header = card.querySelector(".collapsible-header");
+          const arrow = header.querySelector(".arrow");
+
+          header.addEventListener("click", () => {
+            card.classList.toggle("open");
+            if (arrow) {
+              arrow.style.transform = card.classList.contains("open")
+                ? "rotate(90deg)"
+                : "rotate(0deg)";
+            }
+          });
+        });
+
+        /* === Default audience view === */
+        filterCV("data");
+      });
+
+      window.addEventListener("load", () => {
+        document.body.classList.remove("is-preload");
+      });
+    </script>
+  </body>
 </html>

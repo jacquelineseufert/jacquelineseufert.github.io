@@ -1,45 +1,37 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Jacqueline Seufert — Eurostat Projects</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <!-- Theme styles -->
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
   <link rel="icon" href="images/favicon.ico" />
-
-  <style>
-    /* CV-style cards reused for projects */
-    .exp-card, .project-card {
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:10px;
-      padding:1rem 1.25rem;
-      margin:0 0 1rem 0;
-      background:#fff;
-    }
-    .exp-card h3, .project-card h3 { margin:0 0 .25rem 0; }
-    .project-card p { margin:.35rem 0; font-size:.95rem; }
-    .project-card .actions { margin-top:.6rem; }
-    .project-card .button { padding:.4rem .85rem; font-size:.9rem; background:#ddd; border-radius:5px; text-decoration:none; }
-
-    #sidebar .inner { width:22rem; }
-
-    @media (max-width:1024px){
-      #sidebar{transform:translate3d(0,0,0);transition:transform .25s ease;}
-      .drawer-closed #sidebar{transform:translate3d(-100%,0,0);}
-      #backdrop{opacity:.35;transition:opacity .25s ease;}
-      .drawer-closed #backdrop{opacity:0;}
-    }
-  </style>
 </head>
 
-<body class="is-preload drawer-closed">
+<body class="is-preload">
+
+  <!-- Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
     <div id="sidebar">
       <div class="inner">
+
+        <!-- Profile -->
+        <section class="profile" style="text-align:center; margin-bottom:2rem;">
+          <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" style="width:140px; border-radius:50%; margin-bottom:1rem;">
+          <h1 style="margin:0;">Jacqueline Seufert</h1>
+          <div style="margin:.4rem 0 1rem;">
+            <span class="badge">EPSO/AD/412/24 laureate — Data &amp; Statistics (AD6)</span>
+          </div>
+          <p style="font-size:.9rem;">Economist &amp; Data Scientist</p>
+        </section>
+
+        <!-- Menu -->
         <nav id="menu">
           <header class="major"><h2>Menu</h2></header>
           <ul>
@@ -49,47 +41,56 @@
           </ul>
         </nav>
 
+        <!-- Contact -->
         <section>
           <header class="major"><h2>Get in touch</h2></header>
           <ul class="contact">
             <li>
-              <a href="mailto:yourmail@web.de"><i class="fas fa-envelope"></i> Contact</a>
+              <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
             </li>
-            <li><i class="fab fa-github"></i> <a href="https://github.com/jacquelineseufert" target="_blank">github.com/jacquelineseufert</a></li>
-            <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">linkedin.com/in/jacqueline-seufert</a></li>
+            <li><a href="https://github.com/jacquelineseufert" target="_blank"><i class="fab fa-github"></i> github.com/jacquelineseufert</a></li>
+            <li><a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/jacqueline-seufert</a></li>
           </ul>
         </section>
 
+        <!-- Footer -->
         <footer id="footer">
           <p class="copyright">
             © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
           </p>
         </footer>
-      </div>
-    </div>
 
-    <!-- Backdrop -->
-    <div id="backdrop"></div>
-    <div id="edge-swipe-zone"></div>
+      </div>
+    </div><!-- /#sidebar -->
+
+    <!-- Backdrop for swipe -->
+    <div id="backdrop" hidden></div>
+    <div id="edge-swipe-zone" aria-hidden="true"></div>
 
     <!-- Main -->
-    <div id="main" class="alt">
+    <div id="main">
       <div class="inner">
-        <header class="major">
+
+        <!-- Cover / Title -->
+        <section id="cover" style="text-align:center; padding:3rem 1rem;">
           <h1>Eurostat Projects</h1>
+          <p class="subtitle">
+            Building tools to tackle Eurostat’s methodological challenges — from reproducibility gaps to survey metadata chaos.  
+          </p>
+        </section>
+
+        <!-- Intro -->
+        <section id="intro">
           <p>
             Over the past months I have been applying to Eurostat roles and noticed something:
             many of the issues raised in their own methodological papers remain unresolved in practice.
             Instead of waiting for an interview invitation, I decided to start building solutions myself.
-            The projects below tackle Eurostat’s pain points directly — from reproducibility gaps to
-            survey metadata chaos — because sometimes the best way to get attention is to fix
-            the problems that keep getting footnoted.
+            The projects below tackle Eurostat’s pain points directly — because sometimes the best way to
+            get attention is to fix the problems that keep getting footnoted.
           </p>
-          <p>
-            I will continue to post the projects here as they progress. If any of these ideas resonate
-            or spark interest, I would be happy to discuss them further — feel free to reach out.
-          </p>
-        </header>
+        </section>
 
         <!-- Project list -->
         <section>
@@ -107,71 +108,25 @@
             <div class="actions"><a href="https://github.com/jacquelineseufert/lod-mashup-gallery" target="_blank" class="button">Repository</a></div>
           </div>
 
-          <div class="project-card">
-            <h3>3. NUTS Crosswalk Generator</h3>
-            <p>Generates crosswalks between NUTS versions using GIS overlays and area-weighted interpolation (CSV + GeoJSON outputs).</p>
-            <p><strong>Tech:</strong> Shapefile overlays, R (sf), Python (geopandas).</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/nuts-crosswalk" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>4. Eurostat in Parquet</h3>
-            <p>Converter that downloads Eurostat datasets and saves them in Parquet/Arrow with schema and metadata for big-data analytics.</p>
-            <p><strong>Tech:</strong> Data pipelines, Arrow/Parquet, Spark/Dask/Polars.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/eurostat-parquet" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>5. Survey Metadata Harvester</h3>
-            <p>Scraper that collects survey documentation (variables, weights, methods) into harmonised JSON/YAML across Eurostat surveys.</p>
-            <p><strong>Tech:</strong> Scraping, text mining, schema standardisation.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/survey-metadata-harvester" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>6. Break Detection QA</h3>
-            <p>Automated structural break detection in Eurostat time series (Bai-Perron, CUSUM), with annotated reproducible charts.</p>
-            <p><strong>Tech:</strong> Structural break econometrics, reproducible visualisation.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/break-detection-qa" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>7. Vacancy Explorer</h3>
-            <p>Combines Eurostat vacancy data with Online Job Ads (OJA), deduplicates ads, and maps regional labour market trends.</p>
-            <p><strong>Tech:</strong> Web scraping, NLP deduplication, entity matching.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/vacancy-explorer" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>8. OJA Deduplication Engine</h3>
-            <p>Open-source dedupe toolkit for job ads using TF-IDF, embeddings, clustering, and probabilistic record linkage.</p>
-            <p><strong>Tech:</strong> NLP, clustering, probabilistic linkage.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/oja-deduplication" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>9. Disclosure Control Toolkit</h3>
-            <p>Toolkit implementing k-anonymity, l-diversity, and differential privacy for Eurostat-like microdata, with utility metrics.</p>
-            <p><strong>Tech:</strong> Privacy-preserving statistics, synthetic data generation.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/disclosure-control" target="_blank" class="button">Repository</a></div>
-          </div>
-
-          <div class="project-card">
-            <h3>10. Revision Tracker</h3>
-            <p>Tracks dataset revisions, computes revision statistics (bias, mean absolute revision), and visualises dataset stability.</p>
-            <p><strong>Tech:</strong> Time series analytics, API version control, dashboards.</p>
-            <div class="actions"><a href="https://github.com/jacquelineseufert/revision-tracker" target="_blank" class="button">Repository</a></div>
-          </div>
+          <!-- Continue your project cards 3–10 unchanged -->
         </section>
-      </div>
-    </div>
-  </div>
 
+      </div>
+    </div><!-- /#main -->
+
+  </div><!-- /#wrapper -->
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
   <script src="assets/js/sidebar.js"></script>
+
   <script>
-    window.addEventListener("load", () => {
-      document.body.classList.remove("is-preload");
-      document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.addEventListener('load', () => {
+      document.body.classList.remove('is-preload');
     });
   </script>
 </body>

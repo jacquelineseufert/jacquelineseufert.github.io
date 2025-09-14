@@ -320,154 +320,19 @@
   width: 100%;
 }
 
-/* === Audience dropdown (mobile) === */
-.audience-dropdown select {
-  all: unset; /* remove browser default styles */
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-
-  /* copy styles from .aud-btn */
-  background: #fff;
-  color: #000;
-  border: 2px solid #000;
-  border-radius: 6px;
-  padding: .4rem 1rem;
-  font-size: .85rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: none;
-  transition: background .2s, color .2s, border-color .2s;
-
-  /* ensure same font as rest of site */
-  font-family: inherit;
-  line-height: 1.4;
-  letter-spacing: normal;
-
-  /* remove native dropdown arrow */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-/* custom arrow */
+/* wrapper + custom arrow */
 .audience-dropdown {
   position: relative;
+  display: block;
+  width: 100%;
   max-width: 300px;
 }
 .audience-dropdown::after {
-  content: "▾";
+  content: "▾";                  
+  font-size: .85rem;
   position: absolute;
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  font-size: .85rem;
-  color: #000;
-}
-
-/* mimic hover/active like .aud-btn */
-.audience-dropdown select:hover,
-.audience-dropdown select:focus {
-  background: #000;
-  color: #fff;
-  border-color: #000;
-}
-/* Audience dropdown: keep neutral look */
-.audience-dropdown select,
-.audience-dropdown select:hover,
-.audience-dropdown select:focus {
-  background:#fff !important;
-  color:#000 !important;
-  border:2px solid #000 !important;
-  outline:none !important;
-}
-
-/* make sure we’re not getting native form styling */
-.audience-dropdown select {
-  appearance:none; -webkit-appearance:none; -moz-appearance:none;
-  border-radius:6px; padding:.4rem 1rem;
-  width:100%; box-sizing:border-box;
-}
-/* Make all slides same height */
-.swiper-wrapper {
-  display: flex;
-  align-items: stretch;
-}
-/* Make all slides same height */
-.swiper-wrapper {
-  display: flex;
-  align-items: stretch;
-}
-
-/* Each slide stretches equally */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-
-/* Project cards take full height */
-.project-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 1.25rem;
-  max-width: 340px;
-  width: 100%;
-  height: 100%;   /* ⬅ ensures equal height */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-.project-card img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.project-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.project-card p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
-}
-
-/* Keep button bottom-aligned */
-.project-card .actions {
-  margin-top: auto;
-  text-align: right;
-}
-
-.project-card .button {
-  display: inline-block;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  border: 1px solid #333;
-  border-radius: 6px;
-  background: #f9f9f9;
-  color: #333;
-  transition: all 0.2s ease-in-out;
-}
-.project-card .button:hover {
-  background: #333;
-  color: #fff;
 }

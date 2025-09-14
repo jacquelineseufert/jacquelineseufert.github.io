@@ -97,16 +97,28 @@
           <h1>Experience</h1>
           <p>Click a view to highlight the most relevant tasks for that audience.</p>
         </header>
+<div class="legend">View CV as…</div>
 
-        <!-- Audience filter tabs -->
-        <div class="legend">View CV as…</div>
-        <div class="audience-tabs" role="tablist" aria-label="CV audience views">
-          <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
-          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
-          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
-          <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
-        </div>
+<!-- Desktop tabs -->
+<div class="audience-tabs desktop-only" role="tablist" aria-label="CV audience views">
+  <button class="aud-btn" role="tab" aria-pressed="true" data-audience="data">Data Scientist</button>
+  <button class="aud-btn" role="tab" aria-pressed="false" data-audience="stats">Statistician</button>
+  <button class="aud-btn" role="tab" aria-pressed="false" data-audience="econ">Economist / Policy</button>
+  <button class="aud-btn" role="tab" aria-pressed="false" data-audience="geo">Geospatial Analyst</button>
+</div>
 
+<!-- Mobile dropdown -->
+<div class="audience-dropdown mobile-only">
+  <select id="audience-select">
+    <option value="data" selected>Data Scientist</option>
+    <option value="stats">Statistician</option>
+    <option value="econ">Economist / Policy</option>
+    <option value="geo">Geospatial Analyst</option>
+  </select>
+</div>
+
+
+        
         <!-- Professional Experience (outer collapsible) -->
         <div class="exp-card collapsible professional-experience open">
  <h3 class="collapsible-header">Professional Experience <span class="arrow">▸</span></h3>
@@ -413,7 +425,6 @@
 </div>
 
 <!-- Core scripts -->
-
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
@@ -444,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* === Audience buttons === */
+  /* === Audience buttons (desktop) === */
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.getAttribute("aria-pressed") === "true") return;
@@ -454,21 +465,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* === Audience dropdown (mobile) === */
+  const dropdown = document.getElementById("audience-select");
+  if (dropdown) {
+    dropdown.addEventListener("change", () => {
+      filterCV(dropdown.value);
+    });
+  }
+
   /* === Collapsibles === */
-document.querySelectorAll(".collapsible").forEach(card => {
-  const header = card.querySelector(".collapsible-header");
-  const arrow = header.querySelector(".arrow");
+  document.querySelectorAll(".collapsible").forEach(card => {
+    const header = card.querySelector(".collapsible-header");
+    const arrow = header.querySelector(".arrow");
 
-  header.addEventListener("click", () => {
-    card.classList.toggle("open");
-    if (arrow) {
-      arrow.style.transform = card.classList.contains("open")
-        ? "rotate(90deg)"
-        : "rotate(0deg)";
-    }
+    header.addEventListener("click", () => {
+      card.classList.toggle("open");
+      if (arrow) {
+        arrow.style.transform = card.classList.contains("open")
+          ? "rotate(90deg)"
+          : "rotate(0deg)";
+      }
+    });
   });
-});
-
 
   /* === Default audience view === */
   filterCV("data");

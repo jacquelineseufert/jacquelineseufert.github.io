@@ -2,26 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Eurostat Projects</title>
+  <title>Sidebar Swipe Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/custom.css" />
-
   <style>
-    body { font-family: sans-serif; }
-    #main .inner { max-width: 800px; margin: auto; padding: 2rem; }
-    #sidebar .inner { width: 18rem; padding: 1rem; background: #f0f0f0; }
-
-    .project-card {
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:10px;
-      padding:1rem 1.25rem;
-      margin:1rem 0;
-      background:#fff;
-    }
-    .project-card h3 { margin:0 0 .4rem 0; }
-    .project-card p { margin:.35rem 0; font-size:.95rem; }
+    body { margin:0; font-family: sans-serif; }
+    #main .inner { padding: 2rem; }
+    #sidebar .inner { width: 18rem; padding: 1rem; background: #f0f0f0; height:100%; }
 
     /* mobile slide behaviour */
     @media (max-width: 1024px) {
@@ -33,6 +20,7 @@
         z-index: 1000; 
       }
       body.drawer-closed #sidebar { transform: translate3d(-100%,0,0); }
+
       #backdrop { 
         position: fixed; top:0; left:0; right:0; bottom:0; 
         background: rgba(0,0,0,0.35); 
@@ -40,11 +28,16 @@
         transition: opacity .25s ease; 
       }
       body.drawer-closed #backdrop { opacity:0; pointer-events:none; }
+
+      #edge-swipe-zone {
+        position: fixed; top:0; left:0; bottom:0; width: 20px;
+        z-index: 1001;
+      }
     }
   </style>
 </head>
 
-<body class="is-preload drawer-closed">
+<body class="drawer-closed">
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -66,34 +59,31 @@
     <!-- Main -->
     <div id="main">
       <div class="inner">
-        <h1>Eurostat Projects</h1>
-        <p>This is a test page where we add project cards step by step.</p>
-
-        <!-- First project card -->
-        <div class="project-card">
-          <h3>1. Reproducibility Receipts</h3>
-          <p>CLI tool in R/Python that fetches data by DOI, saves data + metadata, 
-             and verifies integrity via SHA-256 hashes.</p>
-          <p><strong>Tech:</strong> Cryptographic hashing, metadata harvesting, DOI fetching.</p>
-          <div class="actions">
-            <a href="https://github.com/jacquelineseufert/reprorec/" target="_blank">Repository</a>
-          </div>
-        </div>
-
-        <!-- Test button -->
+        <h1>Hello World</h1>
+        <p>Swipe from the left edge or press the button to open/close the sidebar.</p>
         <button id="toggle">Toggle Sidebar</button>
       </div>
     </div>
 
   </div>
 
-  <script src="assets/js/sidebar.js"></script>
   <script>
-    document.getElementById("toggle").addEventListener("click", () => {
+    const toggleSidebar = () => {
       document.body.classList.toggle("drawer-closed");
+    };
+
+    document.getElementById("toggle").addEventListener("click", toggleSidebar);
+    document.getElementById("backdrop").addEventListener("click", toggleSidebar);
+
+    // swipe handling
+    let startX = 0;
+    document.getElementById("edge-swipe-zone").addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
     });
-    window.addEventListener("load", () => {
-      document.body.classList.remove("is-preload");
+    document.getElementById("edge-swipe-zone").addEventListener("touchend", e => {
+      if (startX < 20) {
+        document.body.classList.remove("drawer-closed");
+      }
     });
   </script>
 </body>

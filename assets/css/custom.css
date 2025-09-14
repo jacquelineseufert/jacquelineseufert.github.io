@@ -5,7 +5,7 @@
   --sidebar-w: 20rem;
   --backdrop-bg: rgba(0,0,0,.35);
   --drawer-shadow: 0 10px 30px rgba(0,0,0,.35);
-  --accent: #000;
+  --accent: #000;project-c
 }
 
 /* === Sidebar === */
@@ -321,3 +321,8 @@
   transition:all 0.2s ease-in-out;
 }
 .project-card .button:hover { background:#333; color:#fff; }
+.project-card {
+  max-width: 500px;   /* was 340px */
+  min-height: 480px;  /* optional: keeps them balanced */
+}
+

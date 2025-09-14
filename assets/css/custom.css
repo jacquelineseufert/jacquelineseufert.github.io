@@ -375,3 +375,20 @@
   color: #fff;
   border-color: #000;
 }
+/* Audience dropdown: keep neutral look */
+.audience-dropdown select,
+.audience-dropdown select:hover,
+.audience-dropdown select:focus {
+  background:#fff !important;
+  color:#000 !important;
+  border:2px solid #000 !important;
+  outline:none !important;
+}
+
+/* make sure we’re not getting native form styling */
+.audience-dropdown select {
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  border-radius:6px; padding:.4rem 1rem;
+  width:100%; box-sizing:border-box;
+}
+

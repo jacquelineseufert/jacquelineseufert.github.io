@@ -271,19 +271,18 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     window.addEventListener('load', () => document.body.classList.remove('is-preload'));
 
-    var swiper = new Swiper('.swiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      autoHeight: false,           // keep row height stable
-      pagination: { el: '.swiper-pagination', clickable: true },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      breakpoints: {
-        768:  { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-        1400: { slidesPerView: 4 }
-      }
-    });
+   var swiper = new Swiper('.swiper', {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  pagination: { el: '.swiper-pagination', clickable: true },
+  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  breakpoints: {
+    768:  { slidesPerView: 1 },   // tablet: still 1 big card
+    1024: { slidesPerView: 2 },   // desktop: 2 wide cards
+    1400: { slidesPerView: 2 }    // large monitors: max 2 cards
+  }
+});
 
     /* Hard equalizer (guarantees same card height across slides).
        Runs on init, resize, and when slides/layout change. */

@@ -79,17 +79,62 @@
 #backdrop[hidden]{ display:none; }
 #edge-swipe-zone { position:fixed; top:0; left:0; bottom:0; width:24px; z-index:950; pointer-events:none; }
 
-/* === Mobile Sidebar === */
+/* === Mobile Sidebar & Main Content === */
 @media (max-width:768px){
-  #main{ margin-left:0; overflow-y:auto; -webkit-overflow-scrolling:touch; }
-  #sidebar{ transform:translate3d(0,0,0); transition:transform .25s ease; box-shadow:var(--drawer-shadow); }
-  .drawer-closed #sidebar{ transform:translate3d(-100%,0,0); box-shadow:none; }
-  #backdrop{ opacity:.35; pointer-events:none; }
-  .drawer-closed #backdrop{ opacity:0; }
-  #edge-swipe-zone{ pointer-events:auto; }
-  html,body{ height:100%; overflow-x:hidden; overflow-y:auto; }
+  /* Main content full width */
+  #main {
+    margin-left: 0 !important;
+    padding: 1rem;                 /* slimmer padding for mobile */
+    width: 100% !important;        /* use full screen width */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove desktop inner width limit */
+  #main .inner {
+    max-width: 100% !important;
+    margin: 0;
+  }
+
+  /* Sidebar slides in/out */
+  #sidebar {
+    transform: translate3d(0,0,0);
+    transition: transform .25s ease;
+    box-shadow: var(--drawer-shadow);
+    width: 18rem; /* narrower sidebar on mobile */
+  }
+  .drawer-closed #sidebar {
+    transform: translate3d(-100%,0,0);
+    box-shadow: none;
+  }
+
+  /* Backdrop for drawer */
+  #backdrop {
+    opacity: .35;
+    pointer-events: none;
+  }
+  .drawer-closed #backdrop {
+    opacity: 0;
+  }
+
+  /* Edge swipe zone active on mobile */
+  #edge-swipe-zone {
+    pointer-events: auto;
+  }
+
+  /* Prevent horizontal scroll */
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
-#sidebar{ touch-action:auto !important; }
+
+/* Ensure touch scroll works inside sidebar */
+#sidebar {
+  touch-action: auto !important;
+}
+
 
 /* === Mobile expertise carousel === */
 @media (max-width:768px){

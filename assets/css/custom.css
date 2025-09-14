@@ -320,35 +320,58 @@
   width: 100%;
 }
 
-/* Mobile dropdown styled to match audience tabs */
+/* === Audience dropdown (mobile) === */
 .audience-dropdown select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  all: unset; /* remove browser default styles */
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
 
+  /* copy styles from .aud-btn */
   background: #fff;
   color: #000;
   border: 2px solid #000;
   border-radius: 6px;
   padding: .4rem 1rem;
-
-  /* 👇 Force exact same font as tabs */
-  font-family: inherit, 'Helvetica Neue', Arial, sans-serif;
   font-size: .85rem;
   font-weight: bold;
   text-transform: uppercase;
-  line-height: 1.4;
-  letter-spacing: .5px;
-
   cursor: pointer;
+  text-decoration: none;
   box-shadow: none;
-  width: 100%;
+  transition: background .2s, color .2s, border-color .2s;
+
+  /* ensure same font as rest of site */
+  font-family: inherit;
+  line-height: 1.4;
+  letter-spacing: normal;
+
+  /* remove native dropdown arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-/* Optional pressed/active state */
+/* custom arrow */
+.audience-dropdown {
+  position: relative;
+  max-width: 300px;
+}
+.audience-dropdown::after {
+  content: "▾";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: .85rem;
+  color: #000;
+}
+
+/* mimic hover/active like .aud-btn */
+.audience-dropdown select:hover,
 .audience-dropdown select:focus {
   background: #000;
   color: #fff;
   border-color: #000;
-  outline: none;
 }

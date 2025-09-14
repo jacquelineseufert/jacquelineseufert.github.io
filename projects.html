@@ -5,23 +5,14 @@
   <title>Jacqueline Seufert — Eurostat Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-  <!-- Theme styles -->
-  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
-  <link rel="icon" href="images/favicon.ico" />
 
   <style>
-    body { font-family: sans-serif; font-size: 15px; line-height: 1.55; }
+    body { font-family: sans-serif; }
     #main .inner { max-width: 900px; margin: auto; padding: 2rem; }
     #sidebar .inner { width: 18rem; padding: 1rem; background: #f0f0f0; }
 
-    h1 { font-size: clamp(1.65rem, 3.0vw, 2.1rem); margin-bottom: .35rem; }
-    h2 { font-size: clamp(1.15rem, 2.0vw, 1.35rem); }
-    h3 { font-size: 1rem; font-weight: 600; }
-    section { margin: 1.8rem 0; }
-
-    /* Project cards */
     .project-card {
       border:1px solid rgba(0,0,0,.08);
       border-radius:10px;
@@ -32,9 +23,9 @@
     .project-card h3 { margin:0 0 .4rem 0; }
     .project-card p { margin:.35rem 0; font-size:.95rem; }
     .project-card .actions { margin-top:.6rem; }
-    .project-card .button { padding:.4rem .85rem; font-size:.9rem; }
+    .project-card .button { padding:.4rem .85rem; font-size:.9rem; background:#ddd; border-radius:5px; text-decoration:none; }
 
-    /* Mobile sidebar behaviour */
+    /* mobile slide behaviour */
     @media (max-width: 1024px) {
       #sidebar { 
         transform: translate3d(0,0,0); 
@@ -70,7 +61,7 @@
       </div>
     </div>
 
-    <!-- Backdrop & swipe zone -->
+    <!-- Backdrop -->
     <div id="backdrop"></div>
     <div id="edge-swipe-zone"></div>
 
@@ -83,10 +74,9 @@
             Over the past months I have been applying to Eurostat roles and noticed something:
             many of the issues raised in their own methodological papers remain unresolved in practice.
             Instead of waiting for an interview invitation, I decided to start building solutions myself.
-          </p>
-          <p>
-            The projects below tackle Eurostat’s pain points directly — from reproducibility gaps to survey metadata chaos —
-            because sometimes the best way to get attention is to fix the problems that keep getting footnoted.
+            The projects below tackle Eurostat’s pain points directly — from reproducibility gaps to
+            survey metadata chaos — because sometimes the best way to get attention is to fix
+            the problems that keep getting footnoted.
           </p>
         </header>
 
@@ -96,36 +86,77 @@
             <h3>1. Reproducibility Receipts</h3>
             <p>CLI tool in R/Python that fetches data by DOI, saves data + metadata, and verifies integrity via SHA-256 hashes.</p>
             <p><strong>Tech:</strong> Cryptographic hashing, metadata harvesting, DOI fetching.</p>
-            <div class="actions">
-              <a href="https://github.com/jacquelineseufert/reprorec/" target="_blank" class="button">Repository</a>
-            </div>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/reprorec/" target="_blank" class="button">Repository</a></div>
           </div>
 
           <div class="project-card">
             <h3>2. LOD Mashup Gallery</h3>
             <p>Gallery of Jupyter notebooks combining Eurostat LOD with external sources (EU-LFS × Copernicus, GDP × nightlights).</p>
             <p><strong>Tech:</strong> SPARQL, RDF parsing, geospatial APIs.</p>
-            <div class="actions">
-              <a href="https://github.com/jacquelineseufert/lod-mashup-gallery" target="_blank" class="button">Repository</a>
-            </div>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/lod-mashup-gallery" target="_blank" class="button">Repository</a></div>
           </div>
 
           <div class="project-card">
             <h3>3. NUTS Crosswalk Generator</h3>
             <p>Generates crosswalks between NUTS versions using GIS overlays and area-weighted interpolation (CSV + GeoJSON outputs).</p>
             <p><strong>Tech:</strong> Shapefile overlays, R (sf), Python (geopandas).</p>
-            <div class="actions">
-              <a href="https://github.com/jacquelineseufert/nuts-crosswalk" target="_blank" class="button">Repository</a>
-            </div>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/nuts-crosswalk" target="_blank" class="button">Repository</a></div>
           </div>
-          <!-- keep adding other project cards here -->
+
+          <div class="project-card">
+            <h3>4. Eurostat in Parquet</h3>
+            <p>Converter that downloads Eurostat datasets and saves them in Parquet/Arrow with schema and metadata for big-data analytics.</p>
+            <p><strong>Tech:</strong> Data pipelines, Arrow/Parquet, Spark/Dask/Polars.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/eurostat-parquet" target="_blank" class="button">Repository</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>5. Survey Metadata Harvester</h3>
+            <p>Scraper that collects survey documentation (variables, weights, methods) into harmonised JSON/YAML across Eurostat surveys.</p>
+            <p><strong>Tech:</strong> Scraping, text mining, schema standardisation.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/survey-metadata-harvester" target="_blank" class="button">Repository</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>6. Break Detection QA</h3>
+            <p>Automated structural break detection in Eurostat time series (Bai-Perron, CUSUM), with annotated reproducible charts.</p>
+            <p><strong>Tech:</strong> Structural break econometrics, reproducible visualisation.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/break-detection-qa" target="_blank" class="button">Repository</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>7. Vacancy Explorer</h3>
+            <p>Combines Eurostat vacancy data with Online Job Ads (OJA), deduplicates ads, and maps regional labour market trends.</p>
+            <p><strong>Tech:</strong> Web scraping, NLP deduplication, entity matching.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/vacancy-explorer" target="_blank" class="button">Repository</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>8. OJA Deduplication Engine</h3>
+            <p>Open-source dedupe toolkit for job ads using TF-IDF, embeddings, clustering, and probabilistic record linkage.</p>
+            <p><strong>Tech:</strong> NLP, clustering, probabilistic linkage.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/oja-deduplication" target="_blank" class="button">Repository</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>9. Disclosure Control Toolkit</h3>
+            <p>Toolkit implementing k-anonymity, l-diversity, and differential privacy for Eurostat-like microdata, with utility metrics.</p>
+            <p><strong>Tech:</strong> Privacy-preserving statistics, synthetic data generation.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/disclosure-control" target="_blank" class="button">Repository</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>10. Revision Tracker</h3>
+            <p>Tracks dataset revisions, computes revision statistics (bias, mean absolute revision), and visualises dataset stability.</p>
+            <p><strong>Tech:</strong> Time series analytics, API version control, dashboards.</p>
+            <div class="actions"><a href="https://github.com/jacquelineseufert/revision-tracker" target="_blank" class="button">Repository</a></div>
+          </div>
         </section>
       </div>
     </div>
 
   </div>
 
-  <!-- Scripts -->
   <script src="assets/js/sidebar.js"></script>
   <script>
     window.addEventListener("load", () => {

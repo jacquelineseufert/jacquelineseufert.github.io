@@ -468,6 +468,26 @@ document.addEventListener("DOMContentLoaded", () => {
   /* === Audience dropdown (mobile) === */
   const dropdown = document.getElementById("audience-select");
   if (dropdown) {
+    // Apply same typography as .aud-btn
+    const refBtn = document.querySelector(".aud-btn");
+    const applyTabTypographyToDropdown = () => {
+      if (!refBtn) return;
+      const cs = getComputedStyle(refBtn);
+      dropdown.style.fontFamily    = cs.fontFamily;
+      dropdown.style.fontSize      = cs.fontSize;
+      dropdown.style.fontWeight    = cs.fontWeight;
+      dropdown.style.textTransform = cs.textTransform;
+      dropdown.style.letterSpacing = cs.letterSpacing;
+      dropdown.style.lineHeight    = cs.lineHeight;
+    };
+
+    // Run immediately + after webfonts load
+    applyTabTypographyToDropdown();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(applyTabTypographyToDropdown).catch(()=>{});
+    }
+
+    // Filter on change
     dropdown.addEventListener("change", () => {
       filterCV(dropdown.value);
     });

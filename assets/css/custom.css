@@ -261,4 +261,20 @@
     background-size:1rem;
   }
 }
+/* Hide/show desktop vs mobile audience controls */
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+  }
+}
 

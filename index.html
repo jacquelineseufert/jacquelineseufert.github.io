@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="assets/css/custom.css" />
   <link rel="icon" href="images/favicon.ico" />
 
-  <!-- Swiper CSS (for Expertise on mobile only) -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 </head>
 
@@ -104,93 +104,56 @@
           </p>
         </section>
 
-        <!-- Expertise (stacked on desktop; swipeable on mobile) -->
+        <!-- Expertise -->
         <section id="expertise">
           <header class="major"><h2>Expertise</h2></header>
 
-          <!-- Desktop/Tablet static layout -->
-          <div id="expertise-static">
-            <div class="features">
-              <article>
-                <span class="fas fa-database"></span>
-                <div class="content">
-                  <h3>Data Processing & Quality</h3>
-                  <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
-                </div>
-              </article>
-              <article>
-                <span class="fas fa-superscript"></span>
-                <div class="content">
-                  <h3>Statistics & Econometrics</h3>
-                  <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
-                </div>
-              </article>
-              <article>
-                <span class="fas fa-globe-europe"></span>
-                <div class="content">
-                  <h3>Geospatial Analysis</h3>
-                  <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
-                </div>
-              </article>
-              <article>
-                <span class="fas fa-chart-line"></span>
-                <div class="content">
-                  <h3>Communication & Policy Support</h3>
-                  <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <!-- Mobile carousel layout -->
-          <div id="expertise-carousel" style="display:none;">
-            <div class="swiper expertise-swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <article class="ql-card">
-                    <span class="fas fa-database"></span>
-                    <div class="content">
-                      <h3>Data Processing & Quality</h3>
-                      <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
-                    </div>
-                  </article>
-                </div>
-                <div class="swiper-slide">
-                  <article class="ql-card">
-                    <span class="fas fa-superscript"></span>
-                    <div class="content">
-                      <h3>Statistics & Econometrics</h3>
-                      <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
-                    </div>
-                  </article>
-                </div>
-                <div class="swiper-slide">
-                  <article class="ql-card">
-                    <span class="fas fa-globe-europe"></span>
-                    <div class="content">
-                      <h3>Geospatial Analysis</h3>
-                      <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
-                    </div>
-                  </article>
-                </div>
-                <div class="swiper-slide">
-                  <article class="ql-card">
-                    <span class="fas fa-chart-line"></span>
-                    <div class="content">
-                      <h3>Communication & Policy Support</h3>
-                      <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
-                    </div>
-                  </article>
-                </div>
+          <div class="swiper expertise-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <article>
+                  <span class="fas fa-database"></span>
+                  <div class="content">
+                    <h3>Data Processing & Quality</h3>
+                    <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article>
+                  <span class="fas fa-superscript"></span>
+                  <div class="content">
+                    <h3>Statistics & Econometrics</h3>
+                    <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article>
+                  <span class="fas fa-globe-europe"></span>
+                  <div class="content">
+                    <h3>Geospatial Analysis</h3>
+                    <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article>
+                  <span class="fas fa-chart-line"></span>
+                  <div class="content">
+                    <h3>Communication & Policy Support</h3>
+                    <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Quick links (static, unchanged) -->
+        <!-- Quick links -->
         <section>
           <header class="major"><h2>Quick links</h2></header>
-          <div class="ql-flex" id="ql-track">
+          <div class="ql-flex">
             <article class="ql-card">
               <a href="/cv.html" class="ql-imgbox">
                 <img src="images/cv.png" alt="CV / Experience" style="width:80px;"/>
@@ -236,8 +199,6 @@
 
     // Expertise: stacked on desktop, swipeable on mobile with peek
     (function () {
-      var staticEl = document.getElementById('expertise-static');
-      var carouselWrap = document.getElementById('expertise-carousel');
       var swiperInstance = null;
 
       function isMobile() {
@@ -246,11 +207,8 @@
 
       function enableMobileCarousel() {
         if (swiperInstance) return;
-        staticEl.style.display = 'none';
-        carouselWrap.style.display = '';
-
         swiperInstance = new Swiper('.expertise-swiper', {
-          slidesPerView: 1.15,   // show one full + a peek
+          slidesPerView: 1.15,   // show one + peek
           spaceBetween: 16,
           loop: false
         });
@@ -261,8 +219,6 @@
           swiperInstance.destroy(true, true);
           swiperInstance = null;
         }
-        carouselWrap.style.display = 'none';
-        staticEl.style.display = '';
       }
 
       function applyLayout() {

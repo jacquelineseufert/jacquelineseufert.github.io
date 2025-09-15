@@ -77,7 +77,7 @@
       </div>
     </div><!-- /#sidebar -->
 
-    <!-- Added for swipeable drawer -->
+    <!-- Backdrop for swipe -->
     <div id="backdrop" hidden></div>
     <div id="edge-swipe-zone" aria-hidden="true"></div>
 
@@ -108,43 +108,78 @@
         <section id="expertise">
           <header class="major"><h2>Expertise</h2></header>
 
-          <div class="swiper expertise-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-database"></span>
-                  <div class="content">
-                    <h3>Data Processing & Quality</h3>
-                    <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
-                  </div>
-                </article>
+          <!-- Desktop stacked -->
+          <div class="features expertise-desktop">
+            <article>
+              <span class="fas fa-database"></span>
+              <div class="content">
+                <h3>Data Processing & Quality</h3>
+                <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
               </div>
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-superscript"></span>
-                  <div class="content">
-                    <h3>Statistics & Econometrics</h3>
-                    <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
-                  </div>
-                </article>
+            </article>
+            <article>
+              <span class="fas fa-superscript"></span>
+              <div class="content">
+                <h3>Statistics & Econometrics</h3>
+                <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
               </div>
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-globe-europe"></span>
-                  <div class="content">
-                    <h3>Geospatial Analysis</h3>
-                    <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
-                  </div>
-                </article>
+            </article>
+            <article>
+              <span class="fas fa-globe-europe"></span>
+              <div class="content">
+                <h3>Geospatial Analysis</h3>
+                <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
               </div>
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-chart-line"></span>
-                  <div class="content">
-                    <h3>Communication & Policy Support</h3>
-                    <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
-                  </div>
-                </article>
+            </article>
+            <article>
+              <span class="fas fa-chart-line"></span>
+              <div class="content">
+                <h3>Communication & Policy Support</h3>
+                <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- Mobile swiper -->
+          <div class="expertise-mobile" style="display:none;">
+            <div class="swiper expertise-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-database"></span>
+                    <div class="content">
+                      <h3>Data Processing & Quality</h3>
+                      <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-superscript"></span>
+                    <div class="content">
+                      <h3>Statistics & Econometrics</h3>
+                      <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-globe-europe"></span>
+                    <div class="content">
+                      <h3>Geospatial Analysis</h3>
+                      <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-chart-line"></span>
+                    <div class="content">
+                      <h3>Communication & Policy Support</h3>
+                      <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
+                    </div>
+                  </article>
+                </div>
               </div>
             </div>
           </div>
@@ -197,24 +232,31 @@
       document.body.classList.remove('is-preload');
     });
 
-    // Expertise: stacked on desktop, swipeable on mobile with peek
+    // Switch between stacked (desktop) and swiper (mobile)
     (function () {
+      var desktopEl = document.querySelector('.expertise-desktop');
+      var mobileEl = document.querySelector('.expertise-mobile');
       var swiperInstance = null;
 
       function isMobile() {
         return window.matchMedia('(max-width: 767px)').matches;
       }
 
-      function enableMobileCarousel() {
-        if (swiperInstance) return;
-        swiperInstance = new Swiper('.expertise-swiper', {
-          slidesPerView: 1.15,   // show one + peek
-          spaceBetween: 16,
-          loop: false
-        });
+      function enableMobile() {
+        desktopEl.style.display = 'none';
+        mobileEl.style.display = '';
+        if (!swiperInstance) {
+          swiperInstance = new Swiper('.expertise-swiper', {
+            slidesPerView: 1.15, // peek of next card
+            spaceBetween: 16,
+            loop: false
+          });
+        }
       }
 
-      function disableMobileCarousel() {
+      function enableDesktop() {
+        desktopEl.style.display = '';
+        mobileEl.style.display = 'none';
         if (swiperInstance) {
           swiperInstance.destroy(true, true);
           swiperInstance = null;
@@ -222,16 +264,12 @@
       }
 
       function applyLayout() {
-        if (isMobile()) enableMobileCarousel();
-        else disableMobileCarousel();
+        if (isMobile()) enableMobile();
+        else enableDesktop();
       }
 
       applyLayout();
-      var resizeTimer = null;
-      window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(applyLayout, 150);
-      });
+      window.addEventListener('resize', applyLayout);
     })();
   </script>
 

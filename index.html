@@ -14,25 +14,6 @@
 
   <!-- Swiper CSS (for Expertise on mobile only) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-
-  <style>
-    /* Style arrows for Expertise swiper */
-    #expertise-carousel .swiper-button-next,
-    #expertise-carousel .swiper-button-prev {
-      color: #333;              /* neutral dark grey */
-      top: 40%;                 /* move arrows higher */
-      transform: translateY(-50%);
-    }
-
-    /* smaller arrows on mobile */
-    @media (max-width: 767px) {
-      #expertise-carousel .swiper-button-next,
-      #expertise-carousel .swiper-button-prev {
-        width: 28px;
-        height: 28px;
-      }
-    }
-  </style>
 </head>
 
 <body class="is-preload">
@@ -202,10 +183,6 @@
                   </article>
                 </div>
               </div>
-              <!-- Arrows + Dots -->
-              <div class="swiper-button-prev" id="exp-prev" style="display:none;"></div>
-              <div class="swiper-button-next" id="exp-next" style="display:none;"></div>
-              <div class="swiper-pagination" id="exp-pager" style="display:none;"></div>
             </div>
           </div>
         </section>
@@ -257,13 +234,10 @@
       document.body.classList.remove('is-preload');
     });
 
-    // Expertise: stacked on desktop, swipeable on mobile
+    // Expertise: stacked on desktop, swipeable on mobile with peek
     (function () {
       var staticEl = document.getElementById('expertise-static');
       var carouselWrap = document.getElementById('expertise-carousel');
-      var prevBtn = document.getElementById('exp-prev');
-      var nextBtn = document.getElementById('exp-next');
-      var pager = document.getElementById('exp-pager');
       var swiperInstance = null;
 
       function isMobile() {
@@ -274,16 +248,11 @@
         if (swiperInstance) return;
         staticEl.style.display = 'none';
         carouselWrap.style.display = '';
-        prevBtn.style.display = '';
-        nextBtn.style.display = '';
-        pager.style.display = '';
 
         swiperInstance = new Swiper('.expertise-swiper', {
-          slidesPerView: 1.15,
+          slidesPerView: 1.15,   // show one full + a peek
           spaceBetween: 16,
-          loop: false,
-          navigation: { nextEl: '#exp-next', prevEl: '#exp-prev' },
-          pagination: { el: '#exp-pager', clickable: true }
+          loop: false
         });
       }
 
@@ -293,9 +262,6 @@
           swiperInstance = null;
         }
         carouselWrap.style.display = 'none';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        pager.style.display = 'none';
         staticEl.style.display = '';
       }
 

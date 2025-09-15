@@ -14,6 +14,25 @@
 
   <!-- Swiper CSS (for Expertise on mobile only) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+  <style>
+    /* Style arrows for Expertise swiper */
+    #expertise-carousel .swiper-button-next,
+    #expertise-carousel .swiper-button-prev {
+      color: #333;              /* neutral dark grey */
+      top: 40%;                 /* move arrows higher */
+      transform: translateY(-50%);
+    }
+
+    /* smaller arrows on mobile */
+    @media (max-width: 767px) {
+      #expertise-carousel .swiper-button-next,
+      #expertise-carousel .swiper-button-prev {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
 </head>
 
 <body class="is-preload">
@@ -104,7 +123,7 @@
           </p>
         </section>
 
-        <!-- Expertise (stacked by default; becomes swipeable on mobile) -->
+        <!-- Expertise (stacked on desktop; swipeable on mobile) -->
         <section id="expertise">
           <header class="major"><h2>Expertise</h2></header>
 
@@ -142,7 +161,7 @@
             </div>
           </div>
 
-          <!-- Mobile carousel layout (hidden by default; shown on mobile via JS) -->
+          <!-- Mobile carousel layout -->
           <div id="expertise-carousel" style="display:none;">
             <div class="swiper expertise-swiper">
               <div class="swiper-wrapper">
@@ -183,7 +202,7 @@
                   </article>
                 </div>
               </div>
-              <!-- Arrows + Dots (only shown on mobile by JS) -->
+              <!-- Arrows + Dots -->
               <div class="swiper-button-prev" id="exp-prev" style="display:none;"></div>
               <div class="swiper-button-next" id="exp-next" style="display:none;"></div>
               <div class="swiper-pagination" id="exp-pager" style="display:none;"></div>
@@ -191,7 +210,7 @@
           </div>
         </section>
 
-        <!-- Quick links (restored exactly as before; static) -->
+        <!-- Quick links (static, unchanged) -->
         <section>
           <header class="major"><h2>Quick links</h2></header>
           <div class="ql-flex" id="ql-track">
@@ -228,7 +247,7 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/sidebar.js"></script>
 
-  <!-- Swiper JS (for Expertise mobile) -->
+  <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
   <script>
@@ -238,7 +257,7 @@
       document.body.classList.remove('is-preload');
     });
 
-    // Toggle Expertise: stacked on desktop/tablet, swipeable on mobile (<= 767px)
+    // Expertise: stacked on desktop, swipeable on mobile
     (function () {
       var staticEl = document.getElementById('expertise-static');
       var carouselWrap = document.getElementById('expertise-carousel');
@@ -252,28 +271,19 @@
       }
 
       function enableMobileCarousel() {
-        if (swiperInstance) return; // already enabled
+        if (swiperInstance) return;
         staticEl.style.display = 'none';
         carouselWrap.style.display = '';
-        // Show mobile controls
         prevBtn.style.display = '';
         nextBtn.style.display = '';
         pager.style.display = '';
 
         swiperInstance = new Swiper('.expertise-swiper', {
-          slidesPerView: 1.15,  // one card plus a bit of the next
+          slidesPerView: 1.15,
           spaceBetween: 16,
           loop: false,
-          navigation: {
-            nextEl: '#exp-next',
-            prevEl: '#exp-prev',
-            enabled: true
-          },
-          pagination: {
-            el: '#exp-pager',
-            clickable: true,
-            enabled: true
-          }
+          navigation: { nextEl: '#exp-next', prevEl: '#exp-prev' },
+          pagination: { el: '#exp-pager', clickable: true }
         });
       }
 
@@ -282,7 +292,6 @@
           swiperInstance.destroy(true, true);
           swiperInstance = null;
         }
-        // Hide mobile carousel and controls, show stacked
         carouselWrap.style.display = 'none';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';

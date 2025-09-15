@@ -21,6 +21,8 @@
     <!-- Sidebar -->
     <div id="sidebar">
       <div class="inner">
+
+        <!-- Profile -->
         <section class="profile" style="text-align:center; margin-bottom:2rem;">
           <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" style="width:140px; border-radius:50%; margin-bottom:1rem;">
           <h1 style="margin:0;">Jacqueline Seufert</h1>
@@ -30,6 +32,7 @@
           <p style="font-size:.9rem;">Economist &amp; Data Scientist</p>
         </section>
 
+        <!-- Menu -->
         <nav id="menu">
           <header class="major"><h2>Menu</h2></header>
           <ul>
@@ -39,6 +42,7 @@
           </ul>
         </nav>
 
+        <!-- Contact -->
         <section>
           <header class="major"><h2>Get in touch</h2></header>
           <ul class="contact">
@@ -52,6 +56,7 @@
           </ul>
         </section>
 
+        <!-- Footer -->
         <footer id="footer">
           <p class="copyright">© <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
         </footer>
@@ -64,11 +69,17 @@
     <!-- Main -->
     <div id="main">
       <div class="inner">
+
+        <!-- Cover / Title -->
         <section id="cover" style="text-align:center; padding:3rem 1rem;">
           <h1>Jacqueline Seufert</h1>
-          <p class="subtitle">Economist &amp; Data Scientist — connecting statistics, econometrics, and data science to real-world policy and practice.</p>
+          <p class="subtitle">
+            Economist &amp; Data Scientist — connecting statistics, econometrics,
+            and data science to real-world policy and practice.
+          </p>
         </section>
 
+        <!-- Intro -->
         <section id="intro">
           <p>
             I work at the crossroads of economics, statistics, and data science, combining econometric modeling,
@@ -165,18 +176,30 @@
 
     let expertiseSwiper = null;
     function toggleExpertiseSwiper() {
+      const wrapper = document.querySelector('.expertise-swiper .swiper-wrapper');
+      const slides = document.querySelectorAll('.expertise-swiper .swiper-slide');
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
       if (isMobile && !expertiseSwiper) {
+        wrapper.style.display = ''; // reset
+        slides.forEach(s => s.style.width = '');
         expertiseSwiper = new Swiper('.expertise-swiper', {
-          slidesPerView: 1.15,   // peek at next card
+          slidesPerView: 1.15,
           spaceBetween: 16,
-          loop: true             // circular (360°)
+          loop: true
         });
       } else if (!isMobile && expertiseSwiper) {
         expertiseSwiper.destroy(true, true);
         expertiseSwiper = null;
+        // reset to stacked layout
+        wrapper.style.display = 'block';
+        slides.forEach(s => {
+          s.style.width = '100%';
+          s.style.marginBottom = '1.5rem';
+        });
       }
     }
+
     window.addEventListener('load', toggleExpertiseSwiper);
     window.addEventListener('resize', toggleExpertiseSwiper);
   </script>

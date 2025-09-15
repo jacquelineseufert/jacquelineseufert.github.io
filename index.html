@@ -1,10 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-  <meta name="google-site-verification" content="6Od3L0Fl4Nnm8XPSVcdUIF7m-nCVmb6B98hv-bDSK6w" />
-  <title>Jacqueline Seufert — Economist & Data Scientist</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Jacqueline Seufert — Economist & Data Scientist</title>
 
   <!-- Theme styles -->
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
@@ -15,17 +14,13 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 </head>
-
 <body class="is-preload">
 
   <!-- Wrapper -->
   <div id="wrapper">
-
     <!-- Sidebar -->
     <div id="sidebar">
       <div class="inner">
-
-        <!-- Profile -->
         <section class="profile" style="text-align:center; margin-bottom:2rem;">
           <img src="images/cv_picture.jpg" alt="Jacqueline Seufert" style="width:140px; border-radius:50%; margin-bottom:1rem;">
           <h1 style="margin:0;">Jacqueline Seufert</h1>
@@ -35,7 +30,6 @@
           <p style="font-size:.9rem;">Economist &amp; Data Scientist</p>
         </section>
 
-        <!-- Menu -->
         <nav id="menu">
           <header class="major"><h2>Menu</h2></header>
           <ul>
@@ -45,7 +39,6 @@
           </ul>
         </nav>
 
-        <!-- Contact -->
         <section>
           <header class="major"><h2>Get in touch</h2></header>
           <ul class="contact">
@@ -54,47 +47,28 @@
                 <i class="fas fa-envelope"></i> Contact
               </a>
             </li>
-            <li>
-              <a href="https://github.com/jacquelineseufert" target="_blank">
-                <i class="fab fa-github"></i> github.com/jacquelineseufert
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">
-                <i class="fab fa-linkedin"></i> linkedin.com/in/jacqueline-seufert
-              </a>
-            </li>
+            <li><a href="https://github.com/jacquelineseufert" target="_blank"><i class="fab fa-github"></i> github.com/jacquelineseufert</a></li>
+            <li><a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/jacqueline-seufert</a></li>
           </ul>
         </section>
 
-        <!-- Footer -->
         <footer id="footer">
-          <p class="copyright">
-            © <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.
-          </p>
+          <p class="copyright">© <span id="year"></span> Jacqueline Seufert. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
         </footer>
-
       </div>
     </div><!-- /#sidebar -->
 
-    <!-- Added for swipeable drawer -->
     <div id="backdrop" hidden></div>
     <div id="edge-swipe-zone" aria-hidden="true"></div>
 
     <!-- Main -->
     <div id="main">
       <div class="inner">
-
-        <!-- Cover / Title -->
         <section id="cover" style="text-align:center; padding:3rem 1rem;">
           <h1>Jacqueline Seufert</h1>
-          <p class="subtitle">
-            Economist &amp; Data Scientist — connecting statistics, econometrics, 
-            and data science to real-world policy and practice.
-          </p>
+          <p class="subtitle">Economist &amp; Data Scientist — connecting statistics, econometrics, and data science to real-world policy and practice.</p>
         </section>
 
-        <!-- Intro -->
         <section id="intro">
           <p>
             I work at the crossroads of economics, statistics, and data science, combining econometric modeling,
@@ -152,7 +126,7 @@
         <!-- Quick links -->
         <section>
           <header class="major"><h2>Quick links</h2></header>
-          <div class="ql-flex">
+          <div class="ql-flex" style="display:flex; gap:2rem; flex-wrap:wrap;">
             <article class="ql-card">
               <a href="/cv.html" class="ql-imgbox">
                 <img src="images/cv.png" alt="CV / Experience" style="width:80px;"/>
@@ -173,10 +147,8 @@
             </article>
           </div>
         </section>
-
       </div>
     </div><!-- /#main -->
-
   </div><!-- /#wrapper -->
 
   <!-- Scripts -->
@@ -189,31 +161,24 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    window.addEventListener('load', () => {
-      document.body.classList.remove('is-preload');
-    });
+    window.addEventListener('load', () => { document.body.classList.remove('is-preload'); });
 
     let expertiseSwiper = null;
-
     function toggleExpertiseSwiper() {
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
-
       if (isMobile && !expertiseSwiper) {
         expertiseSwiper = new Swiper('.expertise-swiper', {
           slidesPerView: 1.15,   // peek at next card
           spaceBetween: 16,
-          loop: true             // circular (360° swipe)
+          loop: true             // circular (360°)
         });
       } else if (!isMobile && expertiseSwiper) {
         expertiseSwiper.destroy(true, true);
         expertiseSwiper = null;
       }
     }
-
     window.addEventListener('load', toggleExpertiseSwiper);
     window.addEventListener('resize', toggleExpertiseSwiper);
   </script>
-
 </body>
 </html>

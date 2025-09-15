@@ -161,15 +161,17 @@
         document.body.classList.remove('is-preload');
       });
 
+      // Keep mobile as-is (1 per view). Show a "half bubble" on larger screens.
       var swiper = new Swiper('.swiper', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
+        loopAdditionalSlides: 10,
         pagination: { el: '.swiper-pagination', clickable: true },
         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         breakpoints: {
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 2 } /* fewer on desktop = wider cards */
+          768:  { slidesPerView: 1.35 }, // tablet: 1 full + a bit
+          1024: { slidesPerView: 2.25 }  // desktop: 2 full + a bit
         }
       });
     </script>

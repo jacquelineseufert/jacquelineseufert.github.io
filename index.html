@@ -42,29 +42,28 @@
             <li><a href="/projects.html" class="fas fa-folder-open">Projects</a></li>
           </ul>
         </nav>
-  <!-- Contact -->
-<section>
-  <header class="major"><h2>Get in touch</h2></header>
-  <ul class="contact">
-    <li>
-      <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
-        <i class="fas fa-envelope"></i> Contact
-      </a>
-    </li>
-    <li>
-      <a href="https://github.com/jacquelineseufert" target="_blank">
-        <i class="fab fa-github"></i> github.com/jacquelineseufert
-      </a>
-    </li>
-    <li>
-      <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">
-        <i class="fab fa-linkedin"></i> linkedin.com/in/jacqueline-seufert
-      </a>
-    </li>
-  </ul>
-</section>
 
-
+        <!-- Contact -->
+        <section>
+          <header class="major"><h2>Get in touch</h2></header>
+          <ul class="contact">
+            <li>
+              <a href="mailto:&#106;&#097;&#099;&#113;&#117;&#101;&#108;&#105;&#110;&#101;&#045;&#115;&#101;&#117;&#102;&#101;&#114;&#116;&#064;&#119;&#101;&#098;&#046;&#100;&#101;">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/jacquelineseufert" target="_blank">
+                <i class="fab fa-github"></i> github.com/jacquelineseufert
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/jacqueline-seufert" target="_blank">
+                <i class="fab fa-linkedin"></i> linkedin.com/in/jacqueline-seufert
+              </a>
+            </li>
+          </ul>
+        </section>
 
         <!-- Footer -->
         <footer id="footer">
@@ -140,8 +139,23 @@
 
         <!-- Quick links -->
         <section>
-          <header class="major"><h2>Quick links</h2></header>
-          <div class="ql-flex">
+          <header class="major" style="display:flex; align-items:center; justify-content:space-between;">
+            <h2 style="margin:0;">Quick links</h2>
+            <!-- Mobile arrows for swipable row -->
+            <div class="ql-arrows" style="display:flex; gap:.5rem;">
+              <button id="ql-prev" type="button" aria-label="Previous" title="Previous"
+                      style="border:0; background:#eee; padding:.4rem .6rem; border-radius:6px; cursor:pointer;">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <button id="ql-next" type="button" aria-label="Next" title="Next"
+                      style="border:0; background:#eee; padding:.4rem .6rem; border-radius:6px; cursor:pointer;">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </header>
+
+          <!-- Keep your existing swipable container; just give it an id for JS -->
+          <div class="ql-flex" id="ql-track">
             <article class="ql-card">
               <a href="/cv.html" class="ql-imgbox">
                 <img src="images/cv.png" alt="CV / Experience" style="width:80px;"/>
@@ -151,6 +165,7 @@
                 <li><a href="/cv.html" class="button small">Open</a></li>
               </ul>
             </article>
+
             <article class="ql-card">
               <a href="/projects.html" class="ql-imgbox">
                 <img src="images/eurostat.png" alt="Eurostat Projects" style="width:80px;"/>
@@ -168,25 +183,56 @@
 
   </div><!-- /#wrapper -->
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
-<script src="assets/js/sidebar.js"></script>
+  <script src="assets/js/sidebar.js"></script>
 
-<script>
-  window.addEventListener('load', () => {
-    document.body.classList.remove('is-preload');
-  });
-</script>
+  <script>
+    window.addEventListener('load', () => {
+      document.body.classList.remove('is-preload');
+    });
 
+    // Arrow controls for the swipable Quick links row on mobile.
+    // Works with your existing swipe/drag (touch) behavior.
+    (function () {
+      var track = document.getElementById('ql-track');
+      var prev = document.getElementById('ql-prev');
+      var next = document.getElementById('ql-next');
+      if (!track || !prev || !next) return;
 
+      function scrollAmount() {
+        // Scroll by ~one viewport width of the track (nice chunk)
+        return Math.max(160, Math.floor(track.clientWidth * 0.9));
+      }
+
+      prev.addEventListener('click', function () {
+        track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+      });
+
+      next.addEventListener('click', function () {
+        track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+      });
+
+      // Optional: hide prev at start, hide next at end (no CSS file changes)
+      function updateArrows() {
+        var maxScroll = track.scrollWidth - track.clientWidth - 1; // fudge for floats
+        prev.style.opacity = track.scrollLeft <= 0 ? '0.4' : '1';
+        next.style.opacity = track.scrollLeft >= maxScroll ? '0.4' : '1';
+      }
+
+      track.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+    })();
+  </script>
 
 </body>
 </html>

@@ -75,8 +75,12 @@
         </div>
       </div>
 
+      <!-- Backdrop + swipe zone -->
+      <div id="backdrop" hidden></div>
+      <div id="edge-swipe-zone" aria-hidden="true"></div>
+
       <!-- Main -->
-      <div id="main">
+      <div id="main" class="alt">
         <div class="inner">
           <section id="cover" style="text-align:center; padding:3rem 1rem;">
             <h1>Eurostat Projects</h1>
@@ -90,6 +94,7 @@
           <section>
             <div class="swiper">
               <div class="swiper-wrapper">
+                <!-- === All 10 projects (unchanged) === -->
                 <!-- Project 1 -->
                 <div class="swiper-slide">
                   <div class="project-card">

@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
-
   <link rel="icon" href="images/favicon.ico" />
+
+  <!-- Swiper CSS (for Expertise on mobile only) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 </head>
 
 <body class="is-preload">
@@ -102,59 +104,96 @@
           </p>
         </section>
 
-        <!-- Expertise -->
-        <section>
+        <!-- Expertise (stacked by default; becomes swipeable on mobile) -->
+        <section id="expertise">
           <header class="major"><h2>Expertise</h2></header>
-          <div class="features">
-            <article>
-              <span class="fas fa-database"></span>
-              <div class="content">
-                <h3>Data Processing & Quality</h3>
-                <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
+
+          <!-- Desktop/Tablet static layout -->
+          <div id="expertise-static">
+            <div class="features">
+              <article>
+                <span class="fas fa-database"></span>
+                <div class="content">
+                  <h3>Data Processing & Quality</h3>
+                  <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
+                </div>
+              </article>
+              <article>
+                <span class="fas fa-superscript"></span>
+                <div class="content">
+                  <h3>Statistics & Econometrics</h3>
+                  <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
+                </div>
+              </article>
+              <article>
+                <span class="fas fa-globe-europe"></span>
+                <div class="content">
+                  <h3>Geospatial Analysis</h3>
+                  <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
+                </div>
+              </article>
+              <article>
+                <span class="fas fa-chart-line"></span>
+                <div class="content">
+                  <h3>Communication & Policy Support</h3>
+                  <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Mobile carousel layout (hidden by default; shown on mobile via JS) -->
+          <div id="expertise-carousel" style="display:none;">
+            <div class="swiper expertise-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-database"></span>
+                    <div class="content">
+                      <h3>Data Processing & Quality</h3>
+                      <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-superscript"></span>
+                    <div class="content">
+                      <h3>Statistics & Econometrics</h3>
+                      <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-globe-europe"></span>
+                    <div class="content">
+                      <h3>Geospatial Analysis</h3>
+                      <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide">
+                  <article class="ql-card">
+                    <span class="fas fa-chart-line"></span>
+                    <div class="content">
+                      <h3>Communication & Policy Support</h3>
+                      <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
+                    </div>
+                  </article>
+                </div>
               </div>
-            </article>
-            <article>
-              <span class="fas fa-superscript"></span>
-              <div class="content">
-                <h3>Statistics & Econometrics</h3>
-                <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
-              </div>
-            </article>
-            <article>
-              <span class="fas fa-globe-europe"></span>
-              <div class="content">
-                <h3>Geospatial Analysis</h3>
-                <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
-              </div>
-            </article>
-            <article>
-              <span class="fas fa-chart-line"></span>
-              <div class="content">
-                <h3>Communication & Policy Support</h3>
-                <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
-              </div>
-            </article>
+              <!-- Arrows + Dots (only shown on mobile by JS) -->
+              <div class="swiper-button-prev" id="exp-prev" style="display:none;"></div>
+              <div class="swiper-button-next" id="exp-next" style="display:none;"></div>
+              <div class="swiper-pagination" id="exp-pager" style="display:none;"></div>
+            </div>
           </div>
         </section>
 
-        <!-- Quick links -->
+        <!-- Quick links (restored exactly as before; static) -->
         <section>
-          <header class="major" style="display:flex; align-items:center; justify-content:space-between;">
-            <h2 style="margin:0;">Quick links</h2>
-            <!-- Mobile arrows for swipable row -->
-            <div class="ql-arrows" style="display:flex; gap:.5rem;">
-              <button id="ql-prev" type="button" aria-label="Previous" title="Previous"
-                      style="border:0; background:#eee; padding:.4rem .6rem; border-radius:6px; cursor:pointer;">
-                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-              </button>
-              <button id="ql-next" type="button" aria-label="Next" title="Next"
-                      style="border:0; background:#eee; padding:.4rem .6rem; border-radius:6px; cursor:pointer;">
-                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-              </button>
-            </div>
-          </header>
-
-          <!-- Keep your existing swipable container; just give it an id for JS -->
+          <header class="major"><h2>Quick links</h2></header>
           <div class="ql-flex" id="ql-track">
             <article class="ql-card">
               <a href="/cv.html" class="ql-imgbox">
@@ -165,7 +204,6 @@
                 <li><a href="/cv.html" class="button small">Open</a></li>
               </ul>
             </article>
-
             <article class="ql-card">
               <a href="/projects.html" class="ql-imgbox">
                 <img src="images/eurostat.png" alt="Eurostat Projects" style="width:80px;"/>
@@ -188,49 +226,81 @@
   <script src="assets/js/browser.min.js"></script>
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
+  <script src="assets/js/sidebar.js"></script>
+
+  <!-- Swiper JS (for Expertise mobile) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 
-  <script src="assets/js/sidebar.js"></script>
-
-  <script>
     window.addEventListener('load', () => {
       document.body.classList.remove('is-preload');
     });
 
-    // Arrow controls for the swipable Quick links row on mobile.
-    // Works with your existing swipe/drag (touch) behavior.
+    // Toggle Expertise: stacked on desktop/tablet, swipeable on mobile (<= 767px)
     (function () {
-      var track = document.getElementById('ql-track');
-      var prev = document.getElementById('ql-prev');
-      var next = document.getElementById('ql-next');
-      if (!track || !prev || !next) return;
+      var staticEl = document.getElementById('expertise-static');
+      var carouselWrap = document.getElementById('expertise-carousel');
+      var prevBtn = document.getElementById('exp-prev');
+      var nextBtn = document.getElementById('exp-next');
+      var pager = document.getElementById('exp-pager');
+      var swiperInstance = null;
 
-      function scrollAmount() {
-        // Scroll by ~one viewport width of the track (nice chunk)
-        return Math.max(160, Math.floor(track.clientWidth * 0.9));
+      function isMobile() {
+        return window.matchMedia('(max-width: 767px)').matches;
       }
 
-      prev.addEventListener('click', function () {
-        track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-      });
+      function enableMobileCarousel() {
+        if (swiperInstance) return; // already enabled
+        staticEl.style.display = 'none';
+        carouselWrap.style.display = '';
+        // Show mobile controls
+        prevBtn.style.display = '';
+        nextBtn.style.display = '';
+        pager.style.display = '';
 
-      next.addEventListener('click', function () {
-        track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-      });
-
-      // Optional: hide prev at start, hide next at end (no CSS file changes)
-      function updateArrows() {
-        var maxScroll = track.scrollWidth - track.clientWidth - 1; // fudge for floats
-        prev.style.opacity = track.scrollLeft <= 0 ? '0.4' : '1';
-        next.style.opacity = track.scrollLeft >= maxScroll ? '0.4' : '1';
+        swiperInstance = new Swiper('.expertise-swiper', {
+          slidesPerView: 1.15,  // one card plus a bit of the next
+          spaceBetween: 16,
+          loop: false,
+          navigation: {
+            nextEl: '#exp-next',
+            prevEl: '#exp-prev',
+            enabled: true
+          },
+          pagination: {
+            el: '#exp-pager',
+            clickable: true,
+            enabled: true
+          }
+        });
       }
 
-      track.addEventListener('scroll', updateArrows, { passive: true });
-      window.addEventListener('resize', updateArrows);
-      updateArrows();
+      function disableMobileCarousel() {
+        if (swiperInstance) {
+          swiperInstance.destroy(true, true);
+          swiperInstance = null;
+        }
+        // Hide mobile carousel and controls, show stacked
+        carouselWrap.style.display = 'none';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        pager.style.display = 'none';
+        staticEl.style.display = '';
+      }
+
+      function applyLayout() {
+        if (isMobile()) enableMobileCarousel();
+        else disableMobileCarousel();
+      }
+
+      applyLayout();
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(applyLayout, 150);
+      });
     })();
   </script>
 

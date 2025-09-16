@@ -92,45 +92,35 @@
         <!-- Expertise -->
         <section id="expertise">
           <header class="major"><h2>Expertise</h2></header>
-          <div class="swiper expertise-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-database"></span>
-                  <div class="content">
-                    <h3>Data Processing & Quality</h3>
-                    <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
-                  </div>
-                </article>
+          <div class="expertise-container">
+            <article>
+              <span class="fas fa-database"></span>
+              <div class="content">
+                <h3>Data Processing & Quality</h3>
+                <p>Reproducible data pipelines in R, Python, and SQL; integration of multiple sources; quality assurance.</p>
               </div>
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-superscript"></span>
-                  <div class="content">
-                    <h3>Statistics & Econometrics</h3>
-                    <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
-                  </div>
-                </article>
+            </article>
+            <article>
+              <span class="fas fa-superscript"></span>
+              <div class="content">
+                <h3>Statistics & Econometrics</h3>
+                <p>Econometric modelling, causal inference, Bayesian methods, survey analysis, machine learning.</p>
               </div>
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-globe-europe"></span>
-                  <div class="content">
-                    <h3>Geospatial Analysis</h3>
-                    <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
-                  </div>
-                </article>
+            </article>
+            <article>
+              <span class="fas fa-globe-europe"></span>
+              <div class="content">
+                <h3>Geospatial Analysis</h3>
+                <p>GIS, cadastral and registry data, satellite imagery, open data integration for spatial statistics.</p>
               </div>
-              <div class="swiper-slide">
-                <article>
-                  <span class="fas fa-chart-line"></span>
-                  <div class="content">
-                    <h3>Communication & Policy Support</h3>
-                    <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
-                  </div>
-                </article>
+            </article>
+            <article>
+              <span class="fas fa-chart-line"></span>
+              <div class="content">
+                <h3>Communication & Policy Support</h3>
+                <p>Forecasting and evaluation, dashboards, policy briefs, teaching and supervision.</p>
               </div>
-            </div>
+            </article>
           </div>
         </section>
 
@@ -176,27 +166,37 @@
 
     let expertiseSwiper = null;
     function toggleExpertiseSwiper() {
-      const wrapper = document.querySelector('.expertise-swiper .swiper-wrapper');
-      const slides = document.querySelectorAll('.expertise-swiper .swiper-slide');
+      const container = document.querySelector('.expertise-container');
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
       if (isMobile && !expertiseSwiper) {
-        wrapper.style.display = ''; // reset
-        slides.forEach(s => s.style.width = '');
-        expertiseSwiper = new Swiper('.expertise-swiper', {
+        // Wrap articles for swiper
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('swiper-wrapper');
+        [...container.children].forEach(child => {
+          const slide = document.createElement('div');
+          slide.classList.add('swiper-slide');
+          slide.appendChild(child.cloneNode(true));
+          wrapper.appendChild(slide);
+        });
+        container.innerHTML = '';
+        container.classList.add('swiper');
+        container.appendChild(wrapper);
+
+        expertiseSwiper = new Swiper('.expertise-container', {
           slidesPerView: 1.15,
           spaceBetween: 16,
           loop: true
         });
       } else if (!isMobile && expertiseSwiper) {
+        // Destroy swiper and restore plain articles
+        const wrapper = container.querySelector('.swiper-wrapper');
+        const slides = wrapper.querySelectorAll('.swiper-slide');
+        container.innerHTML = '';
+        slides.forEach(s => container.appendChild(s.firstElementChild));
+        container.classList.remove('swiper');
         expertiseSwiper.destroy(true, true);
         expertiseSwiper = null;
-        // reset to stacked layout
-        wrapper.style.display = 'block';
-        slides.forEach(s => {
-          s.style.width = '100%';
-          s.style.marginBottom = '1.5rem';
-        });
       }
     }
 

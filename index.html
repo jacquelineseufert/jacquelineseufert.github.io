@@ -13,6 +13,20 @@
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+  <style>
+    /* Expertise grid on desktop */
+    #expertise .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 767px) {
+      #expertise .expertise-grid {
+        display: block; /* let Swiper handle layout on mobile */
+      }
+    }
+  </style>
 </head>
 <body class="is-preload">
 
@@ -92,7 +106,7 @@
         <!-- Expertise -->
         <section id="expertise">
           <header class="major"><h2>Expertise</h2></header>
-          <div class="expertise-container">
+          <div class="expertise-grid">
             <article>
               <span class="fas fa-database"></span>
               <div class="content">
@@ -166,35 +180,34 @@
 
     let expertiseSwiper = null;
     function toggleExpertiseSwiper() {
-      const container = document.querySelector('.expertise-container');
+      const grid = document.querySelector('.expertise-grid');
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
       if (isMobile && !expertiseSwiper) {
-        // Wrap articles for swiper
+        // turn grid into swiper
+        grid.classList.add('swiper');
         const wrapper = document.createElement('div');
         wrapper.classList.add('swiper-wrapper');
-        [...container.children].forEach(child => {
+        [...grid.children].forEach(child => {
           const slide = document.createElement('div');
           slide.classList.add('swiper-slide');
-          slide.appendChild(child.cloneNode(true));
+          slide.appendChild(child);
           wrapper.appendChild(slide);
         });
-        container.innerHTML = '';
-        container.classList.add('swiper');
-        container.appendChild(wrapper);
+        grid.appendChild(wrapper);
 
-        expertiseSwiper = new Swiper('.expertise-container', {
+        expertiseSwiper = new Swiper('.expertise-grid', {
           slidesPerView: 1.15,
           spaceBetween: 16,
           loop: true
         });
       } else if (!isMobile && expertiseSwiper) {
-        // Destroy swiper and restore plain articles
-        const wrapper = container.querySelector('.swiper-wrapper');
+        // destroy swiper, restore 2x2 grid
+        const wrapper = grid.querySelector('.swiper-wrapper');
         const slides = wrapper.querySelectorAll('.swiper-slide');
-        container.innerHTML = '';
-        slides.forEach(s => container.appendChild(s.firstElementChild));
-        container.classList.remove('swiper');
+        wrapper.remove();
+        slides.forEach(s => grid.appendChild(s.firstElementChild));
+        grid.classList.remove('swiper');
         expertiseSwiper.destroy(true, true);
         expertiseSwiper = null;
       }
